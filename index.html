@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- AOS Animation Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <!-- Tailwind CSS (CDN for Static Site) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -29,15 +32,44 @@
             }
         }
     </script>
+
+    <style>
+        /* Custom Button Glow Animations */
+        .glow-emerald {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+            animation: pulse-glow-emerald 3s infinite alternate;
+        }
+        .glow-emerald:hover {
+            box-shadow: 0 0 35px rgba(16, 185, 129, 0.7);
+        }
+
+        .glow-navy {
+            box-shadow: 0 0 15px rgba(15, 23, 42, 0.3);
+            animation: pulse-glow-navy 3s infinite alternate;
+        }
+        .glow-navy:hover {
+            box-shadow: 0 0 25px rgba(15, 23, 42, 0.6);
+        }
+
+        @keyframes pulse-glow-emerald {
+            0% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.3); }
+            100% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.6); }
+        }
+
+        @keyframes pulse-glow-navy {
+            0% { box-shadow: 0 0 10px rgba(15, 23, 42, 0.2); }
+            100% { box-shadow: 0 0 22px rgba(15, 23, 42, 0.5); }
+        }
+    </style>
 </head>
-<body class="font-sans antialiased bg-slate-50 text-slate-800">
+<body class="font-sans antialiased bg-slate-50 text-slate-800 overflow-x-hidden">
 
     <!-- Navigation -->
     <nav class="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <div class="flex-shrink-0 flex items-center gap-2">
-                    <div class="w-10 h-10 bg-rxEmerald rounded-lg flex items-center justify-center text-white font-bold text-xl">Rx</div>
+                    <div class="w-10 h-10 bg-rxEmerald rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md">Rx</div>
                     <span class="font-bold text-2xl text-rxNavy tracking-tight">RxNXT</span>
                 </div>
                 <div class="hidden md:flex space-x-8">
@@ -46,7 +78,7 @@
                     <a href="#contact" class="text-slate-600 hover:text-rxEmerald transition-colors font-medium">Contact</a>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <a href="https://app.rxnxt.in/login" class="bg-rxNavy hover:bg-rxNavyLight text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-lg shadow-rxNavy/20">
+                    <a href="https://app.rxnxt.in/login" class="bg-rxNavy hover:bg-rxNavyLight text-white px-6 py-2.5 rounded-full font-medium transition-all transform hover:-translate-y-0.5 glow-navy">
                         Get Started
                     </a>
                 </div>
@@ -56,27 +88,27 @@
 
     <!-- Hero Section -->
     <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-rxEmerald/10 via-slate-50 to-slate-50 -z-10"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-rxEmerald/15 via-slate-50 to-slate-50 -z-10"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
             
             <!-- Trust Badge Mini -->
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 font-medium text-sm mb-8 shadow-sm">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+            <div data-aos="fade-down" data-aos-duration="1000" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 font-medium text-sm mb-8 shadow-sm">
+                <svg class="w-4 h-4 text-rxEmerald" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                 DPIIT Recognized Startup by Govt. of India
             </div>
 
-            <h1 class="text-5xl md:text-7xl font-extrabold text-rxNavy tracking-tight mb-8">
+            <h1 data-aos="fade-up" data-aos-duration="1000" class="text-5xl md:text-7xl font-extrabold text-rxNavy tracking-tight mb-8 leading-tight">
                 The Future of <span class="text-transparent bg-clip-text bg-gradient-to-r from-rxEmerald to-emerald-400">Clinical Workflows</span>
             </h1>
-            <p class="mt-4 text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto mb-10 font-light leading-relaxed">
+            <p data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" class="mt-4 text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto mb-10 font-light leading-relaxed">
                 Empower your clinic with real-time patient queue management, 60-second digital prescriptions, and seamless receptionist-doctor coordination.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="https://app.rxnxt.in/login" class="bg-rxEmerald hover:bg-rxEmeraldDark text-white px-8 py-4 rounded-full font-semibold text-lg transition-all shadow-xl shadow-rxEmerald/20 flex items-center justify-center gap-2">
+            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://app.rxnxt.in/login" class="bg-rxEmerald hover:bg-rxEmeraldDark text-white px-8 py-4 rounded-full font-semibold text-lg transition-all transform hover:-translate-y-1 glow-emerald flex items-center justify-center gap-2">
                     Start Free Trial
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </a>
-                <a href="#contact" class="bg-white hover:bg-slate-50 text-rxNavy border-2 border-slate-200 px-8 py-4 rounded-full font-semibold text-lg transition-all flex items-center justify-center">
+                <a href="#contact" class="bg-white hover:bg-slate-50 text-rxNavy border-2 border-slate-200 px-8 py-4 rounded-full font-semibold text-lg transition-all hover:border-slate-300 flex items-center justify-center">
                     Book a Demo
                 </a>
             </div>
@@ -85,12 +117,12 @@
 
     <!-- Trust / Incubator Section -->
     <section class="border-y border-slate-200 bg-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
             <p class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-6">Incubated & Supported By</p>
-            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                <h3 class="text-2xl font-bold text-slate-800">SRiX</h3>
-                <h3 class="text-2xl font-bold text-slate-800">Startup India</h3>
-                <h3 class="text-2xl font-bold text-slate-800">ORUG Technologies</h3>
+            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+                <h3 class="text-2xl font-bold text-slate-800 tracking-wider">SRiX</h3>
+                <h3 class="text-2xl font-bold text-slate-800 tracking-wider">Startup India</h3>
+                <h3 class="text-2xl font-bold text-slate-800 tracking-wider">ORUG Technologies</h3>
             </div>
         </div>
     </section>
@@ -98,14 +130,14 @@
     <!-- Features Section -->
     <section id="features" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl md:text-4xl font-bold text-rxNavy mb-4">Everything a Modern Clinic Needs</h2>
                 <p class="text-lg text-slate-600 max-w-2xl mx-auto">Built from the ground up to eliminate waiting room chaos and streamline patient care.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div class="bg-white rounded-2xl p-8 border border-slate-100 shadow-xl shadow-slate-200/40 hover:-translate-y-1 transition-transform duration-300">
+                <div data-aos="fade-up" data-aos-delay="100" class="bg-white rounded-2xl p-8 border border-slate-100 shadow-xl shadow-slate-200/50 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
                     <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center mb-6 text-rxEmerald">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                     </div>
@@ -113,7 +145,7 @@
                     <p class="text-slate-600 leading-relaxed">Receptionists assign patients, and doctors see their queue update instantly. No more confusion or manual tracking.</p>
                 </div>
                 <!-- Feature 2 -->
-                <div class="bg-white rounded-2xl p-8 border border-slate-100 shadow-xl shadow-slate-200/40 hover:-translate-y-1 transition-transform duration-300">
+                <div data-aos="fade-up" data-aos-delay="200" class="bg-white rounded-2xl p-8 border border-slate-100 shadow-xl shadow-slate-200/50 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
                     <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 text-blue-600">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                     </div>
@@ -121,7 +153,7 @@
                     <p class="text-slate-600 leading-relaxed">A dedicated clinical workspace designed for speed. Generate, save, and print highly legible digital prescriptions in under a minute.</p>
                 </div>
                 <!-- Feature 3 -->
-                <div class="bg-white rounded-2xl p-8 border border-slate-100 shadow-xl shadow-slate-200/40 hover:-translate-y-1 transition-transform duration-300">
+                <div data-aos="fade-up" data-aos-delay="300" class="bg-white rounded-2xl p-8 border border-slate-100 shadow-xl shadow-slate-200/50 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
                     <div class="w-14 h-14 bg-indigo-50 rounded-xl flex items-center justify-center mb-6 text-indigo-600">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                     </div>
@@ -137,7 +169,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-rxEmerald rounded-lg flex items-center justify-center text-white font-bold text-sm">Rx</div>
+                    <div class="w-8 h-8 bg-rxEmerald rounded-lg flex items-center justify-center text-white font-bold text-sm shadow">Rx</div>
                     <span class="font-bold text-xl tracking-tight">RxNXT</span>
                 </div>
                 <div class="text-slate-400 text-sm text-center md:text-right">
@@ -147,6 +179,16 @@
             </div>
         </div>
     </footer>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50,
+        });
+    </script>
 
 </body>
 </html>
