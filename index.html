@@ -3,1106 +3,138 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RxNXT Cloud — Digital Prescription Platform for Modern Clinics & Hospitals</title>
-  <meta name="description" content="RxNXT replaces illegible paper prescriptions with a 30-second digital prescription engine, automated 8:00 AM WhatsApp revisits, and instant AI treatment summaries. DPIIT Recognized & SRiX Incubated.">
-
-  <!-- Open Graph / Social Media -->
-  <meta property="og:title" content="RxNXT Cloud — 30-Second Digital Prescription Platform">
-  <meta property="og:description" content="Sub-30-second digital prescriptions, instant WhatsApp delivery, and automated follow-up reminders for doctors and clinics.">
+  <meta name="theme-color" content="#0b7663">
+  <title>RxNXT™ | Doctor-First Digital Prescription Technology</title>
+  <meta name="description" content="RxNXT is doctor-first digital prescription technology built to help doctors prescribe faster, communicate clearly, and stay connected with patients.">
+  <meta property="og:title" content="RxNXT™ | Doctor-First Digital Prescription Technology">
+  <meta property="og:description" content="Create, deliver and follow up on digital prescriptions with a workflow built around the doctor.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.rxnxt.in/">
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy-950: #030712;
-      --navy-900: #0f172a;
-      --navy-800: #1e293b;
-      --emerald-600: #059669;
-      --emerald-500: #10b981;
-      --emerald-100: #d1fae5;
-      --emerald-50: #ecfdf5;
-      --slate-700: #334155;
-      --slate-600: #475569;
-      --slate-500: #64748b;
-      --slate-100: #f1f5f9;
-      --slate-50: #f8fafc;
-      --white: #ffffff;
-      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-      --radius-sm: 0.375rem;
-      --radius-md: 0.5rem;
-      --radius-lg: 0.75rem;
-      --radius-xl: 1rem;
-      --radius-2xl: 1.5rem;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--navy-900);
-      background-color: var(--slate-50);
-      line-height: 1.5;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Outfit', sans-serif;
-      color: var(--navy-900);
-      letter-spacing: -0.02em;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* Container */
-    .container {
-      width: 100%;
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* Scroll Animations */
-    .fade-in-up {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .fade-in-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Navigation */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-      transition: all 0.3s ease;
-    }
-
-    .nav-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 76px;
-    }
-
-    .logo-group {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .logo-img {
-      height: 38px;
-      width: auto;
-      object-fit: contain;
-    }
-
-    .logo-text {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--navy-900);
-    }
-
-    .logo-text span {
-      color: var(--emerald-600);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-link {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--slate-600);
-      transition: color 0.2s ease;
-    }
-
-    .nav-link:hover {
-      color: var(--emerald-600);
-    }
-
-    .nav-cta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    /* Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      font-size: 0.95rem;
-      font-weight: 600;
-      border-radius: var(--radius-md);
-      transition: all 0.2s ease;
-      cursor: pointer;
-      border: none;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: var(--emerald-600);
-      color: var(--white);
-      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
-    }
-
-    .btn-primary:hover {
-      background: #047857;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(5, 150, 105, 0.35);
-    }
-
-    .btn-secondary {
-      background: var(--white);
-      color: var(--navy-900);
-      border: 1px solid var(--slate-500);
-    }
-
-    .btn-secondary:hover {
-      background: var(--slate-100);
-      border-color: var(--navy-900);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--navy-900);
-      border: 1px solid #cbd5e1;
-    }
-
-    .btn-outline:hover {
-      background: var(--slate-100);
-    }
-
-    .btn-lg {
-      padding: 0.875rem 2rem;
-      font-size: 1.05rem;
-      border-radius: var(--radius-lg);
-    }
-
-    /* Hero Section */
-    .hero {
-      padding: 5rem 0 4rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 1rem;
-      background: var(--emerald-50);
-      border: 1px solid var(--emerald-100);
-      border-radius: 9999px;
-      color: var(--emerald-600);
-      font-size: 0.875rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-title {
-      font-size: 3.5rem;
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 1.5rem;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      color: var(--navy-900);
-    }
-
-    .hero-title span {
-      color: var(--emerald-600);
-      background: linear-gradient(135deg, var(--emerald-600) 0%, #10b981 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 1.2rem;
-      color: var(--slate-600);
-      max-width: 720px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.6;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 3.5rem;
-      flex-wrap: wrap;
-    }
-
-    /* Trust Badges */
-    .trust-badges {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      padding-top: 1.5rem;
-      border-top: 1px solid #e2e8f0;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--slate-600);
-    }
-
-    .trust-icon {
-      width: 20px;
-      height: 20px;
-      color: var(--emerald-600);
-    }
-
-    /* Problem Section */
-    .section {
-      padding: 5rem 0;
-    }
-
-    .section-header {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 3.5rem;
-    }
-
-    .section-tag {
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: var(--emerald-600);
-      margin-bottom: 0.75rem;
-    }
-
-    .section-title {
-      font-size: 2.4rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      color: var(--navy-900);
-    }
-
-    .section-subtitle {
-      font-size: 1.1rem;
-      color: var(--slate-600);
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-
-    .problem-card {
-      background: var(--white);
-      border: 1px solid #e2e8f0;
-      border-radius: var(--radius-xl);
-      padding: 2.25rem;
-      transition: all 0.3s ease;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-    }
-
-    .problem-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-      border-color: #cbd5e1;
-    }
-
-    .problem-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1.25rem;
-      display: inline-block;
-    }
-
-    .problem-card h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-
-    .problem-card p {
-      color: var(--slate-600);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    /* Solution / Speed Section */
-    .solution-bg {
-      background: var(--navy-900);
-      color: var(--white);
-      position: relative;
-    }
-
-    .solution-bg .section-title,
-    .solution-bg h3 {
-      color: var(--white);
-    }
-
-    .solution-bg .section-subtitle {
-      color: #94a3b8;
-    }
-
-    .grid-2x3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.75rem;
-    }
-
-    .feature-box {
-      background: var(--navy-800);
-      border: 1px solid #334155;
-      border-radius: var(--radius-lg);
-      padding: 1.75rem;
-      transition: all 0.3s ease;
-    }
-
-    .feature-box:hover {
-      border-color: var(--emerald-500);
-      transform: translateY(-4px);
-      background: #1e293b;
-    }
-
-    .feature-icon-wrapper {
-      width: 44px;
-      height: 44px;
-      background: rgba(16, 185, 129, 0.15);
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--emerald-500);
-      font-size: 1.25rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .feature-box h4 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--white);
-    }
-
-    .feature-box p {
-      color: #94a3b8;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    /* Founder Story Section */
-    .story-card {
-      background: linear-gradient(135deg, var(--emerald-50) 0%, var(--white) 100%);
-      border: 1px solid var(--emerald-100);
-      border-radius: var(--radius-2xl);
-      padding: 3.5rem 3rem;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 3rem;
-      align-items: center;
-      margin: 2rem 0;
-    }
-
-    .story-left h3 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      line-height: 1.25;
-    }
-
-    .story-tag {
-      display: inline-block;
-      padding: 0.3rem 0.75rem;
-      background: var(--emerald-600);
-      color: var(--white);
-      font-size: 0.75rem;
-      font-weight: 700;
-      border-radius: var(--radius-sm);
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-    }
-
-    .story-right p {
-      font-size: 1.05rem;
-      color: var(--slate-700);
-      line-height: 1.7;
-      margin-bottom: 1.25rem;
-    }
-
-    .story-highlight {
-      border-left: 3px solid var(--emerald-600);
-      padding-left: 1.25rem;
-      font-style: italic;
-      font-weight: 500;
-      color: var(--navy-900);
-    }
-
-    /* WhatsApp Section */
-    .whatsapp-section {
-      background: #f0fdf4;
-      border-top: 1px solid #dcfce7;
-      border-bottom: 1px solid #dcfce7;
-    }
-
-    .split-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .whatsapp-list {
-      list-style: none;
-      margin-top: 1.5rem;
-    }
-
-    .whatsapp-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.875rem;
-      font-size: 1.05rem;
-      color: var(--slate-700);
-      margin-bottom: 1.25rem;
-      line-height: 1.5;
-    }
-
-    .check-icon {
-      width: 24px;
-      height: 24px;
-      background: var(--emerald-600);
-      color: var(--white);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 0.75rem;
-      font-weight: bold;
-      margin-top: 2px;
-    }
-
-    /* Phone Mockup */
-    .phone-mockup {
-      background: var(--white);
-      border: 8px solid var(--navy-900);
-      border-radius: 36px;
-      padding: 1.5rem;
-      box-shadow: var(--shadow-xl);
-      max-width: 380px;
-      margin: 0 auto;
-    }
-
-    .chat-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid #f1f5f9;
-      margin-bottom: 1rem;
-    }
-
-    .chat-avatar {
-      width: 40px;
-      height: 40px;
-      background: var(--emerald-600);
-      color: var(--white);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-    }
-
-    .chat-title {
-      font-weight: 700;
-      font-size: 0.95rem;
-    }
-
-    .chat-subtitle {
-      font-size: 0.75rem;
-      color: var(--slate-500);
-    }
-
-    .chat-bubble {
-      background: #e7fce9;
-      border-radius: 12px 12px 12px 2px;
-      padding: 1rem;
-      font-size: 0.85rem;
-      color: #1e293b;
-      margin-bottom: 0.75rem;
-      line-height: 1.5;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    }
-
-    .chat-time {
-      font-size: 0.7rem;
-      color: #64748b;
-      text-align: right;
-      margin-top: 0.25rem;
-    }
-
-    /* Features Grid */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-    }
-
-    .feature-card {
-      background: var(--white);
-      border: 1px solid #e2e8f0;
-      border-radius: var(--radius-xl);
-      padding: 1.75rem;
-      transition: all 0.3s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--emerald-500);
-    }
-
-    .feature-card-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .feature-card h4 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .feature-card p {
-      font-size: 0.875rem;
-      color: var(--slate-600);
-      line-height: 1.5;
-    }
-
-
-
-
-    /* Final CTA */
-    .cta-banner {
-      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 100%);
-      color: var(--white);
-      border-radius: var(--radius-2xl);
-      padding: 4.5rem 3rem;
-      text-align: center;
-      margin: 4rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-banner h2 {
-      color: var(--white);
-      font-size: 2.75rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-    }
-
-    .cta-banner p {
-      color: #94a3b8;
-      font-size: 1.15rem;
-      max-width: 600px;
-      margin: 0 auto 2.25rem;
-    }
-
-    /* Footer */
-    .footer {
-      background: var(--navy-950);
-      color: #94a3b8;
-      padding: 4rem 0 2rem;
-      border-top: 1px solid #1e293b;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem;
-      margin-bottom: 3rem;
-    }
-
-    .footer-brand p {
-      font-size: 0.9rem;
-      margin-top: 1rem;
-      max-width: 320px;
-      line-height: 1.6;
-    }
-
-    .footer-col h5 {
-      color: var(--white);
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-bottom: 1.25rem;
-    }
-
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 0.75rem;
-    }
-
-    .footer-links a {
-      font-size: 0.875rem;
-      color: #94a3b8;
-      transition: color 0.2s ease;
-    }
-
-    .footer-links a:hover {
-      color: var(--emerald-500);
-    }
-
-    .footer-bottom {
-      padding-top: 2rem;
-      border-top: 1px solid #1e293b;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .grid-3, .grid-2x3 {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .story-card {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-      .split-layout {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero-title {
-        font-size: 2.4rem;
-      }
-      .grid-3, .grid-2x3, .features-grid {
-        grid-template-columns: 1fr;
-      }
-      .nav-links {
-        display: none;
-      }
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-      .story-card {
-        padding: 2rem 1.5rem;
-      }
-      .cta-banner {
-        padding: 3rem 1.5rem;
-      }
-      .cta-banner h2 {
-        font-size: 2rem;
-      }
-    }
+      --ink:#102a2a; --muted:#607574; --green:#0b7663; --green-2:#12a184;
+      --mint:#e8f7f2; --mint-2:#f4fbf8; --cream:#fbfdfc; --white:#fff;
+      --line:#dce9e5; --navy:#102f35; --shadow:0 24px 70px rgba(16,42,42,.10);
+      --radius:24px; --max:1180px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--cream);line-height:1.6}
+    h1,h2,h3,h4{font-family:'Manrope',sans-serif;letter-spacing:-.035em;line-height:1.12}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .container{width:min(var(--max),calc(100% - 40px));margin:auto}
+    .navbar{position:sticky;top:0;z-index:20;background:rgba(251,253,252,.90);backdrop-filter:blur(18px);border-bottom:1px solid rgba(220,233,229,.8)}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:10px;font-family:'Manrope';font-weight:800;font-size:20px}
+    .brand img{height:40px;width:auto}.brand-name span{color:var(--green)}
+    .links{display:flex;gap:30px;align-items:center;font-size:14px;font-weight:600;color:var(--muted)}
+    .links a:hover{color:var(--green)}
+    .actions{display:flex;align-items:center;gap:12px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:12px;font-weight:700;font-size:14px;border:1px solid transparent;transition:.2s ease}
+    .btn-primary{background:var(--green);color:white;box-shadow:0 8px 22px rgba(11,118,99,.20)}
+    .btn-primary:hover{transform:translateY(-2px);background:#095f51}.btn-ghost{border-color:var(--line);background:white;color:var(--ink)}.btn-ghost:hover{border-color:var(--green);color:var(--green)}
+    .hero{padding:78px 0 74px;position:relative;overflow:hidden}
+    .hero:before{content:"";position:absolute;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,var(--mint) 0,rgba(232,247,242,0) 68%);right:-180px;top:-220px;z-index:-1}
+    .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:64px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--mint);border:1px solid #ccebe3;color:var(--green);padding:7px 12px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;margin-bottom:20px}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--green-2);box-shadow:0 0 0 5px rgba(18,161,132,.10)}
+    .hero h1{font-size:clamp(42px,5vw,66px);max-width:700px}.hero h1 span{color:var(--green)}
+    .hero-copy{font-size:19px;color:var(--muted);max-width:630px;margin:22px 0 28px}
+    .hero-buttons{display:flex;gap:12px;flex-wrap:wrap}.micro{font-size:12px;color:var(--muted);margin-top:16px}
+    .product-wrap{position:relative}.product-glow{position:absolute;inset:9% -6% -8%;background:radial-gradient(circle at 50% 50%,rgba(18,161,132,.18),transparent 65%);z-index:-1}
+    .app-window{background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);overflow:hidden;transform:rotate(1deg)}
+    .app-top{height:48px;background:#f7faf9;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px;padding:0 16px}.app-top i{width:8px;height:8px;border-radius:50%;background:#c8d8d4}.app-title{margin-left:auto;font-size:11px;color:var(--muted);font-weight:700}
+    .app-body{display:grid;grid-template-columns:82px 1fr;background:#f9fbfa;min-height:400px}.side{padding:18px 12px;border-right:1px solid var(--line);background:#fff}.side-logo{width:42px;height:42px;margin:0 auto 26px;border-radius:13px;background:var(--mint);display:grid;place-items:center;color:var(--green);font-weight:800}.side-item{height:38px;border-radius:10px;margin-bottom:8px;display:grid;place-items:center;color:#8ba09c;font-size:16px}.side-item.active{background:var(--mint);color:var(--green)}
+    .dashboard{padding:22px}.dash-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.dash-head h3{font-size:17px}.patient{font-size:11px;color:var(--muted)}
+    .patient-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px;display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}.patient-main{display:flex;gap:11px;align-items:center}.avatar{width:38px;height:38px;border-radius:50%;background:#dff3ed;display:grid;place-items:center;color:var(--green);font-weight:800;font-size:12px}.patient-name{font-size:12px;font-weight:800}.patient-meta{font-size:10px;color:var(--muted)}.status{font-size:10px;color:var(--green);background:var(--mint);padding:5px 8px;border-radius:999px;font-weight:800}
+    .rx-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:17px}.rx-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #edf3f1;padding-bottom:12px;margin-bottom:13px}.rx-header strong{font-size:13px}.rx-badge{font-size:9px;font-weight:800;color:var(--green);background:var(--mint);padding:5px 7px;border-radius:7px}.drug{display:grid;grid-template-columns:1fr auto;gap:8px;padding:10px 0;border-bottom:1px solid #edf3f1}.drug:last-child{border-bottom:0}.drug-name{font-size:11px;font-weight:800}.drug-dose{font-size:10px;color:var(--muted)}.chip{font-size:9px;color:var(--green);background:#f0faf7;padding:5px 7px;border-radius:7px;font-weight:800}.app-footer{display:flex;justify-content:space-between;align-items:center;margin-top:13px}.speed{font-size:10px;color:var(--muted)}.speed b{color:var(--green)}
+    section{scroll-margin-top:90px}.section{padding:92px 0}.section-head{text-align:center;max-width:730px;margin:0 auto 46px}.kicker{color:var(--green);font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;margin-bottom:11px}.section h2{font-size:clamp(30px,4vw,44px)}.section-sub{font-size:17px;color:var(--muted);margin-top:14px}
+    .problem{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.problem-card{padding:28px;border:1px solid var(--line);border-radius:20px;background:var(--cream)}.num{font-family:'Manrope';font-size:12px;font-weight:800;color:var(--green);margin-bottom:28px}.problem-card h3{font-size:21px;margin-bottom:10px}.problem-card p{font-size:14px;color:var(--muted)}
+    .workflow{background:var(--navy);color:#fff}.workflow .section-sub{color:#a9bfbb}.workflow h2{color:#fff}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);border-radius:22px;overflow:hidden}.step{background:var(--navy);padding:30px 24px;min-height:220px}.step-number{color:#67d6c1;font-weight:800;font-size:12px;letter-spacing:.1em}.step h3{color:#fff;font-size:21px;margin:30px 0 10px}.step p{color:#a9bfbb;font-size:14px}
+    .features{background:var(--mint-2)}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.feature{background:#fff;border:1px solid var(--line);border-radius:20px;padding:25px;min-height:180px;transition:.2s}.feature:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(16,42,42,.07)}.icon{width:40px;height:40px;border-radius:12px;background:var(--mint);color:var(--green);display:grid;place-items:center;font-weight:800;margin-bottom:20px}.feature h3{font-size:18px;margin-bottom:8px}.feature p{font-size:13px;color:var(--muted)}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}.whatsapp-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 20px 50px rgba(16,42,42,.08);max-width:430px;margin:auto}.wa-head{display:flex;gap:11px;align-items:center;padding-bottom:15px;border-bottom:1px solid #edf3f1}.wa-avatar{width:42px;height:42px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:800}.wa-name{font-size:13px;font-weight:800}.wa-sub{font-size:10px;color:var(--muted)}.bubble{background:#e8f7f0;padding:14px;border-radius:15px 15px 15px 4px;font-size:11px;margin-top:15px}.bubble strong{font-size:12px}.bubble span{display:block;color:var(--muted);font-size:9px;margin-top:8px;text-align:right}
+    .trust{padding:34px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}.trust-row{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;color:var(--muted);font-size:13px;font-weight:700}.trust-row span{display:flex;align-items:center;gap:8px}.trust-mark{width:7px;height:7px;background:var(--green);border-radius:50%}
+    .cta{padding:95px 0}.cta-box{background:linear-gradient(135deg,#0b7663,#0d5f59);border-radius:30px;padding:65px 30px;text-align:center;color:#fff;position:relative;overflow:hidden}.cta-box:after{content:"";position:absolute;width:350px;height:350px;border:1px solid rgba(255,255,255,.13);border-radius:50%;right:-100px;top:-150px}.cta-box h2{color:#fff;font-size:clamp(32px,4vw,48px);position:relative;z-index:1}.cta-box p{color:#d6eee8;max-width:610px;margin:15px auto 25px;position:relative;z-index:1}.cta-box .btn{background:#fff;color:var(--green);position:relative;z-index:1}.cta-box .btn:hover{transform:translateY(-2px)}
+    footer{background:#0c2428;color:#a9bfbb;padding:55px 0 24px}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:50px}.footer-brand p{max-width:370px;font-size:13px;margin-top:14px}.footer-title{color:#fff;font-size:13px;font-weight:800;margin-bottom:14px}.footer-links{list-style:none}.footer-links li{margin:9px 0;font-size:13px}.footer-links a:hover{color:#fff}.footer-bottom{border-top:1px solid rgba(255,255,255,.10);margin-top:42px;padding-top:20px;display:flex;justify-content:space-between;gap:15px;font-size:11px;flex-wrap:wrap}
+    .fade{animation:rise .7s ease both}@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+    @media(max-width:950px){.hero-grid,.split{grid-template-columns:1fr}.hero-copy{max-width:720px}.product-wrap{max-width:650px;margin:auto}.problem-grid,.feature-grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.links{display:none}}
+    @media(max-width:620px){.container{width:min(var(--max),calc(100% - 28px))}.nav{height:68px}.brand-name{display:none}.actions .btn-ghost{display:none}.hero{padding:54px 0}.hero h1{font-size:40px}.hero-copy{font-size:16px}.app-body{grid-template-columns:58px 1fr;min-height:360px}.dashboard{padding:14px}.problem-grid,.feature-grid,.steps{grid-template-columns:1fr}.section{padding:68px 0}.footer-grid{grid-template-columns:1fr}.footer-bottom{display:block}.footer-bottom div+div{margin-top:8px}.cta{padding:68px 0}.cta-box{padding:48px 20px}}
   </style>
 </head>
 <body>
-
-  <!-- Navigation -->
   <nav class="navbar">
-    <div class="container nav-container">
-      <a href="#" class="logo-group">
-        <img src="rxnxt_logo_web.png" alt="RxNXT Logo" class="logo-img">
-        <span class="logo-text">Rx<span>NXT</span></span>
-      </a>
-      
-      <ul class="nav-links">
-        <li><a href="#features" class="nav-link">Features</a></li>
-        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
-      </ul>
-
-      <div class="nav-cta">
-        <a href="https://app.rxnxt.in" class="btn btn-primary">Start Free Trial</a>
-      </div>
+    <div class="container nav">
+      <a href="#top" class="brand"><img src="rxnxt_logo_web.png" alt="RxNXT logo"><span class="brand-name">Rx<span>NXT</span>™</span></a>
+      <div class="links"><a href="#product">Product</a><a href="#how-it-works">How It Works</a><a href="#features">Features</a><a href="#trust">Why RxNXT</a></div>
+      <div class="actions"><a href="https://app.rxnxt.in" class="btn btn-ghost">Doctor Login</a><a href="https://app.rxnxt.in" class="btn btn-primary">Book a Demo →</a></div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero container">
-    <div class="fade-in-up">
-      <div class="hero-badge" style="background: var(--navy-900); color: #34d399; font-weight: 800; font-size: 0.95rem; border: 1.5px solid var(--emerald-500); padding: 0.5rem 1.25rem; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);">
-        <span>🩺 DOCTOR LED. AI ENABLED</span>
-      </div>
-      <h1 class="hero-title">Your Prescription.<br>Now Digital. <span>Under 30 Seconds.</span></h1>
-      <p class="hero-subtitle">
-        RxNXT replaces illegible paper prescriptions with a blazing-fast digital engine doctors love writing on, patients understand instantly, and pharmacists trust completely.
-      </p>
-
-      <div class="hero-actions">
-        <a href="https://app.rxnxt.in" class="btn btn-primary btn-lg">Start Free Trial →</a>
-        <a href="#how-it-works" class="btn btn-outline btn-lg">See How It Works</a>
-      </div>
-
-      <!-- Trust Badges -->
-      <div class="trust-badges">
-        <div class="trust-item">
-          <svg class="trust-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-          DPIIT Recognized Startup
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="fade">
+          <div class="eyebrow"><span class="dot"></span> Doctor-first HealthTech</div>
+          <h1>The prescription experience built <span>around the doctor.</span></h1>
+          <p class="hero-copy">RxNXT helps doctors create clear digital prescriptions faster, deliver them instantly to patients, and stay connected beyond the consultation.</p>
+          <div class="hero-buttons"><a href="https://app.rxnxt.in" class="btn btn-primary">Book a Doctor Demo →</a><a href="#how-it-works" class="btn btn-ghost">See How RxNXT Works</a></div>
+          <p class="micro">Prescription-first workflow • Built for everyday OPD use</p>
         </div>
-        <div class="trust-item">
-          <svg class="trust-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-          Incubated by SRiX (DST-TBI)
-        </div>
-        <div class="trust-item">
-          <svg class="trust-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-          DPDP Act 2023 Compliant
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Problem Section -->
-  <section class="section container">
-    <div class="section-header fade-in-up">
-      <div class="section-tag">The Core Problem</div>
-      <h2 class="section-title">One Paper Prescription. Three Breakdown Points.</h2>
-      <p class="section-subtitle">A prescription is not just paper — it's a vital contract between three parties.</p>
-    </div>
-
-    <div class="grid-3">
-      <div class="problem-card fade-in-up">
-        <span class="problem-icon">🩺</span>
-        <h3>Doctor's Time Drain</h3>
-        <p>Doctors spend 3 to 5 minutes writing repetitive paper prescriptions manually, leading to consultation backlogs and fatigue.</p>
-      </div>
-
-      <div class="problem-card fade-in-up">
-        <span class="problem-icon">🧑</span>
-        <h3>Patient Confusion</h3>
-        <p>Patients misplace paper scripts, forget dosage schedules, and miss crucial follow-up visits — hurting their health outcomes.</p>
-      </div>
-
-      <div class="problem-card fade-in-up">
-        <span class="problem-icon">💊</span>
-        <h3>Pharmacist Risk</h3>
-        <p>Pharmacists waste time guessing unreadable doctor handwriting, creating dangerous risks of dispensing the wrong drug.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Solution & Speed Section -->
-  <section id="features" class="section solution-bg">
-    <div class="container">
-      <div class="section-header fade-in-up">
-        <div class="section-tag" style="color: var(--emerald-500);">Prescription-First Design</div>
-        <h2 class="section-title">30 Seconds. Zero Errors. Built for Doctor Speed.</h2>
-        <p class="section-subtitle">Not a bloated EMR. RxNXT is designed specifically to earn its place on a doctor's desk through daily speed and intelligence.</p>
-      </div>
-
-      <div class="grid-2x3">
-        <div class="feature-box fade-in-up">
-          <div class="feature-icon-wrapper">🔍</div>
-          <h4>Typo-Tolerant Search</h4>
-          <p>Type 'PCM' or 'amxclv' and find the exact medicine immediately with fuzzy matching and intelligent drug ranking.</p>
-        </div>
-
-        <div class="feature-box fade-in-up">
-          <div class="feature-icon-wrapper">💊</div>
-          <h4>1-Click Dosage Chips</h4>
-          <p>Tap pre-configured chips like '1-0-1', '5 Days', 'After Food' in under 2 seconds without repetitive typing.</p>
-        </div>
-
-        <div class="feature-box fade-in-up">
-          <div class="feature-icon-wrapper">⭐</div>
-          <h4>Smart Drug Ranking</h4>
-          <p>The system learns your clinical habits. Your most frequently prescribed formulations surface right at the top.</p>
-        </div>
-
-        <div class="feature-box fade-in-up">
-          <div class="feature-icon-wrapper">📄</div>
-          <h4>Instant PDF & Print</h4>
-          <p>Generate clean, professional, clinic-branded prescriptions with complete headers, footers, and digital signatures.</p>
-        </div>
-
-        <div class="feature-box fade-in-up">
-          <div class="feature-icon-wrapper">🔄</div>
-          <h4>1-Click Rx Cloning</h4>
-          <p>Instantly repeat previous prescriptions for chronic or returning patients with a single click during busy OPDs.</p>
-        </div>
-
-        <div class="feature-box fade-in-up">
-          <div class="feature-icon-wrapper">⚠️</div>
-          <h4>Schedule H Safeguards</h4>
-          <p>Automatic visual badges and safety alerts for habit-forming and controlled narcotics compliance.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- WhatsApp Integration Section -->
-  <section class="section whatsapp-section">
-    <div class="container split-layout">
-      <div class="fade-in-up">
-        <div class="section-tag">Instant Delivery & Automated Growth</div>
-        <h2 class="section-title">Prescriptions Delivered. Follow-Ups Automated.</h2>
-        <p class="section-subtitle">Keep your patients engaged without asking them to download any new apps.</p>
-        
-        <ul class="whatsapp-list">
-          <li>
-            <div class="check-icon">✓</div>
-            <div><strong>Instant WhatsApp PDF + AI Treatment Summary:</strong> Patients receive clean PDF prescriptions and easy-to-read dosage summaries right on WhatsApp.</div>
-          </li>
-          <li>
-            <div class="check-icon">✓</div>
-            <div><strong>Automated 8:00 AM Revisit Generator:</strong> Automated daily reminders bring follow-up patients back to your clinic, boosting revisit rates by +25%.</div>
-          </li>
-          <li>
-            <div class="check-icon">✓</div>
-            <div><strong>DPDP Consent Compliant:</strong> Built-in patient WhatsApp consent check to keep your clinic fully compliant with data privacy laws.</div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="fade-in-up">
-        <div class="phone-mockup">
-          <div class="chat-header">
-            <div class="chat-avatar">Rx</div>
-            <div>
-              <div class="chat-title">Orug Specialty Clinic</div>
-              <div class="chat-subtitle">WhatsApp Business Notification</div>
+        <div class="product-wrap fade" style="animation-delay:.12s">
+          <div class="product-glow"></div>
+          <div class="app-window" aria-label="RxNXT product interface preview">
+            <div class="app-top"><i></i><i></i><i></i><span class="app-title">RxNXT Doctor Workspace</span></div>
+            <div class="app-body">
+              <aside class="side"><div class="side-logo">Rx</div><div class="side-item active">⌂</div><div class="side-item">⌕</div><div class="side-item">▣</div><div class="side-item">◌</div></aside>
+              <div class="dashboard">
+                <div class="dash-head"><div><h3>Today’s OPD</h3><div class="patient">Prescribe with less friction.</div></div><div class="status">LIVE</div></div>
+                <div class="patient-card"><div class="patient-main"><div class="avatar">RS</div><div><div class="patient-name">Rajesh Sharma</div><div class="patient-meta">42 yrs · Follow-up</div></div></div><div class="status">Selected</div></div>
+                <div class="rx-card"><div class="rx-header"><strong>Digital Prescription</strong><span class="rx-badge">READY</span></div>
+                  <div class="drug"><div><div class="drug-name">Tab. Paracetamol 650 mg</div><div class="drug-dose">After food · 1-0-1 · 3 days</div></div><span class="chip">1-0-1</span></div>
+                  <div class="drug"><div><div class="drug-name">Tab. Amoxicillin 500 mg</div><div class="drug-dose">After food · 1-0-1 · 5 days</div></div><span class="chip">5 days</span></div>
+                  <div class="drug"><div><div class="drug-name">ORS Sachet</div><div class="drug-dose">As directed · 3 days</div></div><span class="chip">Saved</span></div>
+                  <div class="app-footer"><span class="speed">Prescription ready in <b>under 30 sec</b></span><span class="chip">Send Rx</span></div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="chat-bubble">
-            📄 <strong>Prescription Ready</strong><br>
-            Dear Rajesh, Dr. Sharma has generated your digital prescription.<br><br>
-            📋 <strong>AI Treatment Summary:</strong><br>
-            • Tab Amoxicillin 500mg (1-0-1) for 5 days after food<br>
-            • Tab Paracetamol 650mg (as needed)<br><br>
-            <span style="color: var(--emerald-600); font-weight: 600;">[Download Prescription PDF]</span>
-            <div class="chat-time">08:00 AM</div>
-          </div>
-          <div class="chat-bubble" style="background: #ffffff; border: 1px solid #e2e8f0; margin-left: 1.5rem;">
-            🔔 <strong>Follow-up Reminder:</strong><br>
-            Hi Rajesh, your follow-up checkup with Dr. Sharma is scheduled for tomorrow at 10:30 AM.
-            <div class="chat-time">08:01 AM</div>
-          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Complete Features Section -->
-  <section class="section container">
-    <div class="section-header fade-in-up">
-      <div class="section-tag">Complete Clinic Suite</div>
-      <h2 class="section-title">Everything Your Practice Needs.</h2>
-      <p class="section-subtitle">Streamlined tools for doctors, receptionists, and hospital managers.</p>
-    </div>
+    <section class="trust" id="trust"><div class="container trust-row"><span><i class="trust-mark"></i>DPIIT Recognized Startup</span><span><i class="trust-mark"></i>SRiX Incubated</span><span><i class="trust-mark"></i>Doctor-first HealthTech</span><span><i class="trust-mark"></i>Built by Orug Technologies</span></div></section>
 
-    <div class="features-grid">
-      <div class="feature-card fade-in-up">
-        <div class="feature-card-icon">🎟️</div>
-        <h4>Queue & Token System</h4>
-        <p>Live patient tracking from check-in to consultation to bill payment.</p>
-      </div>
+    <section class="section problem" id="product"><div class="container"><div class="section-head"><div class="kicker">The problem</div><h2>Doctors don't need more software. They need less friction.</h2><p class="section-sub">The prescription sits at the centre of the consultation. When it is slow or disconnected, everyone feels it.</p></div><div class="problem-grid">
+      <article class="problem-card"><div class="num">01 — DOCTOR</div><h3>Too much repetitive work</h3><p>Repeated medicine searches, dosage entry and prescription formatting consume valuable consultation time.</p></article>
+      <article class="problem-card"><div class="num">02 — PATIENT</div><h3>Instructions get lost</h3><p>Paper prescriptions can be misplaced or misunderstood, especially when patients need simple, accessible instructions.</p></article>
+      <article class="problem-card"><div class="num">03 — FOLLOW-UP</div><h3>The care journey breaks</h3><p>A prescription should not be the end of the interaction. Digital delivery creates a bridge to follow-up care.</p></article>
+    </div></div></section>
 
-      <div class="feature-card fade-in-up">
-        <div class="feature-card-icon">👩‍💼</div>
-        <h4>Receptionist Portal</h4>
-        <p>Dedicated front-desk registration, vitals triage, and appointment booking.</p>
-      </div>
+    <section class="section workflow" id="how-it-works"><div class="container"><div class="section-head"><div class="kicker">The RxNXT workflow</div><h2>Consult. Prescribe. Deliver. Follow up.</h2><p class="section-sub">A simple workflow designed around the way doctors already work.</p></div><div class="steps">
+      <article class="step"><div class="step-number">01</div><h3>Find</h3><p>Search medicines quickly with intelligent, typo-tolerant discovery and doctor-friendly ranking.</p></article>
+      <article class="step"><div class="step-number">02</div><h3>Prescribe</h3><p>Use familiar dosage patterns, duration chips and reusable prescriptions to reduce repetitive typing.</p></article>
+      <article class="step"><div class="step-number">03</div><h3>Deliver</h3><p>Generate a professional digital prescription and make it available to the patient instantly.</p></article>
+      <article class="step"><div class="step-number">04</div><h3>Follow up</h3><p>Continue the patient relationship with digital communication and revisit workflows.</p></article>
+    </div></div></section>
 
-      <div class="feature-card fade-in-up">
-        <div class="feature-card-icon">👥</div>
-        <h4>Multi-Doctor Support</h4>
-        <p>Add multiple doctors under one clinic with a shared patient directory.</p>
-      </div>
+    <section class="section features" id="features"><div class="container"><div class="section-head"><div class="kicker">Built for doctor speed</div><h2>Powerful where it matters. Simple where it should be.</h2><p class="section-sub">RxNXT focuses technology on the moments that slow a doctor down.</p></div><div class="feature-grid">
+      <article class="feature"><div class="icon">⌕</div><h3>Smart Medicine Search</h3><p>Typo tolerance, abbreviations and intelligent ranking help doctors find medicines quickly.</p></article>
+      <article class="feature"><div class="icon">1×</div><h3>Fast Dosage Entry</h3><p>Common frequency, duration and instruction patterns reduce repetitive data entry.</p></article>
+      <article class="feature"><div class="icon">↻</div><h3>Prescription Reuse</h3><p>Repeat familiar prescriptions faster for returning and chronic-care patients.</p></article>
+      <article class="feature"><div class="icon">▤</div><h3>Clean Digital Rx</h3><p>Create professional prescriptions that are easier for patients and pharmacies to read.</p></article>
+      <article class="feature"><div class="icon">⌁</div><h3>WhatsApp Delivery</h3><p>Deliver prescription information through a channel patients already use, without another app.</p></article>
+      <article class="feature"><div class="icon">AI</div><h3>Intelligent Assistance</h3><p>AI-enabled workflows are designed to support the doctor without taking control away from the clinician.</p></article>
+    </div></div></section>
 
-      <div class="feature-card fade-in-up">
-        <div class="feature-card-icon">📊</div>
-        <h4>Analytics Dashboard</h4>
-        <p>Track daily patient counts, top prescribed drugs, and revenue trends.</p>
-      </div>
+    <section class="section"><div class="container split"><div><div class="kicker">Beyond the prescription</div><h2>Your consultation doesn't end when you click “Send”.</h2><p class="section-sub">RxNXT connects prescription delivery with patient communication and follow-up workflows, helping clinics build a more continuous care experience.</p><div style="margin-top:26px;display:flex;gap:10px;flex-wrap:wrap"><span class="eyebrow" style="margin:0">Digital prescription</span><span class="eyebrow" style="margin:0">Patient communication</span><span class="eyebrow" style="margin:0">Follow-up workflow</span></div></div><div class="whatsapp-card"><div class="wa-head"><div class="wa-avatar">Rx</div><div><div class="wa-name">RxNXT Patient Communication</div><div class="wa-sub">Prescription delivery preview</div></div></div><div class="bubble"><strong>📄 Prescription Ready</strong><br>Dr. Sharma has shared your digital prescription. Your medicine instructions are below.<br><br>💊 Paracetamol 650 mg · 1-0-1 · 3 days<br>💊 Amoxicillin 500 mg · 1-0-1 · 5 days<span>Delivered via WhatsApp</span></div><div class="bubble" style="background:#fff;border:1px solid var(--line)"><strong>🔔 Follow-up Reminder</strong><br>Your next consultation reminder is ready.<span>Patient engagement after the visit</span></div></div></div></section>
 
-      <div class="feature-card fade-in-up">
-        <div class="feature-card-icon">🏬</div>
-        <h4>Pharmacy Portal</h4>
-        <p>Seamlessly share digital prescriptions with attached or nearby chemists.</p>
-      </div>
+    <section class="cta"><div class="container"><div class="cta-box"><h2>Give your prescription workflow a better experience.</h2><p>See how RxNXT can fit into your clinic and help your doctors spend less time on prescription administration.</p><a href="https://app.rxnxt.in" class="btn">Book a Doctor Demo →</a></div></div></section>
+  </main>
 
-      <div class="feature-card fade-in-up">
-        <div class="feature-card-icon">🔐</div>
-        <h4>Multi-Tenant Security</h4>
-        <p>Complete data isolation for your clinic with Supabase Mumbai data residency.</p>
-      </div>
-
-      <div class="feature-card fade-in-up">
-        <div class="feature-card-icon">📝</div>
-        <h4>Clinical Templates</h4>
-        <p>Save custom prescription sets for common conditions (Fever, Hypertension, etc.).</p>
-      </div>
-
-      <div class="feature-card fade-in-up">
-        <div class="feature-card-icon">🎨</div>
-        <h4>Custom Header & Logo</h4>
-        <p>Upload your official clinic letterhead and digital signatures seamlessly.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works Section -->
-  <section id="how-it-works" class="section solution-bg">
-    <div class="container">
-      <div class="section-header fade-in-up">
-        <div class="section-tag" style="color: var(--emerald-500);">Simple Onboarding</div>
-        <h2 class="section-title">Go Digital in 3 Simple Steps</h2>
-        <p class="section-subtitle">Zero complicated setup required. Start prescribing in 5 minutes.</p>
-      </div>
-
-      <div class="grid-3">
-        <div class="feature-box fade-in-up" style="text-align: center;">
-          <div style="font-size: 2rem; font-weight: 800; color: var(--emerald-500); margin-bottom: 1rem;">01</div>
-          <h4>Create Clinic Account</h4>
-          <p>Register your clinic, upload your logo and letterhead header, and invite your doctors or staff.</p>
-        </div>
-
-        <div class="feature-box fade-in-up" style="text-align: center;">
-          <div style="font-size: 2rem; font-weight: 800; color: var(--emerald-500); margin-bottom: 1rem;">02</div>
-          <h4>Prescribe in 30 Seconds</h4>
-          <p>Search drugs using typo-tolerant search, select dosage chips, and generate clean PDF prescriptions.</p>
-        </div>
-
-        <div class="feature-box fade-in-up" style="text-align: center;">
-          <div style="font-size: 2rem; font-weight: 800; color: var(--emerald-500); margin-bottom: 1rem;">03</div>
-          <h4>Automate WhatsApp & Revisit</h4>
-          <p>Prescriptions deliver automatically to patient WhatsApp, and 8 AM reminders ensure follow-up visits.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
-  <!-- Final CTA Banner -->
-  <section class="container">
-    <div class="cta-banner fade-in-up">
-      <h2>Ready to Upgrade Your Practice?</h2>
-      <p>Join forward-thinking doctors and clinics using RxNXT to deliver error-free digital prescriptions and automated patient care.</p>
-      <a href="https://app.rxnxt.in" class="btn btn-primary btn-lg">Start Free Trial Now →</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="logo-group">
-            <img src="rxnxt_logo_web.png" alt="RxNXT Logo" class="logo-img">
-            <span class="logo-text" style="color: var(--white);">Rx<span style="color: var(--emerald-500);">NXT</span></span>
-          </div>
-          <p><strong>DOCTOR LED. AI ENABLED.</strong><br>Prescription-First Digital Ecosystem Connecting Doctors, Patients, and Pharmacists across India.</p>
-        </div>
-
-        <div class="footer-col">
-          <h5>Product</h5>
-          <ul class="footer-links">
-            <li><a href="#features">30-Sec Digital Rx</a></li>
-            <li><a href="#features">WhatsApp Delivery</a></li>
-            <li><a href="#features">Revisit Generator</a></li>
-            <li><a href="#features">Queue System</a></li>
-
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h5>Company</h5>
-          <ul class="footer-links">
-            <li><a href="mailto:hello@rxnxt.in">Contact Us</a></li>
-            <li><a href="https://app.rxnxt.in">Doctor Login</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h5>Recognition</h5>
-          <ul class="footer-links">
-            <li><a href="#">DPIIT Certified Startup</a></li>
-            <li><a href="#">SRiX Incubated (DST)</a></li>
-            <li><a href="#">DPDP Act 2023 Compliant</a></li>
-            <li><a href="#">Supabase Mumbai Cloud</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <div>© 2026 Orug Technologies. All rights reserved.</div>
-        <div>Built with ❤️ for Indian Healthcare | DPIIT Recognized & SRiX Incubated</div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Scroll Animation Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, {
-        threshold: 0.1
-      });
-
-      document.querySelectorAll('.fade-in-up').forEach(el => {
-        observer.observe(el);
-      });
-    });
-  </script>
+  <footer><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="#top" class="brand"><img src="rxnxt_logo_web.png" alt="RxNXT logo"><span class="brand-name" style="color:#fff">Rx<span>NXT</span>™</span></a><p>Doctor-first digital prescription technology from Orug Technologies, built to make everyday healthcare workflows simpler and more connected.</p></div><div><div class="footer-title">Product</div><ul class="footer-links"><li><a href="#product">Product</a></li><li><a href="#features">Features</a></li><li><a href="#how-it-works">How It Works</a></li><li><a href="https://app.rxnxt.in">Doctor Login</a></li></ul></div><div><div class="footer-title">Company</div><ul class="footer-links"><li><a href="mailto:hello@rxnxt.in">Contact</a></li><li><a href="#trust">Recognition</a></li><li><a href="https://www.rxnxt.in/">RxNXT Website</a></li></ul></div></div><div class="footer-bottom"><div>© 2026 Orug Technologies. All rights reserved.</div><div>RxNXT™ · Doctor-first HealthTech</div></div></div></footer>
 </body>
 </html>
