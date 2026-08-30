@@ -218,6 +218,23 @@
 
     .hero-badge {
       display: inline-flex;
+    .hero-ai-letter {
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-ai-sparkle {
+      position: absolute;
+      left: 50%;
+      top: -0.72em;
+      transform: translateX(-50%);
+      font-size: 0.55em;
+      line-height: 1;
+      color: #fbbf24;
+      text-shadow: 0 0 8px rgba(251, 191, 36, 0.55);
+      pointer-events: none;
+    }
+
       align-items: center;
       gap: 0.5rem;
       padding: 0.4rem 1rem;
@@ -775,7 +792,7 @@
   <section class="hero container">
     <div class="fade-in-up">
       <div class="hero-badge" style="background: var(--navy-900); color: #34d399; font-weight: 800; font-size: 0.95rem; border: 1.5px solid var(--emerald-500); padding: 0.5rem 1.25rem; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);">
-        <span>🩺 Doctor First. AI enabled</span>
+        <span>🩺 Doctor First. A<span class="hero-ai-letter"><span class="hero-ai-sparkle">✦</span>I</span> Enabled</span>
       </div>
       <h1 class="hero-title">Your Prescription.<br>Now Digital. <span>Under 30 Seconds.</span></h1>
       <p class="hero-subtitle">
@@ -1046,7 +1063,7 @@
             <img src="rxnxt_logo_web.png" alt="RxNXT Logo" class="logo-img">
             <span class="logo-text" style="color: var(--white);">Rx<span style="color: var(--emerald-500);">NXT</span></span>
           </div>
-          <p><strong>Doctor First. AI enabled.</strong><br>Prescription-First Digital Ecosystem Connecting Doctors, Patients, and Pharmacists across India.</p>
+          <p><strong>Doctor First. AI Enabled.</strong><br>Prescription-First Digital Ecosystem Connecting Doctors, Patients, and Pharmacists across India.</p>
         </div>
 
         <div class="footer-col">
