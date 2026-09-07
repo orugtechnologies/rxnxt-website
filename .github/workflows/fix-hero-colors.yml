@@ -1,0 +1,39 @@
+name: Fix RxNXT hero colors
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: ${{ !startsWith(github.event.head_commit.message, 'Fix hero headline colors') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Update hero headline colors
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          s = s.replace('.hero h1 span{color:var(--green)}', '.hero h1 span{color:var(--ink)}.hero h1 .heroHighlight{color:var(--green)}')
+          s = s.replace('.heroSub::first-letter{color:var(--green)}', '.heroSub::first-letter{color:var(--ink)}')
+          s = s.replace('<span>end of the consultation.</span><strong class="heroSub">', 'end of the <span class="heroHighlight">consultation.</span><strong class="heroSub">')
+          p.write_text(s)
+          PY
+          git config user.name "orugtechnologies"
+          git config user.email "orugtechnologies@gmail.com"
+          git add index.html
+          git commit -m "Fix hero headline colors"
+          git push
+      - name: Remove temporary workflow
+        if: ${{ success() }}
+        run: |
+          git rm .github/workflows/fix-hero-colors.yml
+          git commit -m "Remove temporary hero color workflow"
+          git push
