@@ -1,1108 +1,1409 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RxNXT Cloud — Digital Prescription Platform for Modern Clinics & Hospitals</title>
-  <meta name="description" content="RxNXT replaces illegible paper prescriptions with a 30-second digital prescription engine, automated 8:00 AM WhatsApp revisits, and instant AI treatment summaries. DPIIT Recognized & SRiX Incubated.">
+  <title>RxNXT — Sub-20s Digital Prescriptions & WhatsApp Patient Care Engine</title>
+  <meta name="description" content="RxNXT replaces handwritten paper pads and heavy hospital software with a sub-20s digital prescription engine, multi-tenant cloud security, and automated 3-window WhatsApp medication reminders.">
 
-  <!-- Open Graph / Social Media -->
-  <meta property="og:title" content="RxNXT Cloud — 30-Second Digital Prescription Platform">
-  <meta property="og:description" content="Sub-30-second digital prescriptions, instant WhatsApp delivery, and automated follow-up reminders for doctors and clinics.">
+  <!-- Open Graph & Meta -->
+  <meta property="og:title" content="RxNXT — Go Digital. Protect Your Data. Prescribe in 20 Seconds. Keep Patients Connected.">
+  <meta property="og:description" content="The only clinical prescription engine designed from the ground up for Indian doctors. Zero illegible handwriting, 100% Indian data sovereignty, and automated WhatsApp patient adherence.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.rxnxt.in/">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eefbf6',
+              100: '#d7f6e9',
+              200: '#b2edd6',
+              300: '#7de0bc',
+              400: '#43cb9c',
+              500: '#1db182',
+              600: '#108e67',
+              700: '#0e7254',
+              800: '#105b44',
+              900: '#0f4c3a',
+              950: '#072b22',
+            },
+            navy: {
+              800: '#0b192c',
+              850: '#091526',
+              900: '#07111e',
+              950: '#030812',
+            },
+            whatsapp: {
+              400: '#34D399',
+              500: '#25D366',
+              600: '#128C7E',
+              700: '#075E54',
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'DM Sans', 'sans-serif'],
+            heading: ['Manrope', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
 
   <style>
     :root {
-      --navy-950: #030712;
-      --navy-900: #0f172a;
-      --navy-800: #1e293b;
-      --emerald-600: #059669;
-      --emerald-500: #10b981;
-      --emerald-100: #d1fae5;
-      --emerald-50: #ecfdf5;
-      --slate-700: #334155;
-      --slate-600: #475569;
-      --slate-500: #64748b;
-      --slate-100: #f1f5f9;
-      --slate-50: #f8fafc;
-      --white: #ffffff;
-      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-      --radius-sm: 0.375rem;
-      --radius-md: 0.5rem;
-      --radius-lg: 0.75rem;
-      --radius-xl: 1rem;
-      --radius-2xl: 1.5rem;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--navy-900);
-      background-color: var(--slate-50);
-      line-height: 1.5;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Outfit', sans-serif;
-      color: var(--navy-900);
-      letter-spacing: -0.02em;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* Container */
-    .container {
-      width: 100%;
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* Scroll Animations */
-    .fade-in-up {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .fade-in-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Navigation */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-      transition: all 0.3s ease;
-    }
-
-    .nav-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 76px;
-    }
-
-    .logo-group {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .logo-img {
-      height: 38px;
-      width: auto;
-      object-fit: contain;
-    }
-
-    .logo-text {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--navy-900);
-    }
-
-    .logo-text span {
-      color: var(--emerald-600);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-link {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--slate-600);
-      transition: color 0.2s ease;
-    }
-
-    .nav-link:hover {
-      color: var(--emerald-600);
-    }
-
-    .nav-cta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    /* Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      font-size: 0.95rem;
-      font-weight: 600;
-      border-radius: var(--radius-md);
-      transition: all 0.2s ease;
-      cursor: pointer;
-      border: none;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: var(--emerald-600);
-      color: var(--white);
-      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
-    }
-
-    .btn-primary:hover {
-      background: #047857;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(5, 150, 105, 0.35);
-    }
-
-    .btn-secondary {
-      background: var(--white);
-      color: var(--navy-900);
-      border: 1px solid var(--slate-500);
-    }
-
-    .btn-secondary:hover {
-      background: var(--slate-100);
-      border-color: var(--navy-900);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--navy-900);
-      border: 1px solid #cbd5e1;
-    }
-
-    .btn-outline:hover {
-      background: var(--slate-100);
-    }
-
-    .btn-lg {
-      padding: 0.875rem 2rem;
-      font-size: 1.05rem;
-      border-radius: var(--radius-lg);
-    }
-
-    /* Hero Section */
-    .hero {
-      padding: 5rem 0 4rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 1rem;
-      background: var(--emerald-50);
-      border: 1px solid var(--emerald-100);
-      border-radius: 9999px;
-      color: var(--emerald-600);
-      font-size: 0.875rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-title {
-      font-size: 3.5rem;
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 1.5rem;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      color: var(--navy-900);
-    }
-
-    .hero-title span {
-      color: var(--emerald-600);
-      background: linear-gradient(135deg, var(--emerald-600) 0%, #10b981 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 1.2rem;
-      color: var(--slate-600);
-      max-width: 720px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.6;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 3.5rem;
-      flex-wrap: wrap;
-    }
-
-    /* Trust Badges */
-    .trust-badges {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      padding-top: 1.5rem;
-      border-top: 1px solid #e2e8f0;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--slate-600);
-    }
-
-    .trust-icon {
-      width: 20px;
-      height: 20px;
-      color: var(--emerald-600);
-    }
-
-    /* Problem Section */
-    .section {
-      padding: 5rem 0;
-    }
-
-    .section-header {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 3.5rem;
-    }
-
-    .section-tag {
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: var(--emerald-600);
-      margin-bottom: 0.75rem;
-    }
-
-    .section-title {
-      font-size: 2.4rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      color: var(--navy-900);
-    }
-
-    .section-subtitle {
-      font-size: 1.1rem;
-      color: var(--slate-600);
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-
-    .problem-card {
-      background: var(--white);
-      border: 1px solid #e2e8f0;
-      border-radius: var(--radius-xl);
-      padding: 2.25rem;
-      transition: all 0.3s ease;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-    }
-
-    .problem-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-      border-color: #cbd5e1;
-    }
-
-    .problem-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1.25rem;
-      display: inline-block;
-    }
-
-    .problem-card h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-
-    .problem-card p {
-      color: var(--slate-600);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    /* Solution / Speed Section */
-    .solution-bg {
-      background: var(--navy-900);
-      color: var(--white);
-      position: relative;
-    }
-
-    .solution-bg .section-title,
-    .solution-bg h3 {
-      color: var(--white);
-    }
-
-    .solution-bg .section-subtitle {
-      color: #94a3b8;
-    }
-
-    .grid-2x3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.75rem;
-    }
-
-    .feature-box {
-      background: var(--navy-800);
-      border: 1px solid #334155;
-      border-radius: var(--radius-lg);
-      padding: 1.75rem;
-      transition: all 0.3s ease;
-    }
-
-    .feature-box:hover {
-      border-color: var(--emerald-500);
-      transform: translateY(-4px);
-      background: #1e293b;
-    }
-
-    .feature-icon-wrapper {
-      width: 44px;
-      height: 44px;
-      background: rgba(16, 185, 129, 0.15);
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--emerald-500);
-      font-size: 1.25rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .feature-box h4 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--white);
-    }
-
-    .feature-box p {
-      color: #94a3b8;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    /* Founder Story Section */
-    .story-card {
-      background: linear-gradient(135deg, var(--emerald-50) 0%, var(--white) 100%);
-      border: 1px solid var(--emerald-100);
-      border-radius: var(--radius-2xl);
-      padding: 3.5rem 3rem;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 3rem;
-      align-items: center;
-      margin: 2rem 0;
-    }
-
-    .story-left h3 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      line-height: 1.25;
-    }
-
-    .story-tag {
-      display: inline-block;
-      padding: 0.3rem 0.75rem;
-      background: var(--emerald-600);
-      color: var(--white);
-      font-size: 0.75rem;
-      font-weight: 700;
-      border-radius: var(--radius-sm);
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-    }
-
-    .story-right p {
-      font-size: 1.05rem;
-      color: var(--slate-700);
-      line-height: 1.7;
-      margin-bottom: 1.25rem;
-    }
-
-    .story-highlight {
-      border-left: 3px solid var(--emerald-600);
-      padding-left: 1.25rem;
-      font-style: italic;
-      font-weight: 500;
-      color: var(--navy-900);
-    }
-
-    /* WhatsApp Section */
-    .whatsapp-section {
-      background: #f0fdf4;
-      border-top: 1px solid #dcfce7;
-      border-bottom: 1px solid #dcfce7;
-    }
-
-    .split-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .whatsapp-list {
-      list-style: none;
-      margin-top: 1.5rem;
-    }
-
-    .whatsapp-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.875rem;
-      font-size: 1.05rem;
-      color: var(--slate-700);
-      margin-bottom: 1.25rem;
-      line-height: 1.5;
-    }
-
-    .check-icon {
-      width: 24px;
-      height: 24px;
-      background: var(--emerald-600);
-      color: var(--white);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 0.75rem;
-      font-weight: bold;
-      margin-top: 2px;
-    }
-
-    /* Phone Mockup */
-    .phone-mockup {
-      background: var(--white);
-      border: 8px solid var(--navy-900);
-      border-radius: 36px;
-      padding: 1.5rem;
-      box-shadow: var(--shadow-xl);
-      max-width: 380px;
-      margin: 0 auto;
-    }
-
-    .chat-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid #f1f5f9;
-      margin-bottom: 1rem;
-    }
-
-    .chat-avatar {
-      width: 40px;
-      height: 40px;
-      background: var(--emerald-600);
-      color: var(--white);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-    }
-
-    .chat-title {
-      font-weight: 700;
-      font-size: 0.95rem;
-    }
-
-    .chat-subtitle {
-      font-size: 0.75rem;
-      color: var(--slate-500);
-    }
-
-    .chat-bubble {
-      background: #e7fce9;
-      border-radius: 12px 12px 12px 2px;
-      padding: 1rem;
-      font-size: 0.85rem;
+      --brand-primary: #108e67;
+      --brand-teal: #059669;
+      --wa-color: #25D366;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Plus Jakarta Sans", sans-serif;
       color: #1e293b;
-      margin-bottom: 0.75rem;
-      line-height: 1.5;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      background: #f8fafc;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4, h5 { font-family: "Manrope", sans-serif; }
+    .font-display { font-family: "Outfit", sans-serif; }
+
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
     }
 
-    .chat-time {
-      font-size: 0.7rem;
-      color: #64748b;
-      text-align: right;
-      margin-top: 0.25rem;
+    .glass-dark {
+      background: rgba(11, 25, 44, 0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    /* Features Grid */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
+    .hero-glow {
+      background: radial-gradient(100% 100% at 50% 0%, rgba(16, 142, 103, 0.16) 0%, rgba(37, 211, 102, 0.06) 35%, rgba(248, 250, 252, 0) 75%);
     }
 
-    .feature-card {
-      background: var(--white);
-      border: 1px solid #e2e8f0;
-      border-radius: var(--radius-xl);
-      padding: 1.75rem;
-      transition: all 0.3s ease;
+    .hero-grid {
+      background-image: linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+      background-size: 32px 32px;
     }
 
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--emerald-500);
+    .glow-emerald {
+      box-shadow: 0 12px 40px -10px rgba(16, 142, 103, 0.4);
     }
 
-    .feature-card-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+    .glow-whatsapp {
+      box-shadow: 0 10px 30px -5px rgba(37, 211, 102, 0.45);
     }
 
-    .feature-card h4 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .feature-card p {
-      font-size: 0.875rem;
-      color: var(--slate-600);
-      line-height: 1.5;
-    }
-
-
-
-
-    /* Final CTA */
-    .cta-banner {
-      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 100%);
-      color: var(--white);
-      border-radius: var(--radius-2xl);
-      padding: 4.5rem 3rem;
-      text-align: center;
-      margin: 4rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-banner h2 {
-      color: var(--white);
-      font-size: 2.75rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-    }
-
-    .cta-banner p {
-      color: #94a3b8;
-      font-size: 1.15rem;
-      max-width: 600px;
-      margin: 0 auto 2.25rem;
-    }
-
-    /* Footer */
-    .footer {
-      background: var(--navy-950);
-      color: #94a3b8;
-      padding: 4rem 0 2rem;
-      border-top: 1px solid #1e293b;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem;
-      margin-bottom: 3rem;
-    }
-
-    .footer-brand p {
-      font-size: 0.9rem;
-      margin-top: 1rem;
-      max-width: 320px;
-      line-height: 1.6;
-    }
-
-    .footer-col h5 {
-      color: var(--white);
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-bottom: 1.25rem;
-    }
-
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 0.75rem;
-    }
-
-    .footer-links a {
-      font-size: 0.875rem;
-      color: #94a3b8;
-      transition: color 0.2s ease;
-    }
-
-    .footer-links a:hover {
-      color: var(--emerald-500);
-    }
-
-    .footer-bottom {
-      padding-top: 2rem;
-      border-top: 1px solid #1e293b;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .grid-3, .grid-2x3 {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .story-card {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-      .split-layout {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero-title {
-        font-size: 2.4rem;
-      }
-      .grid-3, .grid-2x3, .features-grid {
-        grid-template-columns: 1fr;
-      }
-      .nav-links {
-        display: none;
-      }
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-      .story-card {
-        padding: 2rem 1.5rem;
-      }
-      .cta-banner {
-        padding: 3rem 1.5rem;
-      }
-      .cta-banner h2 {
-        font-size: 2rem;
-      }
-    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 7px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
   </style>
 </head>
-<body>
 
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="container nav-container">
-      <a href="#" class="logo-group">
-        <img src="rxnxt_logo_web.png" alt="RxNXT Logo" class="logo-img">
-        <span class="logo-text">Rx<span>NXT</span></span>
-      </a>
-      
-      <ul class="nav-links">
-        <li><a href="#features" class="nav-link">Features</a></li>
-        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
-      </ul>
+<body class="overflow-x-hidden bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
 
-      <div class="nav-cta">
-        <a href="https://app.rxnxt.in" class="btn btn-primary">Start Free Trial</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="hero container">
-    <div class="fade-in-up">
-      <div class="hero-badge" style="background: var(--navy-900); color: #34d399; font-weight: 800; font-size: 0.95rem; border: 1.5px solid var(--emerald-500); padding: 0.5rem 1.25rem; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);">
-        <span>🩺 DOCTOR LED. AI ENABLED</span>
-      </div>
-      <h1 class="hero-title">Your Prescription.<br>Now Digital. <span>Under 30 Seconds.</span></h1>
-      <p class="hero-subtitle">
-        RxNXT replaces illegible paper prescriptions with a blazing-fast digital engine doctors love writing on, patients understand instantly, and pharmacists trust completely.
-      </p>
-
-      <div class="hero-actions">
-        <a href="https://app.rxnxt.in" class="btn btn-primary btn-lg">Start Free Trial →</a>
-        <a href="#how-it-works" class="btn btn-outline btn-lg">See How It Works</a>
-      </div>
-
-      <!-- Trust Badges -->
-      <div class="trust-badges">
-        <div class="trust-item">
-          <svg class="trust-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-          DPIIT Recognized Startup
-        </div>
-        <div class="trust-item">
-          <svg class="trust-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-          Incubated by SRiX (DST-TBI)
-        </div>
-        <div class="trust-item">
-          <svg class="trust-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-          DPDP Act 2023 Compliant
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Problem Section -->
-  <section class="section container">
-    <div class="section-header fade-in-up">
-      <div class="section-tag">The Core Problem</div>
-      <h2 class="section-title">One Paper Prescription. Three Breakdown Points.</h2>
-      <p class="section-subtitle">A prescription is not just paper — it's a vital contract between three parties.</p>
-    </div>
-
-    <div class="grid-3">
-      <div class="problem-card fade-in-up">
-        <span class="problem-icon">🩺</span>
-        <h3>Doctor's Time Drain</h3>
-        <p>Doctors spend 3 to 5 minutes writing repetitive paper prescriptions manually, leading to consultation backlogs and fatigue.</p>
-      </div>
-
-      <div class="problem-card fade-in-up">
-        <span class="problem-icon">🧑</span>
-        <h3>Patient Confusion</h3>
-        <p>Patients misplace paper scripts, forget dosage schedules, and miss crucial follow-up visits — hurting their health outcomes.</p>
-      </div>
-
-      <div class="problem-card fade-in-up">
-        <span class="problem-icon">💊</span>
-        <h3>Pharmacist Risk</h3>
-        <p>Pharmacists waste time guessing unreadable doctor handwriting, creating dangerous risks of dispensing the wrong drug.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Solution & Speed Section -->
-  <section id="features" class="section solution-bg">
-    <div class="container">
-      <div class="section-header fade-in-up">
-        <div class="section-tag" style="color: var(--emerald-500);">Prescription-First Design</div>
-        <h2 class="section-title">30 Seconds. Zero Errors. Built for Doctor Speed.</h2>
-        <p class="section-subtitle">Not a bloated EMR. RxNXT is designed specifically to earn its place on a doctor's desk through daily speed and intelligence.</p>
-      </div>
-
-      <div class="grid-2x3">
-        <div class="feature-box fade-in-up">
-          <div class="feature-icon-wrapper">🔍</div>
-          <h4>Typo-Tolerant Search</h4>
-          <p>Type 'PCM' or 'amxclv' and find the exact medicine immediately with fuzzy matching and intelligent drug ranking.</p>
-        </div>
-
-        <div class="feature-box fade-in-up">
-          <div class="feature-icon-wrapper">💊</div>
-          <h4>1-Click Dosage Chips</h4>
-          <p>Tap pre-configured chips like '1-0-1', '5 Days', 'After Food' in under 2 seconds without repetitive typing.</p>
-        </div>
-
-        <div class="feature-box fade-in-up">
-          <div class="feature-icon-wrapper">⭐</div>
-          <h4>Smart Drug Ranking</h4>
-          <p>The system learns your clinical habits. Your most frequently prescribed formulations surface right at the top.</p>
-        </div>
-
-        <div class="feature-box fade-in-up">
-          <div class="feature-icon-wrapper">📄</div>
-          <h4>Instant PDF & Print</h4>
-          <p>Generate clean, professional, clinic-branded prescriptions with complete headers, footers, and digital signatures.</p>
-        </div>
-
-        <div class="feature-box fade-in-up">
-          <div class="feature-icon-wrapper">🔄</div>
-          <h4>1-Click Rx Cloning</h4>
-          <p>Instantly repeat previous prescriptions for chronic or returning patients with a single click during busy OPDs.</p>
-        </div>
-
-        <div class="feature-box fade-in-up">
-          <div class="feature-icon-wrapper">⚠️</div>
-          <h4>Schedule H Safeguards</h4>
-          <p>Automatic visual badges and safety alerts for habit-forming and controlled narcotics compliance.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- WhatsApp Integration Section -->
-  <section class="section whatsapp-section">
-    <div class="container split-layout">
-      <div class="fade-in-up">
-        <div class="section-tag">Instant Delivery & Automated Growth</div>
-        <h2 class="section-title">Prescriptions Delivered. Follow-Ups Automated.</h2>
-        <p class="section-subtitle">Keep your patients engaged without asking them to download any new apps.</p>
+  <!-- ==================== HEADER / NAVIGATION ==================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 px-4 pt-3 transition-all duration-300">
+    <nav class="glass-nav mx-auto max-w-7xl rounded-2xl border border-slate-200/90 shadow-sm shadow-slate-900/5">
+      <div class="h-16 px-4 sm:px-6 flex items-center justify-between">
         
-        <ul class="whatsapp-list">
-          <li>
-            <div class="check-icon">✓</div>
-            <div><strong>Instant WhatsApp PDF + AI Treatment Summary:</strong> Patients receive clean PDF prescriptions and easy-to-read dosage summaries right on WhatsApp.</div>
-          </li>
-          <li>
-            <div class="check-icon">✓</div>
-            <div><strong>Automated 8:00 AM Revisit Generator:</strong> Automated daily reminders bring follow-up patients back to your clinic, boosting revisit rates by +25%.</div>
-          </li>
-          <li>
-            <div class="check-icon">✓</div>
-            <div><strong>DPDP Consent Compliant:</strong> Built-in patient WhatsApp consent check to keep your clinic fully compliant with data privacy laws.</div>
-          </li>
-        </ul>
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3.5 group">
+          <img src="rxnxt_logo_web.png" alt="RxNXT Logo" class="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105" />
+          <div class="flex flex-col">
+            <div class="flex items-center gap-2">
+              <span class="font-display font-extrabold text-xl tracking-tight text-slate-900 leading-none">RxNXT</span>
+              <span class="text-[9px] font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-2 py-0.5 rounded-full border border-brand-200">Cloud 2.0</span>
+            </div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-brand-600 mt-0.5">Doctor Led. AI Enabled.</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden lg:flex items-center gap-6 font-semibold text-xs tracking-wide uppercase text-slate-600">
+          <a href="#four-pillars" class="hover:text-brand-600 transition-colors">The 4 Pillars</a>
+          <a href="#speed-simulator" class="hover:text-brand-600 transition-colors">Rx Simulator</a>
+          <a href="#whatsapp-care" class="hover:text-brand-600 transition-colors">WhatsApp Engine</a>
+          <a href="#roi-calculator" class="hover:text-brand-600 transition-colors">ROI Calculator</a>
+          <a href="#comparison" class="hover:text-brand-600 transition-colors">Why RxNXT</a>
+          <a href="#pricing" class="hover:text-brand-600 transition-colors">Pricing</a>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="flex items-center gap-2.5">
+          <a href="https://app.rxnxt.in" target="_blank" class="hidden sm:inline-flex px-3.5 py-2 text-xs font-bold text-slate-700 hover:text-brand-600 bg-slate-100 hover:bg-slate-200/80 rounded-xl transition-all border border-slate-200">
+            Doctor Login
+          </a>
+          <button onclick="openTrialModal()" class="px-4 sm:px-5 py-2.5 text-xs font-bold text-white bg-gradient-to-r from-brand-600 via-brand-500 to-teal-600 hover:from-brand-700 hover:to-brand-600 rounded-xl shadow-md shadow-brand-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2">
+            <span>🚀 Start 14-Day Free Trial</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 hero-glow hero-grid">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      
+      <!-- Top Announcement Badge -->
+      <div class="flex justify-center mb-6">
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-bold shadow-xs">
+          <span class="flex h-2.5 w-2.5 rounded-full bg-brand-500 animate-ping"></span>
+          <span>⚡ Designed for High-Volume Indian OPDs • NMC & DPDP Act 2023 Compliant</span>
+        </div>
       </div>
 
-      <div class="fade-in-up">
-        <div class="phone-mockup">
-          <div class="chat-header">
-            <div class="chat-avatar">Rx</div>
-            <div>
-              <div class="chat-title">Orug Specialty Clinic</div>
-              <div class="chat-subtitle">WhatsApp Business Notification</div>
+      <!-- Main Headline & Subhead -->
+      <div class="text-center max-w-4xl mx-auto space-y-6">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
+          Go Digital. Protect Your Data.<br/>
+          <span class="bg-gradient-to-r from-brand-600 via-teal-600 to-emerald-500 bg-clip-text text-transparent">Prescribe in 20 Seconds.</span><br class="hidden sm:inline"/>
+          Keep Patients Connected.
+        </h1>
+        <p class="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto font-normal leading-relaxed">
+          The all-in-one clinical workflow and prescription engine built for modern Indian doctors. Eliminate paper pads, protect clinic records with multi-tenant cloud isolation, and deliver branded PDFs with automated WhatsApp dosage reminders without forcing patients to download an app.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button onclick="openTrialModal()" class="w-full sm:w-auto px-8 py-4 text-sm font-bold text-white bg-gradient-to-r from-brand-600 via-brand-500 to-teal-600 rounded-2xl shadow-lg shadow-brand-500/30 hover:shadow-xl hover:shadow-brand-500/40 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-3 group">
+            <span>🚀 Start 14-Day Free Trial (No Card Needed)</span>
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7-7 7M3 12h18"/></svg>
+          </button>
+          <a href="#speed-simulator" class="w-full sm:w-auto px-8 py-4 text-sm font-bold text-slate-700 bg-white border border-slate-200 rounded-2xl hover:bg-slate-50 shadow-sm transition-all flex items-center justify-center gap-2">
+            <span>⚡ Test 20-Sec Rx Simulator</span>
+            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </a>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="pt-6 flex flex-wrap items-center justify-center gap-3 text-xs font-semibold text-slate-600">
+          <div class="flex items-center gap-1.5 bg-white/90 px-3.5 py-1.5 rounded-full border border-slate-200 shadow-2xs">
+            <svg class="w-4 h-4 text-brand-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"/></svg>
+            <span>NMC & 24+ State Councils Verified</span>
+          </div>
+          <div class="flex items-center gap-1.5 bg-white/90 px-3.5 py-1.5 rounded-full border border-slate-200 shadow-2xs">
+            <svg class="w-4 h-4 text-teal-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.54 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            <span>Supabase Mumbai Cloud (Indian Data Sovereignty)</span>
+          </div>
+          <div class="flex items-center gap-1.5 bg-white/90 px-3.5 py-1.5 rounded-full border border-slate-200 shadow-2xs">
+            <svg class="w-4 h-4 text-whatsapp-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.989 4.478-9.989 9.984 0 1.766.46 3.497 1.332 5.022L2 22l5.127-1.341a9.96 9.96 0 0 0 4.885 1.28h.004c5.507 0 9.988-4.477 9.988-9.984 0-2.668-1.039-5.176-2.925-7.062A9.923 9.923 0 0 0 12.012 2z"/></svg>
+            <span>Official Meta WhatsApp Cloud API</span>
+          </div>
+        </div>
+
+        <!-- 4 Pillars Quick Summary Metrics -->
+        <div class="pt-6 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          <div class="p-4 bg-white/90 backdrop-blur rounded-2xl border border-slate-200/90 shadow-2xs text-left">
+            <div class="text-xs font-bold uppercase tracking-wider text-brand-600 mb-1">Pillar 1</div>
+            <div class="text-lg font-extrabold text-slate-900 leading-tight">Doctor Goes Digital</div>
+            <div class="text-xs text-slate-500 mt-1">NMC ID, Branded PDFs & Live Queue</div>
+          </div>
+          <div class="p-4 bg-white/90 backdrop-blur rounded-2xl border border-slate-200/90 shadow-2xs text-left">
+            <div class="text-xs font-bold uppercase tracking-wider text-teal-600 mb-1">Pillar 2</div>
+            <div class="text-lg font-extrabold text-slate-900 leading-tight">Data is Protected</div>
+            <div class="text-xs text-slate-500 mt-1">Multi-Tenant RLS & India Residency</div>
+          </div>
+          <div class="p-4 bg-white/90 backdrop-blur rounded-2xl border border-slate-200/90 shadow-2xs text-left">
+            <div class="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-1">Pillar 3</div>
+            <div class="text-lg font-extrabold text-slate-900 leading-tight">Faster Consultation</div>
+            <div class="text-xs text-slate-500 mt-1">Sub-20s Rx & 1-Click Dosage Chips</div>
+          </div>
+          <div class="p-4 bg-white/90 backdrop-blur rounded-2xl border border-slate-200/90 shadow-2xs text-left">
+            <div class="text-xs font-bold uppercase tracking-wider text-whatsapp-600 mb-1">Pillar 4</div>
+            <div class="text-lg font-extrabold text-slate-900 leading-tight">Patient Engagement</div>
+            <div class="text-xs text-slate-500 mt-1">3-Slot WhatsApp Nudges & Refills</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== THE 4-PILLAR DEEP DIVE SECTION ==================== -->
+  <section id="four-pillars" class="py-24 bg-white border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <span class="px-3.5 py-1 rounded-full bg-brand-100 text-brand-800 text-xs font-bold uppercase tracking-wider">The Core Architecture</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Engineered Around the 4 Needs of Modern Clinical Practice
+        </h2>
+        <p class="text-slate-600 text-base">
+          Every screen, algorithm, and background service in RxNXT exists to deliver on these four foundational promises.
+        </p>
+      </div>
+
+      <!-- 4 Pillars Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Pillar 1 Card -->
+        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/90 hover:border-brand-300 transition-all shadow-sm hover:shadow-md space-y-5">
+          <div class="flex items-center justify-between">
+            <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-xl">
+              🏛️
+            </div>
+            <span class="px-3 py-1 rounded-full bg-brand-100 text-brand-800 text-xs font-extrabold tracking-wider uppercase">Pillar 1</span>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">Doctor Goes Digital</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Eliminate faded paper pads, messy carbon copies, and clinic chaos with a fully digitized clinical identity.
+            </p>
+          </div>
+          <div class="space-y-3 pt-2 text-xs sm:text-sm text-slate-700">
+            <div class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-xs mt-0.5">✓</span>
+              <div><strong>NMC Direct Verification:</strong> Instant server-side verification with the National Medical Commission & 24+ Indian State Councils.</div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-xs mt-0.5">✓</span>
+              <div><strong>Official Branded A4 PDFs:</strong> Auto-embeds your clinic logo, NMC registration number, and digital signature with zero lag.</div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-xs mt-0.5">✓</span>
+              <div><strong>Live Waiting Room Queue:</strong> Receptionist issues tokens in 0.5s; doctor sees live waiting timers on their desk.</div>
             </div>
           </div>
-          <div class="chat-bubble">
-            📄 <strong>Prescription Ready</strong><br>
-            Dear Rajesh, Dr. Sharma has generated your digital prescription.<br><br>
-            📋 <strong>AI Treatment Summary:</strong><br>
-            • Tab Amoxicillin 500mg (1-0-1) for 5 days after food<br>
-            • Tab Paracetamol 650mg (as needed)<br><br>
-            <span style="color: var(--emerald-600); font-weight: 600;">[Download Prescription PDF]</span>
-            <div class="chat-time">08:00 AM</div>
-          </div>
-          <div class="chat-bubble" style="background: #ffffff; border: 1px solid #e2e8f0; margin-left: 1.5rem;">
-            🔔 <strong>Follow-up Reminder:</strong><br>
-            Hi Rajesh, your follow-up checkup with Dr. Sharma is scheduled for tomorrow at 10:30 AM.
-            <div class="chat-time">08:01 AM</div>
+          <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs text-brand-700 font-bold">
+            <span>Result: 100% Paperless & Legally Compliant</span>
+            <button onclick="openTrialModal()" class="hover:underline">Try In Clinic →</button>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Complete Features Section -->
-  <section class="section container">
-    <div class="section-header fade-in-up">
-      <div class="section-tag">Complete Clinic Suite</div>
-      <h2 class="section-title">Everything Your Practice Needs.</h2>
-      <p class="section-subtitle">Streamlined tools for doctors, receptionists, and hospital managers.</p>
-    </div>
-
-    <div class="features-grid">
-      <div class="feature-card fade-in-up">
-        <div class="feature-card-icon">🎟️</div>
-        <h4>Queue & Token System</h4>
-        <p>Live patient tracking from check-in to consultation to bill payment.</p>
-      </div>
-
-      <div class="feature-card fade-in-up">
-        <div class="feature-card-icon">👩‍💼</div>
-        <h4>Receptionist Portal</h4>
-        <p>Dedicated front-desk registration, vitals triage, and appointment booking.</p>
-      </div>
-
-      <div class="feature-card fade-in-up">
-        <div class="feature-card-icon">👥</div>
-        <h4>Multi-Doctor Support</h4>
-        <p>Add multiple doctors under one clinic with a shared patient directory.</p>
-      </div>
-
-      <div class="feature-card fade-in-up">
-        <div class="feature-card-icon">📊</div>
-        <h4>Analytics Dashboard</h4>
-        <p>Track daily patient counts, top prescribed drugs, and revenue trends.</p>
-      </div>
-
-      <div class="feature-card fade-in-up">
-        <div class="feature-card-icon">🏬</div>
-        <h4>Pharmacy Portal</h4>
-        <p>Seamlessly share digital prescriptions with attached or nearby chemists.</p>
-      </div>
-
-      <div class="feature-card fade-in-up">
-        <div class="feature-card-icon">🔐</div>
-        <h4>Multi-Tenant Security</h4>
-        <p>Complete data isolation for your clinic with Supabase Mumbai data residency.</p>
-      </div>
-
-      <div class="feature-card fade-in-up">
-        <div class="feature-card-icon">📝</div>
-        <h4>Clinical Templates</h4>
-        <p>Save custom prescription sets for common conditions (Fever, Hypertension, etc.).</p>
-      </div>
-
-      <div class="feature-card fade-in-up">
-        <div class="feature-card-icon">🎨</div>
-        <h4>Custom Header & Logo</h4>
-        <p>Upload your official clinic letterhead and digital signatures seamlessly.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works Section -->
-  <section id="how-it-works" class="section solution-bg">
-    <div class="container">
-      <div class="section-header fade-in-up">
-        <div class="section-tag" style="color: var(--emerald-500);">Simple Onboarding</div>
-        <h2 class="section-title">Go Digital in 3 Simple Steps</h2>
-        <p class="section-subtitle">Zero complicated setup required. Start prescribing in 5 minutes.</p>
-      </div>
-
-      <div class="grid-3">
-        <div class="feature-box fade-in-up" style="text-align: center;">
-          <div style="font-size: 2rem; font-weight: 800; color: var(--emerald-500); margin-bottom: 1rem;">01</div>
-          <h4>Create Clinic Account</h4>
-          <p>Register your clinic, upload your logo and letterhead header, and invite your doctors or staff.</p>
-        </div>
-
-        <div class="feature-box fade-in-up" style="text-align: center;">
-          <div style="font-size: 2rem; font-weight: 800; color: var(--emerald-500); margin-bottom: 1rem;">02</div>
-          <h4>Prescribe in 30 Seconds</h4>
-          <p>Search drugs using typo-tolerant search, select dosage chips, and generate clean PDF prescriptions.</p>
-        </div>
-
-        <div class="feature-box fade-in-up" style="text-align: center;">
-          <div style="font-size: 2rem; font-weight: 800; color: var(--emerald-500); margin-bottom: 1rem;">03</div>
-          <h4>Automate WhatsApp & Revisit</h4>
-          <p>Prescriptions deliver automatically to patient WhatsApp, and 8 AM reminders ensure follow-up visits.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
-  <!-- Final CTA Banner -->
-  <section class="container">
-    <div class="cta-banner fade-in-up">
-      <h2>Ready to Upgrade Your Practice?</h2>
-      <p>Join forward-thinking doctors and clinics using RxNXT to deliver error-free digital prescriptions and automated patient care.</p>
-      <a href="https://app.rxnxt.in" class="btn btn-primary btn-lg">Start Free Trial Now →</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="logo-group">
-            <img src="rxnxt_logo_web.png" alt="RxNXT Logo" class="logo-img">
-            <span class="logo-text" style="color: var(--white);">Rx<span style="color: var(--emerald-500);">NXT</span></span>
+        <!-- Pillar 2 Card -->
+        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/90 hover:border-brand-300 transition-all shadow-sm hover:shadow-md space-y-5">
+          <div class="flex items-center justify-between">
+            <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center font-bold text-xl">
+              🛡️
+            </div>
+            <span class="px-3 py-1 rounded-full bg-teal-100 text-teal-800 text-xs font-extrabold tracking-wider uppercase">Pillar 2</span>
           </div>
-          <p><strong>DOCTOR LED. AI ENABLED.</strong><br>Prescription-First Digital Ecosystem Connecting Doctors, Patients, and Pharmacists across India.</p>
+          <div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">Data is Protected</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Your patients belong to you. We safeguard your clinic with multi-tenant isolation and strict Indian data localization.
+            </p>
+          </div>
+          <div class="space-y-3 pt-2 text-xs sm:text-sm text-slate-700">
+            <div class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold text-xs mt-0.5">✓</span>
+              <div><strong>PostgreSQL Row-Level Security (RLS):</strong> Mathematically isolates clinic records. Clinic A can never access Clinic B's data.</div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold text-xs mt-0.5">✓</span>
+              <div><strong>100% Indian Data Sovereignty:</strong> Cloud database hosted in Mumbai (ap-south-1), fully adhering to the DPDP Act 2023.</div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold text-xs mt-0.5">✓</span>
+              <div><strong>Encrypted Role Isolation:</strong> Receptionists manage queues without modifying clinical prescriptions; doctors sign securely.</div>
+            </div>
+          </div>
+          <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs text-teal-700 font-bold">
+            <span>Result: Zero Data Sharing • Enterprise Privacy</span>
+            <button onclick="openTrialModal()" class="hover:underline">Verify Security →</button>
+          </div>
         </div>
 
-        <div class="footer-col">
-          <h5>Product</h5>
-          <ul class="footer-links">
-            <li><a href="#features">30-Sec Digital Rx</a></li>
-            <li><a href="#features">WhatsApp Delivery</a></li>
-            <li><a href="#features">Revisit Generator</a></li>
-            <li><a href="#features">Queue System</a></li>
+        <!-- Pillar 3 Card -->
+        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/90 hover:border-brand-300 transition-all shadow-sm hover:shadow-md space-y-5">
+          <div class="flex items-center justify-between">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xl">
+              ⚡
+            </div>
+            <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-extrabold tracking-wider uppercase">Pillar 3</span>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">Faster Consultation</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Traditional EMRs steal time with 20 clicks per drug. RxNXT is tuned for high-volume OPDs to finish prescriptions in &lt; 20 seconds.
+            </p>
+          </div>
+          <div class="space-y-3 pt-2 text-xs sm:text-sm text-slate-700">
+            <div class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs mt-0.5">✓</span>
+              <div><strong>Typo-Tolerant Additive Search:</strong> Type "parctml" or clinical shorthand "PCM" and get instant sub-50ms matching.</div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs mt-0.5">✓</span>
+              <div><strong>1-Click Dosage Chips:</strong> Tap `1-0-1`, `After Food`, `5 Days` instead of typing repetitive dosage strings.</div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs mt-0.5">✓</span>
+              <div><strong>1-Tap Chronic Rx Cloning:</strong> For repeat diabetes and hypertension patients, clone the past prescription in 1 click.</div>
+            </div>
+          </div>
+          <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs text-emerald-700 font-bold">
+            <span>Result: See 20+ More Patients Without Rushing</span>
+            <a href="#speed-simulator" class="hover:underline">Test Engine Below ↓</a>
+          </div>
+        </div>
 
+        <!-- Pillar 4 Card -->
+        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/90 hover:border-brand-300 transition-all shadow-sm hover:shadow-md space-y-5">
+          <div class="flex items-center justify-between">
+            <div class="w-12 h-12 rounded-2xl bg-green-100 text-whatsapp-700 flex items-center justify-center font-bold text-xl">
+              💬
+            </div>
+            <span class="px-3 py-1 rounded-full bg-green-100 text-whatsapp-700 text-xs font-extrabold tracking-wider uppercase">Pillar 4</span>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">Patient Engagement</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Zero apps for patients to install. Official Meta WhatsApp Cloud integration delivers prescriptions and daily dosage nudges automatically.
+            </p>
+          </div>
+          <div class="space-y-3 pt-2 text-xs sm:text-sm text-slate-700">
+            <div class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-green-100 text-whatsapp-700 flex items-center justify-center font-bold text-xs mt-0.5">✓</span>
+              <div><strong>Zero-App Friction:</strong> Prescription PDF lands in the patient's existing WhatsApp chat before they exit your room.</div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-green-100 text-whatsapp-700 flex items-center justify-center font-bold text-xs mt-0.5">✓</span>
+              <div><strong>3-Slot Adherence Nudges:</strong> Automated alerts at 8:00 AM (Morning), 1:30 PM (Noon), and 8:30 PM (Night) keep patients compliant.</div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-green-100 text-whatsapp-700 flex items-center justify-center font-bold text-xs mt-0.5">✓</span>
+              <div><strong>Day-25 Chronic Refill Alert:</strong> Reminds chronic patients when medication is running low, driving timely clinic revisits.</div>
+            </div>
+          </div>
+          <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs text-whatsapp-700 font-bold">
+            <span>Result: 38% Higher Compliance & Loyal Patients</span>
+            <a href="#whatsapp-care" class="hover:underline">See Phone Demo Below ↓</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== LIVE INTERACTIVE PRESCRIPTION SPEED SIMULATOR ==================== -->
+  <section id="speed-simulator" class="py-24 bg-slate-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Text Left Column -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-950 border border-brand-800 text-brand-400 text-xs font-bold uppercase tracking-wider">
+            <span>Interactive Speed Lab</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+            Try the Sub-20s Prescription Engine Live
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            Test how RxNXT handles typos, instant dosage chips, and clinical shortcuts. Try typing misspellings like <code class="bg-slate-800 px-1.5 py-0.5 rounded text-brand-400 font-mono text-sm">parctml</code>, <code class="bg-slate-800 px-1.5 py-0.5 rounded text-brand-400 font-mono text-sm">amox</code>, or <code class="bg-slate-800 px-1.5 py-0.5 rounded text-brand-400 font-mono text-sm">pantop</code>.
+          </p>
+
+          <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-slate-400">Handwritten Prescription Average:</span>
+              <span class="text-rose-400 font-bold">~90 - 120 Seconds</span>
+            </div>
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-slate-400">Legacy Hospital Software (EMR):</span>
+              <span class="text-rose-400 font-bold">~180 - 300 Seconds</span>
+            </div>
+            <div class="flex items-center justify-between text-xs pt-2 border-t border-slate-800">
+              <span class="text-white font-bold">RxNXT Additive Search + Chips:</span>
+              <span class="text-brand-400 font-extrabold text-sm">&lt; 18 Seconds</span>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <button onclick="openTrialModal()" class="w-full sm:w-auto px-6 py-3.5 bg-brand-600 hover:bg-brand-500 text-white rounded-xl text-xs font-bold shadow-lg shadow-brand-600/30 transition-all flex items-center justify-center gap-2">
+              <span>🚀 Activate 14-Day Free Pilot For Your Clinic</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Simulator Widget Right Column -->
+        <div class="lg:col-span-7">
+          <div class="glass-dark rounded-3xl p-6 sm:p-7 shadow-2xl border border-slate-700/80 space-y-5">
+            
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-400 animate-pulse"></span>
+                <span class="text-xs font-bold text-white uppercase tracking-wider">Live Rx Speed Sandbox</span>
+              </div>
+              <div class="flex items-center gap-3 text-xs font-mono">
+                <span class="text-slate-400">Search Latency: <span id="search-latency" class="text-brand-400 font-bold">11ms</span></span>
+                <span class="text-slate-400">Rx Timer: <span id="rx-timer" class="text-emerald-400 font-bold">00:08s</span></span>
+              </div>
+            </div>
+
+            <!-- Search Input -->
+            <div class="space-y-2">
+              <label class="text-xs font-bold text-slate-300 flex items-center justify-between">
+                <span>1. Type Medicine Name (Typo-Tolerant Search)</span>
+                <span class="text-[11px] text-brand-400 font-mono">Additive Scoring Engine</span>
+              </label>
+              <div class="relative">
+                <input type="text" id="demo-search-input" value="parctml" placeholder="Type a medicine (e.g. parctml, amox, pantop, metfor)..." 
+                  class="w-full bg-slate-950 border border-brand-500/80 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-500 font-mono">
+                <span class="absolute right-3 top-3.5 text-xs text-slate-400 font-sans hidden sm:inline">Try Typos</span>
+              </div>
+            </div>
+
+            <!-- Pre-set Buttons -->
+            <div class="flex flex-wrap items-center gap-2 text-xs">
+              <span class="text-slate-400 font-semibold">Test queries:</span>
+              <button onclick="setSearchDemo('parctml')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg font-mono">parctml</button>
+              <button onclick="setSearchDemo('amox 500')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg font-mono">amox 500</button>
+              <button onclick="setSearchDemo('pantop')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg font-mono">pantop</button>
+              <button onclick="setSearchDemo('PCM')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-brand-300 rounded-lg font-mono">PCM (Alias)</button>
+              <button onclick="setSearchDemo('metfor')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg font-mono">metfor</button>
+            </div>
+
+            <!-- Live Search Results Box -->
+            <div id="search-results-container" class="space-y-2 pt-1">
+              <!-- Rendered via JS -->
+            </div>
+
+            <!-- 1-Click Dosage Chips Demo Bar -->
+            <div class="p-3.5 bg-slate-950 rounded-2xl border border-slate-800 space-y-2.5">
+              <div class="text-xs font-bold text-slate-300">2. Select 1-Click Dosage Chips</div>
+              <div class="flex flex-wrap items-center gap-2 text-xs">
+                <span class="text-slate-400 font-medium">Frequency:</span>
+                <button onclick="selectChip(this, 'freq')" class="chip-freq px-2.5 py-1 bg-brand-600 text-white rounded-lg font-mono font-bold">1-0-1</button>
+                <button onclick="selectChip(this, 'freq')" class="chip-freq px-2.5 py-1 bg-slate-800 text-slate-300 hover:bg-slate-700 rounded-lg font-mono">1-0-0</button>
+                <button onclick="selectChip(this, 'freq')" class="chip-freq px-2.5 py-1 bg-slate-800 text-slate-300 hover:bg-slate-700 rounded-lg font-mono">1-1-1</button>
+                <button onclick="selectChip(this, 'freq')" class="chip-freq px-2.5 py-1 bg-slate-800 text-slate-300 hover:bg-slate-700 rounded-lg font-mono">0-0-1</button>
+                <span class="text-slate-400 font-medium ml-2">Timing:</span>
+                <button onclick="selectChip(this, 'timing')" class="chip-timing px-2.5 py-1 bg-brand-600 text-white rounded-lg">After Food</button>
+                <button onclick="selectChip(this, 'timing')" class="chip-timing px-2.5 py-1 bg-slate-800 text-slate-300 hover:bg-slate-700 rounded-lg">Before Food</button>
+              </div>
+            </div>
+
+            <!-- Current Simulated Prescription Items -->
+            <div class="p-3.5 bg-slate-950 rounded-2xl border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between text-xs font-bold text-slate-300">
+                <span>3. Live Prescription Canvas</span>
+                <span class="text-emerald-400 font-mono">Status: Ready to Dispatch</span>
+              </div>
+              <div id="rx-canvas-list" class="space-y-1.5 text-xs">
+                <div class="p-2.5 bg-slate-900 rounded-xl border border-slate-800 flex items-center justify-between">
+                  <div>
+                    <div class="font-bold text-white flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
+                      Paracetamol 650mg (Dolo 650)
+                    </div>
+                    <div class="text-[11px] text-slate-400">1-0-1 (After Food) • Duration: 5 Days (10 Tabs)</div>
+                  </div>
+                  <span class="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded border border-emerald-800 font-mono">Morning & Night</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Dispatch Trigger -->
+            <div class="pt-2 flex flex-wrap items-center justify-between gap-3">
+              <div class="text-xs text-slate-400 flex items-center gap-2">
+                <svg class="w-4 h-4 text-whatsapp-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.989 4.478-9.989 9.984 0 1.766.46 3.497 1.332 5.022L2 22l5.127-1.341a9.96 9.96 0 0 0 4.885 1.28h.004c5.507 0 9.988-4.477 9.988-9.984 0-2.668-1.039-5.176-2.925-7.062A9.923 9.923 0 0 0 12.012 2z"/></svg>
+                <span>Automated WhatsApp Dispatch Ready</span>
+              </div>
+              <button onclick="simulateSendPrescription()" class="px-5 py-2.5 bg-whatsapp-600 hover:bg-whatsapp-500 text-white rounded-xl text-xs font-bold shadow-md transition-all flex items-center gap-2">
+                <span>Simulate WhatsApp Delivery</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7-7 7M3 12h18"/></svg>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== INTERACTIVE WHATSAPP PATIENT CARE EXPERIENCE ==================== -->
+  <section id="whatsapp-care" class="py-24 bg-white border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-whatsapp-100 border border-whatsapp-300 text-whatsapp-700 text-xs font-bold uppercase tracking-wider">
+          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.989 4.478-9.989 9.984 0 1.766.46 3.497 1.332 5.022L2 22l5.127-1.341a9.96 9.96 0 0 0 4.885 1.28h.004c5.507 0 9.988-4.477 9.988-9.984 0-2.668-1.039-5.176-2.925-7.062A9.923 9.923 0 0 0 12.012 2z"/></svg>
+          Pillar 4: Patient Engagement
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          How Patients Experience Your Clinic on WhatsApp
+        </h2>
+        <p class="text-slate-600 text-base">
+          Zero app download. Your patients receive crystal-clear prescriptions and smart dosage alerts right where they already chat every single day.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center max-w-6xl mx-auto">
+        
+        <!-- Controls & Explanation (Left 6 cols) -->
+        <div class="lg:col-span-6 space-y-5">
+          <div class="space-y-3">
+            <h3 class="text-2xl font-bold text-slate-900">Click to preview each automated message:</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Test how RxNXT segments medication times automatically without the doctor needing to configure a single cron job.
+            </p>
+          </div>
+
+          <!-- Interactive Message Selectors -->
+          <div class="space-y-3">
+            <button onclick="setWaMock('rx_pdf')" id="btn-wa-rx_pdf" class="w-full text-left p-4 rounded-2xl border-2 border-brand-500 bg-brand-50/50 transition-all flex items-center justify-between">
+              <div>
+                <div class="text-sm font-bold text-slate-900 flex items-center gap-2">
+                  <span>📄 1. Instant Digital PDF Delivery</span>
+                  <span class="text-[10px] bg-brand-200 text-brand-900 px-2 py-0.5 rounded font-bold">End of Consultation</span>
+                </div>
+                <div class="text-xs text-slate-600 mt-1">Branded PDF delivered to patient's phone before leaving clinic.</div>
+              </div>
+              <span class="text-brand-600 font-bold">Preview →</span>
+            </button>
+
+            <button onclick="setWaMock('morning')" id="btn-wa-morning" class="w-full text-left p-4 rounded-2xl border border-slate-200 bg-white hover:border-slate-300 transition-all flex items-center justify-between">
+              <div>
+                <div class="text-sm font-bold text-slate-900 flex items-center gap-2">
+                  <span>🌅 2. Morning Dose Adherence</span>
+                  <span class="text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold">8:00 AM IST</span>
+                </div>
+                <div class="text-xs text-slate-600 mt-1">Filters morning pills (`1-0-0`, `1-0-1`, `Before Breakfast`).</div>
+              </div>
+              <span class="text-slate-400 font-bold">Preview →</span>
+            </button>
+
+            <button onclick="setWaMock('afternoon')" id="btn-wa-afternoon" class="w-full text-left p-4 rounded-2xl border border-slate-200 bg-white hover:border-slate-300 transition-all flex items-center justify-between">
+              <div>
+                <div class="text-sm font-bold text-slate-900 flex items-center gap-2">
+                  <span>☀️ 3. Afternoon Dose Adherence</span>
+                  <span class="text-[10px] bg-sky-100 text-sky-800 px-2 py-0.5 rounded font-bold">1:30 PM IST</span>
+                </div>
+                <div class="text-xs text-slate-600 mt-1">Alerts patients taking midday doses like `0-1-0` or `1-1-1`.</div>
+              </div>
+              <span class="text-slate-400 font-bold">Preview →</span>
+            </button>
+
+            <button onclick="setWaMock('night_refill')" id="btn-wa-night_refill" class="w-full text-left p-4 rounded-2xl border border-slate-200 bg-white hover:border-slate-300 transition-all flex items-center justify-between">
+              <div>
+                <div class="text-sm font-bold text-slate-900 flex items-center gap-2">
+                  <span>🌙 4. Night Dose & Day-25 Refill Alert</span>
+                  <span class="text-[10px] bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded font-bold">8:30 PM IST</span>
+                </div>
+                <div class="text-xs text-slate-600 mt-1">Night reminder + automated chronic refill prompt for repeat visits.</div>
+              </div>
+              <span class="text-slate-400 font-bold">Preview →</span>
+            </button>
+          </div>
+
+          <div class="pt-2">
+            <button onclick="openTrialModal()" class="w-full sm:w-auto px-6 py-3 bg-whatsapp-600 hover:bg-whatsapp-500 text-white rounded-xl text-xs font-bold shadow-md transition-all flex items-center justify-center gap-2">
+              <span>🚀 Deploy WhatsApp Reminders in Your Clinic</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Phone Mockup (Right 6 cols) -->
+        <div class="lg:col-span-6 flex justify-center">
+          <div class="w-full max-w-sm rounded-[36px] bg-slate-900 p-3 shadow-2xl border-4 border-slate-800">
+            
+            <!-- Phone Notch -->
+            <div class="relative bg-slate-950 rounded-[28px] overflow-hidden border border-slate-800 text-white flex flex-col h-[520px]">
+              
+              <!-- Phone Header -->
+              <div class="bg-whatsapp-700 px-4 py-3 flex items-center justify-between border-b border-whatsapp-800">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs text-white">
+                    🩺
+                  </div>
+                  <div>
+                    <div class="font-bold text-xs text-white flex items-center gap-1.5">
+                      <span>City Care Clinic</span>
+                      <svg class="w-3.5 h-3.5 text-emerald-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <div class="text-[10px] text-emerald-200">Official WhatsApp Medical Channel</div>
+                  </div>
+                </div>
+                <span class="text-[10px] text-white/80">Online</span>
+              </div>
+
+              <!-- Chat Body -->
+              <div class="flex-1 p-3.5 overflow-y-auto space-y-3 bg-[#0b141a] text-slate-100 text-xs font-sans">
+                
+                <!-- Chat Timestamp Pill -->
+                <div class="flex justify-center">
+                  <span class="px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 text-[9px] font-mono">Today</span>
+                </div>
+
+                <!-- Dynamic Active Message in Mockup -->
+                <div id="wa-mock-content">
+                  <!-- Rendered via JS -->
+                </div>
+
+              </div>
+
+              <!-- Mock Phone Footer -->
+              <div class="p-2.5 bg-slate-900 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
+                <span>Type a message...</span>
+                <span class="text-emerald-400">🎤</span>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== INTERACTIVE "2-PATIENT ROI & TIME SAVED" CALCULATOR ==================== -->
+  <section id="roi-calculator" class="py-24 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <span class="px-3.5 py-1 rounded-full bg-brand-100 text-brand-800 text-xs font-bold uppercase tracking-wider">The "2-Patient" Rule</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          How RxNXT Pays For Itself by 10:00 AM on Day 1
+        </h2>
+        <p class="text-slate-600 text-base">
+          Writing just 2 to 3 prescriptions a month completely covers your subscription cost. Everything after that is pure clinic efficiency and revenue.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-xl space-y-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          <!-- Slider 1: Patients Per Day -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <label class="text-xs font-bold text-slate-700 uppercase tracking-wider">Patients Seen Daily</label>
+              <span id="display-patients" class="text-base font-extrabold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-lg border border-brand-200 font-mono">25 Patients/day</span>
+            </div>
+            <input type="range" id="slider-patients" min="5" max="80" value="25" step="5" 
+              class="w-full accent-brand-600 h-2 bg-slate-200 rounded-lg cursor-pointer">
+            <div class="flex justify-between text-[11px] text-slate-400">
+              <span>5 OPD</span>
+              <span>40 OPD</span>
+              <span>80+ OPD</span>
+            </div>
+          </div>
+
+          <!-- Slider 2: Consultation Fee -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <label class="text-xs font-bold text-slate-700 uppercase tracking-wider">Average Consultation Fee</label>
+              <span id="display-fee" class="text-base font-extrabold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-lg border border-brand-200 font-mono">₹400 / visit</span>
+            </div>
+            <input type="range" id="slider-fee" min="200" max="1500" value="400" step="50" 
+              class="w-full accent-brand-600 h-2 bg-slate-200 rounded-lg cursor-pointer">
+            <div class="flex justify-between text-[11px] text-slate-400">
+              <span>₹200</span>
+              <span>₹800</span>
+              <span>₹1,500+</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Calculated Live Metrics -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-4 border-t border-slate-100">
+          
+          <div class="p-5 rounded-2xl bg-brand-50/70 border border-brand-200 text-center">
+            <div class="text-xs font-bold text-brand-700 uppercase tracking-wider mb-1">Doctor Time Saved</div>
+            <div id="metric-hours-saved" class="text-3xl font-extrabold text-brand-900 font-display">25 Hours</div>
+            <div class="text-[11px] text-slate-600 mt-1">Saved every month from handwriting & phone calls</div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-teal-50/70 border border-teal-200 text-center">
+            <div class="text-xs font-bold text-teal-700 uppercase tracking-wider mb-1">Subscription Breakeven</div>
+            <div id="metric-breakeven" class="text-3xl font-extrabold text-teal-900 font-display">Just 2 Visits</div>
+            <div class="text-[11px] text-slate-600 mt-1">2 consultations pay for the entire monthly plan</div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200 text-center">
+            <div class="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-1">Extra Monthly Capacity</div>
+            <div id="metric-extra-capacity" class="text-3xl font-extrabold text-emerald-900 font-display">+40 Patients</div>
+            <div class="text-[11px] text-slate-600 mt-1">More patients accommodated without clinic overtime</div>
+          </div>
+
+        </div>
+
+        <!-- Call to Action Banner -->
+        <div class="p-4 rounded-2xl bg-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="text-xs sm:text-sm text-center sm:text-left">
+            <span class="font-bold text-brand-400">Bottom Line:</span> Writing 2 prescriptions covers RxNXT. The other <span id="metric-pure-profit" class="font-bold text-white">623 prescriptions</span> are 100% pure clinic profit.
+          </div>
+          <button onclick="openTrialModal()" class="w-full sm:w-auto px-6 py-2.5 bg-brand-600 hover:bg-brand-500 text-white rounded-xl text-xs font-bold shadow transition-all shrink-0">
+            Start 14-Day Free Pilot →
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== HEAD-TO-HEAD COMPARISON ==================== -->
+  <section id="comparison" class="py-24 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <span class="px-3.5 py-1 rounded-full bg-brand-100 text-brand-800 text-xs font-bold uppercase tracking-wider">The Clinical Shift</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Handwritten Pads vs Bloated Hospital EMRs vs RxNXT
+        </h2>
+        <p class="text-slate-600 text-base">
+          Why doctors refuse to go back to paper or slow corporate enterprise hospital software.
+        </p>
+      </div>
+
+      <!-- Comparison Table -->
+      <div class="overflow-x-auto max-w-5xl mx-auto">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr class="border-b-2 border-slate-200">
+              <th class="py-4 px-4 font-extrabold text-slate-900 text-sm">Capability / Workflow</th>
+              <th class="py-4 px-4 font-bold text-rose-600 bg-rose-50/50">Handwritten Pad</th>
+              <th class="py-4 px-4 font-bold text-slate-600 bg-slate-50">Generic Hospital EMR</th>
+              <th class="py-4 px-4 font-extrabold text-brand-700 bg-brand-50/70 border-x-2 border-t-2 border-brand-400 rounded-t-xl">RxNXT Cloud 2.0</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr>
+              <td class="py-4 px-4 font-bold text-slate-800">Time per Prescription</td>
+              <td class="py-4 px-4 text-slate-600 bg-rose-50/20">90 - 120 seconds</td>
+              <td class="py-4 px-4 text-slate-600 bg-slate-50/50">3 - 5 minutes (20+ clicks)</td>
+              <td class="py-4 px-4 font-bold text-brand-700 bg-brand-50/40 border-x-2 border-brand-400">&lt; 20 seconds (1-Click Chips)</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-4 font-bold text-slate-800">Pharmacy Misreading Risk</td>
+              <td class="py-4 px-4 text-rose-600 font-bold bg-rose-50/20">Severe (Dangerous scribbles)</td>
+              <td class="py-4 px-4 text-slate-600 bg-slate-50/50">Zero (Printed)</td>
+              <td class="py-4 px-4 font-bold text-brand-700 bg-brand-50/40 border-x-2 border-brand-400">Zero (Crystal A4 PDF)</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-4 font-bold text-slate-800">Patient Adherence Delivery</td>
+              <td class="py-4 px-4 text-slate-600 bg-rose-50/20">None (Patient loses slip)</td>
+              <td class="py-4 px-4 text-slate-600 bg-slate-50/50">Requires Patient App Download</td>
+              <td class="py-4 px-4 font-bold text-brand-700 bg-brand-50/40 border-x-2 border-brand-400">Instant WhatsApp (Zero App Needed)</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-4 font-bold text-slate-800">Medication Reminders</td>
+              <td class="py-4 px-4 text-slate-600 bg-rose-50/20">Zero</td>
+              <td class="py-4 px-4 text-slate-600 bg-slate-50/50">Ignored SMS or app push</td>
+              <td class="py-4 px-4 font-bold text-brand-700 bg-brand-50/40 border-x-2 border-brand-400">3-Window WhatsApp Nudges (8am/1:30pm/8:30pm)</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-4 font-bold text-slate-800">Chronic Care Repeat Patient</td>
+              <td class="py-4 px-4 text-slate-600 bg-rose-50/20">Rewrite entire pad from memory</td>
+              <td class="py-4 px-4 text-slate-600 bg-slate-50/50">Dig through slow clinical tabs</td>
+              <td class="py-4 px-4 font-bold text-brand-700 bg-brand-50/40 border-x-2 border-brand-400">1-Tap Clone Past Rx History</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-4 font-bold text-slate-800">Data Sovereignty & Privacy</td>
+              <td class="py-4 px-4 text-slate-600 bg-rose-50/20">Physical theft / water loss</td>
+              <td class="py-4 px-4 text-slate-600 bg-slate-50/50">Shared multi-tenant databases</td>
+              <td class="py-4 px-4 font-bold text-brand-700 bg-brand-50/40 border-x-2 border-b-2 border-brand-400 rounded-b-xl">PostgreSQL RLS + Mumbai Cloud AWS</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== PRICING SECTION ==================== -->
+  <section id="pricing" class="py-24 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <span class="px-3.5 py-1 rounded-full bg-brand-100 text-brand-800 text-xs font-bold uppercase tracking-wider">Transparent & Predictable</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Master 3-Tier "Price-Lock" Plans
+        </h2>
+        <p class="text-slate-600 text-base">
+          Early adopters lock in their subscription price for life. Zero setup charges. Zero hidden transaction fees.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        
+        <!-- Tier 1: BYOD SaaS Only -->
+        <div class="p-8 rounded-3xl border border-slate-200 bg-white hover:border-slate-300 transition-all space-y-6 flex flex-col justify-between shadow-sm">
+          <div class="space-y-4">
+            <div class="inline-block px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-bold uppercase">Tier 1: BYOD SaaS</div>
+            <h3 class="text-2xl font-bold text-slate-900">Solo Practitioner</h3>
+            <p class="text-xs text-slate-500">For individual doctors with existing laptops or tablets.</p>
+            <div class="pt-2">
+              <div class="text-4xl font-extrabold text-slate-900">₹9,999 <span class="text-xs font-normal text-slate-500">/ year</span></div>
+              <div class="text-xs text-brand-700 font-semibold mt-1">Or ₹999 / month (Payable with 2 patient visits)</div>
+            </div>
+            <ul class="space-y-3 text-xs text-slate-600 pt-3">
+              <li class="flex items-center gap-2.5"><span class="text-brand-600 font-bold">✓</span> 1 Verified Doctor Workspace</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-600 font-bold">✓</span> Unlimited Sub-20s Digital Prescriptions</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-600 font-bold">✓</span> Sub-50ms Fuzzy Typo-Tolerant Search</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-600 font-bold">✓</span> Official Branded A4 PDF Generator</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-600 font-bold">✓</span> 1-Click Chronic Care History Cloning</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-600 font-bold">✓</span> Lifetime Price-Lock Guarantee</li>
+            </ul>
+          </div>
+          <button onclick="openTrialModal('Solo Practitioner (₹9,999/yr)')" class="w-full py-3.5 text-xs font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-xl text-center transition-colors">
+            Start 14-Day Free Trial
+          </button>
+        </div>
+
+        <!-- Tier 2: Dedicated Hardware Tablet Bundle -->
+        <div class="p-8 rounded-3xl border-2 border-brand-500 bg-brand-50/40 relative space-y-6 flex flex-col justify-between shadow-xl">
+          <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-1 bg-gradient-to-r from-brand-600 to-teal-600 text-white text-[10px] font-bold uppercase tracking-wider rounded-full shadow">Complete Clinic Solution</span>
+          <div class="space-y-4">
+            <div class="inline-block px-3 py-1 rounded-full bg-brand-100 text-brand-800 text-xs font-bold uppercase">Tier 2: Hardware Bundle</div>
+            <h3 class="text-2xl font-bold text-slate-900">Dedicated Tablet Unit</h3>
+            <p class="text-xs text-slate-600">Zero-setup unbox & play kiosk tablet for the doctor's desk.</p>
+            <div class="pt-2">
+              <div class="text-4xl font-extrabold text-brand-900">₹24,999 <span class="text-xs font-normal text-slate-500">One-Time</span></div>
+              <div class="text-xs text-brand-700 font-semibold mt-1">Includes 1-Year SaaS + Renews at ₹9,999/yr</div>
+            </div>
+            <ul class="space-y-3 text-xs text-slate-700 pt-3">
+              <li class="flex items-center gap-2.5"><span class="text-brand-600 font-bold">✓</span> <strong>Pre-Configured 11" Android Tablet (Kiosk Mode)</strong></li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-600 font-bold">✓</span> <strong>Heavy-Duty Clinic Desktop Stand</strong></li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-600 font-bold">✓</span> 1-Year RxNXT SaaS Subscription Included</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-600 font-bold">✓</span> Automated WhatsApp PDF & Adherence Engine</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-600 font-bold">✓</span> Dedicated Onsite/Remote Staff Onboarding</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-600 font-bold">✓</span> Free Hardware Replacement Warranty</li>
+            </ul>
+          </div>
+          <button onclick="openTrialModal('Tablet Bundle (₹24,999 One-Time)')" class="w-full py-3.5 text-xs font-bold text-white bg-brand-600 hover:bg-brand-700 rounded-xl text-center shadow-md transition-all">
+            Order Tablet Bundle Demo
+          </button>
+        </div>
+
+        <!-- Tier 3: Polyclinic Multi-Doctor -->
+        <div class="p-8 rounded-3xl border border-slate-200 bg-white hover:border-slate-300 transition-all space-y-6 flex flex-col justify-between shadow-sm">
+          <div class="space-y-4">
+            <div class="inline-block px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-bold uppercase">Tier 3: Multi-Doctor</div>
+            <h3 class="text-2xl font-bold text-slate-900">Smart Polyclinic</h3>
+            <p class="text-xs text-slate-500">For multi-specialty clinics with 2 to 4 doctors & reception.</p>
+            <div class="pt-2">
+              <div class="text-4xl font-extrabold text-slate-900">₹18,000 <span class="text-xs font-normal text-slate-500">/ year</span></div>
+              <div class="text-xs text-teal-700 font-semibold mt-1">Effective ₹4,500 – ₹6,000 / doctor / year</div>
+            </div>
+            <ul class="space-y-3 text-xs text-slate-600 pt-3">
+              <li class="flex items-center gap-2.5"><span class="text-brand-600 font-bold">✓</span> Up to 4 Doctor Workspaces</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-600 font-bold">✓</span> Live Receptionist Token Queue Desk</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-600 font-bold">✓</span> Consolidated Billing & Multi-Room Support</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-600 font-bold">✓</span> Clinic-Wide Drug Catalog CSV Import</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-600 font-bold">✓</span> Priority WhatsApp Engine Dispatch</li>
+            </ul>
+          </div>
+          <button onclick="openTrialModal('Smart Polyclinic (₹18,000/yr)')" class="w-full py-3.5 text-xs font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-xl text-center transition-colors">
+            Start Polyclinic Trial
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ACCORDION ==================== -->
+  <section id="faq" class="py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center mb-14 space-y-3">
+        <h2 class="text-3xl font-extrabold text-slate-900">Frequently Asked Questions</h2>
+        <p class="text-slate-600 text-sm">Everything doctors and clinic administrators ask before starting.</p>
+      </div>
+
+      <div class="space-y-4">
+        
+        <details class="group p-5 bg-slate-50 rounded-2xl border border-slate-200 [&_summary::-webkit-details-marker]:hidden" open>
+          <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer text-sm">
+            <span>Will RxNXT slow down my high-volume OPD?</span>
+            <span class="transition group-open:rotate-180 text-brand-600 font-bold">▼</span>
+          </summary>
+          <p class="mt-3 text-xs text-slate-600 leading-relaxed">
+            No. Speed is the #1 KPI of RxNXT. With typo-tolerant additive search, shorthand aliases (`PCM` $\to$ Paracetamol), and 1-click dosage chips (`1-0-1`, `After Food`), most doctors complete a prescription in under 20 seconds—which is faster than writing with a ballpoint pen.
+          </p>
+        </details>
+
+        <details class="group p-5 bg-slate-50 rounded-2xl border border-slate-200 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer text-sm">
+            <span>Do my patients have to download an application?</span>
+            <span class="transition group-open:rotate-180 text-brand-600 font-bold">▼</span>
+          </summary>
+          <p class="mt-3 text-xs text-slate-600 leading-relaxed">
+            Zero app downloads. Everything reaches your patient directly on their existing WhatsApp chat: the formatted A4 PDF prescription, morning dose reminders (8 AM), afternoon dose reminders (1:30 PM), night alerts (8:30 PM), and Day-25 chronic refill alerts.
+          </p>
+        </details>
+
+        <details class="group p-5 bg-slate-50 rounded-2xl border border-slate-200 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer text-sm">
+            <span>Is my clinic data safe and isolated from other doctors?</span>
+            <span class="transition group-open:rotate-180 text-brand-600 font-bold">▼</span>
+          </summary>
+          <p class="mt-3 text-xs text-slate-600 leading-relaxed">
+            Yes. RxNXT is built on PostgreSQL with Row-Level Security (RLS) hosted on Supabase Mumbai AWS (ap-south-1). Every clinic is mathematically isolated. Your patient contacts, diagnoses, and prescription habits cannot be viewed or shared with any other clinic or third party.
+          </p>
+        </details>
+
+        <details class="group p-5 bg-slate-50 rounded-2xl border border-slate-200 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer text-sm">
+            <span>Is the digital prescription legally valid in India?</span>
+            <span class="transition group-open:rotate-180 text-brand-600 font-bold">▼</span>
+          </summary>
+          <p class="mt-3 text-xs text-slate-600 leading-relaxed">
+            Yes. RxNXT adheres to National Medical Commission (NMC) Telemedicine and Prescription Guidelines. Every prescription includes the doctor's verified NMC/State Council registration number, qualification, clinic contact details, and digital signature.
+          </p>
+        </details>
+
+        <details class="group p-5 bg-slate-50 rounded-2xl border border-slate-200 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between font-bold text-slate-900 cursor-pointer text-sm">
+            <span>What happens during the 14-Day Free Trial?</span>
+            <span class="transition group-open:rotate-180 text-brand-600 font-bold">▼</span>
+          </summary>
+          <p class="mt-3 text-xs text-slate-600 leading-relaxed">
+            You get full unrestricted access to RxNXT for your clinic. You can test prescription creation, WhatsApp PDF dispatch, and token queues with live patients. No credit card is required. Our clinical team assists with initial setup in under 5 minutes.
+          </p>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER / FINAL CTA ==================== -->
+  <footer id="contact" class="bg-navy-950 text-white pt-20 pb-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      
+      <!-- Bottom CTA Banner -->
+      <div class="bg-gradient-to-r from-brand-900 via-brand-800 to-teal-900 rounded-3xl p-8 sm:p-12 mb-16 text-center space-y-6 border border-brand-700/50 shadow-2xl">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Modernize Your Clinic in Under 5 Minutes
+        </h2>
+        <p class="text-brand-100 text-sm sm:text-base max-w-2xl mx-auto font-normal">
+          Join doctors across India eliminating handwritten errors, securing patient records, and automating WhatsApp follow-ups.
+        </p>
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button onclick="openTrialModal()" class="px-8 py-4 bg-white text-slate-900 hover:bg-slate-100 font-bold rounded-2xl text-xs sm:text-sm shadow-lg transition-all flex items-center justify-center gap-2">
+            <span>🚀 Start 14-Day Free Clinic Trial</span>
+            <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7-7 7M3 12h18"/></svg>
+          </button>
+          <a href="https://app.rxnxt.in" target="_blank" class="px-8 py-4 bg-navy-900 text-white border border-brand-700 hover:bg-navy-850 font-bold rounded-2xl text-xs sm:text-sm transition-all">
+            Doctor Login (app.rxnxt.in)
+          </a>
+        </div>
+      </div>
+
+      <!-- Footer Links & Info -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-slate-800 text-xs text-slate-400">
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="bg-white/95 backdrop-blur px-3 py-1.5 rounded-xl border border-white/20 shadow-sm">
+              <img src="rxnxt_logo_web.png" alt="RxNXT Logo" class="h-7 sm:h-8 w-auto object-contain" />
+            </div>
+            <div class="flex flex-col">
+              <div class="flex items-center gap-2">
+                <span class="font-display font-extrabold text-xl tracking-tight text-white leading-none">RxNXT</span>
+                <span class="text-[9px] font-bold uppercase tracking-wider text-brand-400 bg-brand-950 px-2 py-0.5 rounded border border-brand-800">Cloud 2.0</span>
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mt-0.5">Doctor Led. AI Enabled.</span>
+            </div>
+          </div>
+          <p class="leading-relaxed">
+            The modern digital prescription and automated WhatsApp patient care platform for clinics and hospitals.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white uppercase tracking-wider mb-3 text-[11px]">The 4 Core Pillars</h4>
+          <ul class="space-y-2">
+            <li><a href="#four-pillars" class="hover:text-brand-400">Pillar 1: Doctor Goes Digital</a></li>
+            <li><a href="#four-pillars" class="hover:text-brand-400">Pillar 2: Data is Protected</a></li>
+            <li><a href="#four-pillars" class="hover:text-brand-400">Pillar 3: Faster Consultation</a></li>
+            <li><a href="#four-pillars" class="hover:text-brand-400">Pillar 4: Patient Engagement</a></li>
           </ul>
         </div>
 
-        <div class="footer-col">
-          <h5>Company</h5>
-          <ul class="footer-links">
-            <li><a href="mailto:hello@rxnxt.in">Contact Us</a></li>
-            <li><a href="https://app.rxnxt.in">Doctor Login</a></li>
+        <div>
+          <h4 class="font-bold text-white uppercase tracking-wider mb-3 text-[11px]">Compliance & Architecture</h4>
+          <ul class="space-y-2">
+            <li><a href="#four-pillars" class="hover:text-brand-400">National Medical Commission (NMC)</a></li>
+            <li><a href="#four-pillars" class="hover:text-brand-400">DPDP Act 2023 Compliant</a></li>
+            <li><a href="#four-pillars" class="hover:text-brand-400">PostgreSQL Multi-Tenant RLS</a></li>
+            <li><a href="#pricing" class="hover:text-brand-400">Master Price-Lock Blueprint</a></li>
           </ul>
         </div>
 
-        <div class="footer-col">
-          <h5>Recognition</h5>
-          <ul class="footer-links">
-            <li><a href="#">DPIIT Certified Startup</a></li>
-            <li><a href="#">SRiX Incubated (DST)</a></li>
-            <li><a href="#">DPDP Act 2023 Compliant</a></li>
-            <li><a href="#">Supabase Mumbai Cloud</a></li>
-          </ul>
+        <div>
+          <h4 class="font-bold text-white uppercase tracking-wider mb-3 text-[11px]">Direct Clinic Support</h4>
+          <p class="mb-2">WhatsApp: <a href="https://wa.me/918341713613" class="text-brand-400 hover:underline">+91 83417 13613</a></p>
+          <p class="mb-2">Email: <a href="mailto:contact@rxnxt.in" class="text-brand-400 hover:underline">contact@rxnxt.in</a></p>
+          <p>Portal: <a href="https://app.rxnxt.in" class="text-brand-400 hover:underline">app.rxnxt.in</a></p>
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <div>© 2026 Orug Technologies. All rights reserved.</div>
-        <div>Built with ❤️ for Indian Healthcare | DPIIT Recognized & SRiX Incubated</div>
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500">
+        <div>© 2026 RxNXT by Orug Technologies Pvt Ltd. All rights reserved.</div>
+        <div class="flex gap-6 mt-4 sm:mt-0">
+          <a href="#" class="hover:text-slate-400">Privacy Policy</a>
+          <a href="#" class="hover:text-slate-400">Terms of Service</a>
+          <a href="#" class="hover:text-slate-400">DPDP Compliance</a>
+        </div>
       </div>
+
     </div>
   </footer>
 
-  <!-- Scroll Animation Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, {
-        threshold: 0.1
-      });
+  <!-- ==================== 14-DAY FREE TRIAL MODAL ==================== -->
+  <div id="trial-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative animate-in fade-in zoom-in duration-200">
+      
+      <!-- Close Button -->
+      <button onclick="closeTrialModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 text-lg font-bold">
+        ✕
+      </button>
 
-      document.querySelectorAll('.fade-in-up').forEach(el => {
-        observer.observe(el);
+      <!-- Modal Header -->
+      <div class="mb-5 space-y-1">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-[10px] font-bold uppercase">
+          ⚡ 14-Day Free Clinic Trial
+        </div>
+        <h3 class="text-2xl font-extrabold text-slate-900">Start Your Free Trial</h3>
+        <p class="text-xs text-slate-500">No credit card required. Experience sub-20s digital prescribing today.</p>
+      </div>
+
+      <!-- Form -->
+      <form id="trial-form" onsubmit="submitTrialForm(event)" class="space-y-3.5 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Doctor Name *</label>
+          <input type="text" id="trial-doctor-name" required placeholder="e.g. Dr. Rajesh Kumar" 
+            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500">
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Clinic / Hospital Name *</label>
+          <input type="text" id="trial-clinic-name" required placeholder="e.g. City Care Health Clinic" 
+            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">WhatsApp Mobile *</label>
+            <input type="tel" id="trial-phone" required placeholder="e.g. 9876543210" 
+              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">City *</label>
+            <input type="text" id="trial-city" required placeholder="e.g. Hyderabad, Delhi" 
+              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Interested Plan</label>
+          <select id="trial-plan" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
+            <option value="Solo Practitioner (₹9,999/yr)">Solo Practitioner — BYOD SaaS (₹9,999/yr)</option>
+            <option value="Dedicated Tablet Bundle (₹24,999)">Dedicated Tablet Bundle — Plug & Play Unit (₹24,999)</option>
+            <option value="Smart Polyclinic (₹18,000/yr)">Smart Polyclinic — Multi-Doctor Pack (₹18,000/yr)</option>
+          </select>
+        </div>
+
+        <div class="pt-3">
+          <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-brand-600 via-brand-500 to-teal-600 hover:from-brand-700 hover:to-brand-600 text-white font-bold rounded-xl shadow-md text-xs transition-all flex items-center justify-center gap-2">
+            <span>🚀 Activate My 14-Day Free Pilot</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7-7 7M3 12h18"/></svg>
+          </button>
+        </div>
+
+        <div class="text-[10px] text-slate-400 text-center pt-1">
+          🔒 Your information is confidential under the DPDP Act 2023. Zero spam.
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- ==================== FLOATING WHATSAPP CTA WIDGET ==================== -->
+  <div class="fixed bottom-6 right-6 z-40">
+    <a href="https://wa.me/918341713613?text=Hi%20RxNXT%20Team,%20I%20am%20interested%20in%20a%2014-day%20free%20trial%20for%20my%20clinic." target="_blank" 
+       class="flex items-center gap-2.5 px-4 py-3 bg-whatsapp-500 hover:bg-whatsapp-600 text-white rounded-full shadow-2xl glow-whatsapp transition-all hover:scale-105 group font-bold text-xs">
+      <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.989 4.478-9.989 9.984 0 1.766.46 3.497 1.332 5.022L2 22l5.127-1.341a9.96 9.96 0 0 0 4.885 1.28h.004c5.507 0 9.988-4.477 9.988-9.984 0-2.668-1.039-5.176-2.925-7.062A9.923 9.923 0 0 0 12.012 2z"/></svg>
+      <span class="hidden sm:inline">Chat with Doctor Team (+91 83417 13613)</span>
+    </a>
+  </div>
+
+  <!-- ==================== INTERACTIVE SCRIPTS ==================== -->
+  <script>
+    // ----------------- MODAL CONTROLS -----------------
+    function openTrialModal(preferredPlan) {
+      const modal = document.getElementById('trial-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      if (preferredPlan) {
+        const select = document.getElementById('trial-plan');
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].value.includes(preferredPlan) || preferredPlan.includes(select.options[i].value)) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+
+    function closeTrialModal() {
+      const modal = document.getElementById('trial-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function submitTrialForm(e) {
+      e.preventDefault();
+      const docName = document.getElementById('trial-doctor-name').value;
+      const clinicName = document.getElementById('trial-clinic-name').value;
+      const phone = document.getElementById('trial-phone').value;
+      const city = document.getElementById('trial-city').value;
+      const plan = document.getElementById('trial-plan').value;
+
+      const message = `Hi RxNXT Team, I would like to start my 14-Day Free Clinic Trial.%0A%0A*Doctor Name:* ${encodeURIComponent(docName)}%0A*Clinic:* ${encodeURIComponent(clinicName)}%0A*City:* ${encodeURIComponent(city)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Plan:* ${encodeURIComponent(plan)}`;
+      
+      window.open(`https://wa.me/918341713613?text=${message}`, '_blank');
+      closeTrialModal();
+    }
+
+    // ----------------- LIVE DRUG SEARCH SIMULATOR -----------------
+    const mockDrugCatalog = [
+      { searchKey: "parctml", alias: "PCM", name: "Paracetamol 650mg (Dolo 650)", generic: "Acetaminophen", dosage: "1-0-1 (After Food)", duration: "5 Days", speed: "11ms", fav: true },
+      { searchKey: "amox", alias: "AMX", name: "Amoxicillin 500mg (Augmentin)", generic: "Amoxicillin + Clavulanate", dosage: "1-0-1 (After Food)", duration: "7 Days", speed: "14ms", fav: true },
+      { searchKey: "pantop", alias: "PAN", name: "Pantoprazole 40mg (Pan 40)", generic: "Pantoprazole Sodium", dosage: "1-0-0 (Before Breakfast)", duration: "10 Days", speed: "9ms", fav: true },
+      { searchKey: "metfor", alias: "MET", name: "Metformin 500mg SR (Glycomet)", generic: "Metformin Hydrochloride", dosage: "0-0-1 (After Dinner)", duration: "30 Days", speed: "12ms", fav: true },
+      { searchKey: "telmi", alias: "TEL", name: "Telmisartan 40mg (Telma 40)", generic: "Telmisartan", dosage: "1-0-0 (Morning)", duration: "30 Days", speed: "10ms", fav: true },
+      { searchKey: "azith", alias: "AZI", name: "Azithromycin 500mg (Azithral 500)", generic: "Azithromycin", dosage: "1-0-0 (Before Lunch)", duration: "3 Days", speed: "13ms", fav: true }
+    ];
+
+    function renderSearchResults(query) {
+      const container = document.getElementById("search-results-container");
+      const latencyDisplay = document.getElementById("search-latency");
+      const clean = query.toLowerCase().trim();
+
+      const matches = mockDrugCatalog.filter(d => 
+        d.searchKey.includes(clean) || 
+        d.alias.toLowerCase() === clean || 
+        d.name.toLowerCase().includes(clean) || 
+        d.generic.toLowerCase().includes(clean)
+      );
+
+      if (matches.length === 0) {
+        container.innerHTML = `
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs text-slate-400 text-center">
+            Matched drug formula in global master catalog: <span class="text-white font-mono font-bold">${query}</span>
+          </div>
+        `;
+        latencyDisplay.innerText = "15ms";
+        return;
+      }
+
+      latencyDisplay.innerText = matches[0].speed;
+
+      container.innerHTML = matches.slice(0, 3).map(item => `
+        <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 hover:border-brand-500/70 transition-all flex items-center justify-between text-xs text-slate-200">
+          <div>
+            <div class="font-bold text-white flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
+              ${item.name}
+              ${item.fav ? '<span class="text-[9px] bg-brand-950 text-brand-300 px-1.5 py-0.5 rounded border border-brand-800">★ Clinic Favorite</span>' : ''}
+            </div>
+            <div class="text-[11px] text-slate-400">Generic: ${item.generic} • Preset: ${item.dosage}</div>
+          </div>
+          <button onclick="addSimulatedDrug('${item.name}', '${item.dosage}', '${item.duration}')" class="px-2.5 py-1 bg-brand-600 hover:bg-brand-500 text-white text-[11px] font-bold rounded">
+            + Add to Rx
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function setSearchDemo(val) {
+      const input = document.getElementById("demo-search-input");
+      input.value = val;
+      renderSearchResults(val);
+    }
+
+    function selectChip(btn, type) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll(`.chip-${type}`).forEach(b => {
+        b.classList.remove('bg-brand-600', 'text-white', 'font-bold');
+        b.classList.add('bg-slate-800', 'text-slate-300');
       });
+      btn.classList.add('bg-brand-600', 'text-white', 'font-bold');
+      btn.classList.remove('bg-slate-800', 'text-slate-300');
+    }
+
+    function addSimulatedDrug(name, dosage, duration) {
+      const list = document.getElementById("rx-canvas-list");
+      const div = document.createElement("div");
+      div.className = "p-2.5 bg-slate-900 rounded-xl border border-slate-800 flex items-center justify-between animate-in fade-in";
+      div.innerHTML = `
+        <div>
+          <div class="font-bold text-white flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
+            ${name}
+          </div>
+          <div class="text-[11px] text-slate-400">${dosage} • Duration: ${duration}</div>
+        </div>
+        <span class="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded border border-emerald-800 font-mono">Added in &lt;1s</span>
+      `;
+      list.appendChild(div);
+    }
+
+    function simulateSendPrescription() {
+      alert("✅ Prescription generated in under 12 seconds! Formatted A4 PDF dispatched to patient WhatsApp.");
+    }
+
+    document.getElementById("demo-search-input").addEventListener("input", (e) => {
+      renderSearchResults(e.target.value);
     });
+
+    // ----------------- WHATSAPP PHONE SIMULATOR -----------------
+    const waMessages = {
+      rx_pdf: `
+        <div class="space-y-2">
+          <div class="p-3 bg-[#1f2c34] rounded-2xl rounded-tl-none border border-slate-700/60 max-w-[280px] space-y-2">
+            <div class="flex items-center gap-2 pb-2 border-b border-slate-700">
+              <span class="text-xl">📄</span>
+              <div>
+                <div class="font-bold text-slate-100 text-[11px]">Rx_RajeshKumar_CityCare.pdf</div>
+                <div class="text-[9px] text-slate-400">184 KB • Official Digital Prescription</div>
+              </div>
+            </div>
+            <p class="text-[11px] text-slate-200">
+              Hello Rajesh! Here is your digital prescription from <strong>Dr. Rajesh Kumar</strong> (City Care Clinic).
+            </p>
+            <div class="p-2 bg-slate-900/80 rounded-lg text-[10px] text-emerald-400 font-mono">
+              ✓ Paracetamol 650mg [1-0-1]<br/>
+              ✓ Pantoprazole 40mg [1-0-0]<br/>
+              ✓ Azithromycin 500mg [1-0-0]
+            </div>
+            <div class="text-[9px] text-slate-400 text-right">10:14 AM ✓✓</div>
+          </div>
+        </div>
+      `,
+      morning: `
+        <div class="space-y-2">
+          <div class="p-3 bg-[#1f2c34] rounded-2xl rounded-tl-none border border-slate-700/60 max-w-[280px] space-y-2">
+            <div class="flex items-center justify-between text-amber-400 font-bold text-[11px]">
+              <span>🌅 Morning Dose Alert</span>
+              <span class="text-[9px] text-slate-400 font-mono">8:00 AM IST</span>
+            </div>
+            <p class="text-[11px] text-slate-200">
+              Good morning Rajesh! Remember to take your morning doses as prescribed:
+            </p>
+            <div class="p-2 bg-slate-900/80 rounded-lg text-[10px] text-slate-200 space-y-1">
+              <div>💊 <strong>Pantoprazole 40mg</strong> — Before Breakfast</div>
+              <div>💊 <strong>Paracetamol 650mg</strong> — After Breakfast</div>
+            </div>
+            <div class="text-[9px] text-slate-400 text-right">8:00 AM ✓✓</div>
+          </div>
+        </div>
+      `,
+      afternoon: `
+        <div class="space-y-2">
+          <div class="p-3 bg-[#1f2c34] rounded-2xl rounded-tl-none border border-slate-700/60 max-w-[280px] space-y-2">
+            <div class="flex items-center justify-between text-sky-400 font-bold text-[11px]">
+              <span>☀️ Midday Dose Reminder</span>
+              <span class="text-[9px] text-slate-400 font-mono">1:30 PM IST</span>
+            </div>
+            <p class="text-[11px] text-slate-200">
+              Afternoon reminder: Please take your lunch dose:
+            </p>
+            <div class="p-2 bg-slate-900/80 rounded-lg text-[10px] text-slate-200">
+              <div>💊 <strong>Azithromycin 500mg</strong> — After Lunch (Day 2 of 3)</div>
+            </div>
+            <div class="text-[9px] text-slate-400 text-right">1:30 PM ✓✓</div>
+          </div>
+        </div>
+      `,
+      night_refill: `
+        <div class="space-y-2">
+          <div class="p-3 bg-[#1f2c34] rounded-2xl rounded-tl-none border border-slate-700/60 max-w-[280px] space-y-2">
+            <div class="flex items-center justify-between text-indigo-400 font-bold text-[11px]">
+              <span>🌙 Night Dose & Refill Alert</span>
+              <span class="text-[9px] text-slate-400 font-mono">8:30 PM IST</span>
+            </div>
+            <p class="text-[11px] text-slate-200">
+              Good evening Rajesh! Please take your dinner medication:
+            </p>
+            <div class="p-2 bg-slate-900/80 rounded-lg text-[10px] text-slate-200 space-y-1">
+              <div>💊 <strong>Paracetamol 650mg</strong> — After Dinner</div>
+            </div>
+            <div class="p-2 bg-indigo-950/70 rounded-lg border border-indigo-800 text-[10px] text-indigo-200">
+              🔔 <strong>Monthly Refill Notice:</strong> Your chronic prescription has 5 days remaining. Reply to book your repeat consultation.
+            </div>
+            <div class="text-[9px] text-slate-400 text-right">8:30 PM ✓✓</div>
+          </div>
+        </div>
+      `
+    };
+
+    function setWaMock(key) {
+      document.getElementById("wa-mock-content").innerHTML = waMessages[key];
+      
+      const buttons = ['rx_pdf', 'morning', 'afternoon', 'night_refill'];
+      buttons.forEach(b => {
+        const el = document.getElementById(`btn-wa-${b}`);
+        if (b === key) {
+          el.className = "w-full text-left p-4 rounded-2xl border-2 border-brand-500 bg-brand-50/50 transition-all flex items-center justify-between";
+          el.querySelector('span:last-child').className = "text-brand-600 font-bold";
+        } else {
+          el.className = "w-full text-left p-4 rounded-2xl border border-slate-200 bg-white hover:border-slate-300 transition-all flex items-center justify-between";
+          el.querySelector('span:last-child').className = "text-slate-400 font-bold";
+        }
+      });
+    }
+
+    // ----------------- ROI CALCULATOR -----------------
+    function calculateRoi() {
+      const patients = parseInt(document.getElementById("slider-patients").value);
+      const fee = parseInt(document.getElementById("slider-fee").value);
+
+      document.getElementById("display-patients").innerText = `${patients} Patients/day`;
+      document.getElementById("display-fee").innerText = `₹${fee} / visit`;
+
+      // 1 minute saved per patient * patients * 25 days / 60
+      const minutesSavedDaily = patients * 1.5;
+      const hoursSavedMonthly = Math.round((minutesSavedDaily * 25) / 60);
+      document.getElementById("metric-hours-saved").innerText = `${hoursSavedMonthly} Hours`;
+
+      // Monthly subscription is ₹999. Breakeven visits = Math.ceil(999 / fee)
+      const breakevenVisits = Math.max(1, Math.ceil(999 / fee));
+      document.getElementById("metric-breakeven").innerText = `Just ${breakevenVisits} ${breakevenVisits === 1 ? 'Visit' : 'Visits'}`;
+
+      // Extra patient capacity that doctor can fit in saved hours
+      const extraPatients = Math.round((hoursSavedMonthly * 60) / 15);
+      document.getElementById("metric-extra-capacity").innerText = `+${extraPatients} Patients`;
+
+      const monthlyPatients = patients * 25;
+      const profitPrescriptions = Math.max(0, monthlyPatients - breakevenVisits);
+      document.getElementById("metric-pure-profit").innerText = `${profitPrescriptions} prescriptions`;
+    }
+
+    document.getElementById("slider-patients").addEventListener("input", calculateRoi);
+    document.getElementById("slider-fee").addEventListener("input", calculateRoi);
+
+    // Initial setup
+    renderSearchResults("parctml");
+    setWaMock("rx_pdf");
+    calculateRoi();
   </script>
 </body>
 </html>
