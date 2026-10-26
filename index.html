@@ -1,296 +1,873 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <title>Cookie check</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-      :root {
-        color-scheme: light dark;
-      }
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RxNXT Cloud — 30-Second Smart E-Prescription & Clinic OS | www.rxnxt.in</title>
+  <meta name="description" content="Write NMC-compliant generic + brand prescriptions in under 30 seconds, automate WhatsApp morning dose & Day-25 chronic refill reminders, and synchronize your front desk and pharmacy." />
+  <meta property="og:title" content="RxNXT Cloud — 30-Second Smart E-Prescription & Clinic OS" />
+  <meta property="og:description" content="Write NMC-compliant generic + brand prescriptions in under 30 seconds, automate WhatsApp morning dose & Day-25 chronic refill reminders, and synchronize your front desk and pharmacy." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.rxnxt.in/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="rxnxt_logo_web.png" />
 
-      body {
-        font-family: 'Inter', Helvetica, Arial, sans-serif;
-        background: light-dark(#F8F8F7, #191919);
-        color: light-dark(#1f1f1f, #e3e3e3);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box;
-        min-height: 100vh;
-        margin: 0;
-        padding: 20px;
-        text-align: center;
-      }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
-      .container {
-        background: light-dark(#FFFFFF, #1F1F1F);
-        padding: 32px;
-        border-radius: 16px;
-        border: 1px solid light-dark(#E2E3E4, #3E3E3E);
-        max-width: min(80%, 500px);
-        width: 100%;
-        color: light-dark(#2B2D31, #D4D4D4);
-      }
-
-      h1 {
-        font-size: 20px;
-        font-weight: 500;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        color: light-dark(#2B2D31, #D4D4D4);
-      }
-
-      p {
-        font-size: 14px;
-        color: light-dark(#2B2D31, #D4D4D4);
-        line-height: 21px;
-        margin: 0 0 1.5rem 0;
-      }
-
-      .icon {
-        margin-bottom: 1rem;
-        line-height: 0;
-      }
-
-      .button-container {
-        display: flex;
-        justify-content: flex-end;
-        gap: 10px;
-        margin-top: 2rem;
-      }
-
-      button {
-        background-color: light-dark(#fff, #323232);
-        color: light-dark(#2B2D31, #FCFCFC);
-        border: 1px solid light-dark(#E2E3E4, #3E3E3E);
-        border-radius: 12px;
-        padding: 8px 12px;
-        font-size: 14px;
-        line-height: 21px;
-        cursor: pointer;
-        transition: background-color 0.2s;
-        font-weight: 400;
-        font-family: 'Inter', Helvetica, Arial, sans-serif;
-        width: 100%;
-      }
-
-      button:hover {
-        background-color: light-dark(#EAEAEB, #424242);
-      }
-
-      .hidden {
-        display: none;
-      }
-
-      /* Loading Spinner Animation */
-      .spinner {
-        margin: 0 auto 1.5rem auto;
-        width: 40px;
-        height: 40px;
-        border: 4px solid light-dark(#f0f0f0, #262626);
-        border-top: 4px solid light-dark(#076eff, #87a9ff); /* Blue color */
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-
-      .logo {
-        border-radius: 10px;
-        display: block;
-        margin: 0 auto 2rem auto;
-      }
-
-      .logo.hidden {
-        display: none;
-      }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+            sans: ['DM Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
         }
       }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <img
-        class="logo"
-        src="https://www.gstatic.com/images/branding/productlogos/ai_studio/v1/web-512dp/logo_ai_studio_color_1x_web_512dp.png"
-        alt="AI Studio Logo"
-        width="256"
-        height="256"
-      />
-      <div class="spinner"></div>
-      <div id="error-ui" class="hidden">
-        <div class="icon">
-          <svg
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="48px"
-            height="48px"
-            fill="#D73A49"
-          >
-            <path
-              d="M12,2C6.486,2,2,6.486,2,12s4.486,10,10,10s10-4.486,10-10S17.514,2,12,2z M13,17h-2v-2h2V17z M13,13h-2V7h2V13z"
-            />
-          </svg>
-        </div>
-        <div id="stepOne" class="text-container">
-          <h1>Action required to load your app</h1>
-          <p>
-            It looks like your browser is blocking a required security cookie, which is common on
-            older versions of iOS and Safari.
-          </p>
-          <div class="button-container">
-            <button id="authInSeparateWindowButton" onclick="redirectToReturnUrl(true)">Authenticate in new window</button>
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #0F172A;
+      background-color: #F8FAFC;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-mono-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A] selection:bg-[#1E40AF] selection:text-white">
+
+  <!-- Strict 3-Zone Top Bar -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-slate-200">
+    <div class="max-w-[1280px] mx-auto px-6 py-4 flex items-center justify-between gap-8">
+      <!-- Zone 1: Brand Wordmark -->
+      <a href="#" class="text-lg font-extrabold tracking-tight text-slate-900 whitespace-nowrap shrink-0 font-display">
+        RxNXT Cloud
+      </a>
+
+      <!-- Zone 2: 5 Single-Line Navigation Links -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+        <a href="#sandbox" class="hover:text-slate-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0">30s Sandbox</a>
+        <a href="#capabilities" class="hover:text-slate-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0">Clinical Engine</a>
+        <a href="#workflow" class="hover:text-slate-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0">Clinic Roles</a>
+        <a href="#roi-calculator" class="hover:text-slate-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0">ROI Calculator</a>
+        <a href="#pricing" class="hover:text-slate-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0">Pricing</a>
+      </nav>
+
+      <!-- Zone 3: 1 Primary CTA -->
+      <div class="flex items-center shrink-0">
+        <a href="#lead-capture-form" class="px-4 py-2 text-xs font-semibold text-white bg-[#1E40AF] rounded-lg hover:bg-blue-800 transition-colors whitespace-nowrap shrink-0">
+          Start 14-Day Free Pilot
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1">
+    <!-- 1. HERO SECTION -->
+    <section class="pt-14 pb-16 bg-[#F8FAFC]">
+      <div class="max-w-[1280px] mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+          <!-- Left 7 Columns -->
+          <div class="lg:col-span-7 flex flex-col justify-between space-y-8">
+            <div class="space-y-5">
+              <div class="text-xs font-medium text-[#1E40AF]">
+                NMC Generic-First Compliant · Meta WhatsApp Cloud API · DPDP Act 2023 Protected
+              </div>
+
+              <h1 class="font-display font-extrabold tracking-tight text-slate-900 leading-[1.12]" style="font-size: clamp(2.25rem, 4vw, 3.65rem); text-wrap: balance;">
+                Write NMC-Compliant Prescriptions in 22 Seconds. Bring Follow-Up Patients Back Automatically.
+              </h1>
+
+              <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
+                Built for high-volume Indian OPD clinics and specialist chambers. Prescribe from a 1,00,000+ generic and brand catalog with 1-tap protocol packs, dispatch Morning/Afternoon/Night WhatsApp schedules with Day-25 chronic refill alerts, and synchronize your front desk and pharmacy without paper slips.
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              <div class="flex flex-wrap items-center gap-4">
+                <a href="#lead-capture-form" class="px-6 py-3.5 bg-[#1E40AF] hover:bg-blue-800 text-white text-sm font-semibold rounded-xl transition-colors flex items-center gap-2 whitespace-nowrap shrink-0 shadow-sm">
+                  <span>Start 14-Day / 150-Rx Free Pilot</span>
+                  <span>→</span>
+                </a>
+                <a href="#sandbox" class="px-5 py-3.5 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 text-sm font-semibold rounded-xl transition-colors whitespace-nowrap shrink-0">
+                  Test Live 30s Prescription Pad ↓
+                </a>
+                <a href="https://app.rxnxt.in" target="_blank" rel="noopener noreferrer" class="px-4 py-3.5 text-slate-600 hover:text-slate-900 text-xs font-semibold transition-colors whitespace-nowrap shrink-0">
+                  Doctor Portal Login (app.rxnxt.in) ↗
+                </a>
+              </div>
+              <div class="text-xs text-slate-500">
+                Zero setup fee · Pre-loaded with 25+ specialty protocol templates · Hosted on AWS Mumbai (PostgreSQL RLS)
+              </div>
+            </div>
+          </div>
+
+          <!-- Right 5 Columns: Live Doctor Cabin Snapshot -->
+          <div class="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-6 flex flex-col justify-between space-y-5 shadow-sm">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3.5">
+              <div>
+                <div class="text-xs font-bold text-slate-900">Live Doctor Cabin Snapshot</div>
+                <div class="text-xs text-slate-500 mt-0.5">AI Returning Patient Synthesis · Queue #RX-014</div>
+              </div>
+              <span class="font-mono-num text-xs font-semibold text-[#1E40AF]">Speed: 00:19s</span>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2 text-xs">
+              <div class="font-semibold text-slate-900">Returning Patient (4 Visits) · Last Seen 28 Days Ago</div>
+              <div class="text-slate-600">1. <span class="font-medium text-slate-800">Diagnosis History:</span> Essential Hypertension, Type-2 Diabetes Mellitus</div>
+              <div class="text-slate-600">2. <span class="font-medium text-slate-800">Previous Rx:</span> Telma 40 (1-0-0), Glycomet-GP 2 (1-0-1), Rosuvas 10 (0-0-1)</div>
+              <div class="text-emerald-700 font-medium">3. Returned to OPD after Day-25 Automated WhatsApp Refill Alert</div>
+            </div>
+
+            <div class="space-y-2.5 text-xs">
+              <div class="flex items-center justify-between text-slate-500">
+                <span class="font-semibold text-slate-800">1-Tap Chronic Protocol Applied:</span>
+                <span class="font-mono-num">NMC Generic + Brand</span>
+              </div>
+              <div class="p-3 rounded-lg border border-slate-200 bg-white flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-slate-900">1. TELMISARTAN (Telma 40 · 40 mg)</div>
+                  <div class="text-slate-500 mt-0.5">Morning After Breakfast · 30 Days</div>
+                </div>
+                <span class="font-mono-num font-semibold text-slate-900">1-0-0</span>
+              </div>
+              <div class="p-3 rounded-lg border border-slate-200 bg-white flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-slate-900">2. GLIMEPIRIDE + METFORMIN SR (Glycomet-GP 2)</div>
+                  <div class="text-slate-500 mt-0.5">15 Mins Before Breakfast & Dinner · 30 Days</div>
+                </div>
+                <span class="font-mono-num font-semibold text-slate-900">1-0-1</span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
+              <span>Signed PDF + WhatsApp Schedule Sent</span>
+              <a href="#sandbox" class="font-semibold text-[#1E40AF] hover:underline">Customize in Sandbox →</a>
+            </div>
           </div>
         </div>
-        <div id="stepTwo" class="text-container hidden">
-          <h1>Action required to load your app</h1>
-          <p>
-            It looks like your browser is blocking a required security cookie, which is common on
-            older versions of iOS and Safari.
-          </p>
-          <div class="button-container">
-            <button id="interactButton" onclick="redirectToReturnUrl(false)">Close and continue</button>
+
+        <!-- Full-Width 4-Column Quantitative Proof Bar -->
+        <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-white border border-slate-200 rounded-2xl p-6">
+          <div class="sm:pr-4 sm:border-r border-slate-200">
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono-num text-slate-900">22 Seconds</div>
+            <div class="text-xs font-semibold text-slate-800 mt-1">Average Prescription Completion</div>
+            <div class="text-xs text-slate-500 mt-0.5">Using 1-tap protocol packs & personalized doctor drug ranking</div>
           </div>
-        </div>
-        <div id="stepThree" class="text-container hidden">
-          <h1>Almost there!</h1>
-          <p>
-            Grant permission for the required security cookie below.
-          </p>
-          <div class="button-container">
-            <button id="grantPermissionButton" onclick="grantStorageAccess()">Grant permission</button>
+          <div class="sm:px-2 lg:pr-4 lg:border-r border-slate-200">
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono-num text-slate-900">+24% Retention</div>
+            <div class="text-xs font-semibold text-slate-800 mt-1">Higher Chronic & Follow-Up Return Rate</div>
+            <div class="text-xs text-slate-500 mt-0.5">Driven by Day-25 chronic refill & follow-up WhatsApp alerts</div>
+          </div>
+          <div class="sm:pr-4 sm:border-r border-slate-200">
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono-num text-slate-900">1,00,000+ Drugs</div>
+            <div class="text-xs font-semibold text-slate-800 mt-1">NMC Generic + Brand Formulary</div>
+            <div class="text-xs text-slate-500 mt-0.5">With Schedule-X telemedicine guardrails & custom clinic CSV upload</div>
+          </div>
+          <div class="sm:pl-2">
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono-num text-slate-900">4 Clinic Roles</div>
+            <div class="text-xs font-semibold text-slate-800 mt-1">Doctor · Reception · Nurse · Pharmacy</div>
+            <div class="text-xs text-slate-500 mt-0.5">Synchronized walk-in tokens, vitals, UPI billing & stock deduction</div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- 2. INTERACTIVE 30-SECOND PRESCRIPTION SANDBOX -->
+    <section id="sandbox" class="py-20 bg-white border-y border-slate-200">
+      <div class="max-w-[1280px] mx-auto px-6">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+          <div>
+            <div class="text-xs font-medium text-[#1E40AF] mb-2">Interactive Clinical Sandbox · Real RxNXT Engine Logic</div>
+            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">Test the 30-Second Prescription Builder Live</h2>
+            <p class="mt-2.5 text-base text-slate-600 max-w-2xl">
+              Click any 1-tap clinical protocol pack below, search by generic or Indian brand alias (try <span class="font-mono-num text-slate-900 font-medium">pcm</span>, <span class="font-mono-num text-slate-900 font-medium">sugar</span>, <span class="font-mono-num text-slate-900 font-medium">dolo</span>, or restricted <span class="font-mono-num text-slate-900 font-medium">alprax</span>), and watch the NMC-compliant PDF and WhatsApp bot schedule update in real time.
+            </p>
+          </div>
+          <div class="flex items-center gap-6 bg-slate-50 border border-slate-200 rounded-xl px-5 py-3.5 shrink-0">
+            <div>
+              <div class="text-xs text-slate-500">Consultation Speed Timer</div>
+              <div class="flex items-baseline gap-2 mt-0.5">
+                <span id="sandbox-timer" class="text-2xl font-bold font-mono-num text-slate-900">00:18s</span>
+                <span id="sandbox-method" class="text-xs text-emerald-700 font-medium">· Method: TEMPLATE</span>
+              </div>
+            </div>
+            <button type="button" onclick="resetSandbox()" class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-100 transition-colors whitespace-nowrap shrink-0">
+              Reset Scratchpad
+            </button>
+          </div>
+        </div>
+
+        <!-- 1-Tap Protocol Packs Bar -->
+        <div class="mb-8">
+          <div class="text-xs font-medium text-slate-500 mb-2.5">1-Tap Specialty Protocol Packs (Pre-fills Diagnosis, NMC Generic + Brand Drugs & Advice):</div>
+          <div id="protocol-packs-bar" class="flex flex-wrap items-center gap-2"></div>
+        </div>
+
+        <!-- Main 12-Col Split -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Left 7 Cols -->
+          <div class="lg:col-span-7 bg-slate-50 border border-slate-200 rounded-2xl p-6 space-y-6">
+            <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-200 text-xs text-slate-600">
+              <div><span class="font-semibold text-slate-900">Patient:</span> Rajeshwari Kulkarni · 54Y / Female · +91 98450 11209</div>
+              <div class="font-mono-num text-slate-500">Queue Token #RX-014 · Vitals: BP 134/84 mmHg · SpO2 98%</div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1.5">Chief Complaints & Vitals Note</label>
+                <input id="input-complaint" type="text" oninput="onClinicalTextChange()" class="w-full px-3.5 py-2.5 text-sm bg-white border border-slate-300 rounded-lg focus:outline-none focus:border-[#1E40AF] text-slate-900" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1.5">Clinical Diagnosis</label>
+                <input id="input-diagnosis" type="text" oninput="onClinicalTextChange()" class="w-full px-3.5 py-2.5 text-sm bg-white border border-slate-300 rounded-lg focus:outline-none focus:border-[#1E40AF] text-slate-900" />
+              </div>
+            </div>
+
+            <!-- Search Input -->
+            <div class="relative">
+              <label class="block text-xs font-semibold text-slate-700 mb-1.5">Add Medicine (Instant Alias + Personalized Doctor Preference Ranking)</label>
+              <input id="drug-search-input" type="text" oninput="onSearchInput(this.value)" placeholder="Search by brand, generic, or symptom alias (try 'pcm', 'sugar', 'bp', 'gas', 'alprax')..." class="w-full px-3.5 py-2.5 text-sm bg-white border border-slate-300 rounded-lg focus:outline-none focus:border-[#1E40AF] text-slate-900" />
+              <div id="favorite-drugs-chips" class="flex flex-wrap items-center gap-1.5 mt-2.5"></div>
+              <div id="drug-search-dropdown" class="hidden absolute z-30 left-0 right-0 mt-1 bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden"></div>
+            </div>
+
+            <div id="restricted-alert-box" class="hidden p-3.5 bg-red-50 border border-red-200 rounded-xl flex items-start justify-between gap-3 text-xs text-red-800"></div>
+
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span id="med-count-label" class="text-xs font-semibold text-slate-700">Prescribed Medicines</span>
+                <span class="text-xs text-slate-500">Auto-mapped to Uppercase Generic Name for NMC Compliance</span>
+              </div>
+              <div id="prescribed-meds-list" class="space-y-2.5"></div>
+            </div>
+
+            <div class="pt-2 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-semibold text-slate-700">Follow-Up In:</span>
+                <div id="followup-days-buttons" class="flex items-center gap-1.5"></div>
+              </div>
+              <label class="flex items-center gap-2 cursor-pointer text-xs font-medium text-slate-700">
+                <input id="toggle-daily-reminders" type="checkbox" checked onchange="renderSandboxOutputs()" class="rounded border-slate-300 text-[#1E40AF]" />
+                <span>Schedule 8:00 AM WhatsApp Dose & Day-25 Refill Bot</span>
+              </label>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
+              <div id="dispatch-status-note" class="text-xs text-slate-500">Clicking Sign & Dispatch previews the exact WhatsApp message sent to the patient.</div>
+              <button type="button" onclick="simulateSignAndSend()" class="px-5 py-2.5 bg-[#1E40AF] hover:bg-blue-800 text-white text-xs font-semibold rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-sm">
+                Sign & Dispatch Super-Prescription
+              </button>
+            </div>
+          </div>
+
+          <!-- Right 5 Cols: Preview -->
+          <div class="lg:col-span-5 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+            <div class="p-3 bg-slate-100 border-b border-slate-200">
+              <div class="flex items-center gap-1 bg-slate-200/80 p-1 rounded-lg w-full">
+                <button id="tab-btn-nmc" type="button" onclick="switchPreviewTab('nmc-pdf')" class="flex-1 py-2 px-3 rounded-md text-xs font-semibold bg-white text-slate-900 shadow-sm transition-all whitespace-nowrap shrink-0">
+                  NMC Compliant Rx Sheet
+                </button>
+                <button id="tab-btn-wa" type="button" onclick="switchPreviewTab('whatsapp-bot')" class="flex-1 py-2 px-3 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition-all whitespace-nowrap shrink-0">
+                  Patient WhatsApp Schedule
+                </button>
+              </div>
+            </div>
+            <div id="sandbox-preview-pane"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CORE CLINICAL ENGINE CAPABILITIES -->
+    <section id="capabilities" class="py-20 bg-[#F8FAFC] border-b border-slate-200">
+      <div class="max-w-[1280px] mx-auto px-6">
+        <div class="max-w-3xl mb-12">
+          <div class="text-xs font-medium text-[#1E40AF] mb-2">Engineered for Real Indian Clinical Workflows</div>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">Six Clinical Innovations That Save Doctors 2+ Hours Every Day</h2>
+          <p class="mt-3 text-base text-slate-600">Every capability inside RxNXT Cloud is designed around how Indian doctors actually consult, prescribe, and retain patients.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
+            <div class="space-y-3">
+              <div class="text-xs font-medium text-[#1E40AF]">Meta WhatsApp Cloud API Automation · Acute vs. Chronic Intelligence</div>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900">01. Single Super-Prescription Dispatch & Automated Day-25 Chronic Refill Engine</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                When you save a prescription, RxNXT immediately sends the signed NMC PDF along with a structured Morning, Afternoon, Night, and SOS schedule to the patient’s WhatsApp. For acute courses (3–7 days), it schedules an 8:00 AM daily morning briefing. For 30-day chronic courses (Diabetes, Hypertension, Thyroid), it automatically schedules a <span class="font-semibold text-slate-900">Day-25 Refill Alert</span> so the patient books their review consultation before their medicine strip runs out.
+              </p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-100 text-xs">
+              <div>
+                <div class="font-semibold text-slate-900">Acute Illness (3–14 Days)</div>
+                <div class="text-slate-500 mt-0.5">8:00 AM IST daily dose briefing for the exact prescribed duration</div>
+              </div>
+              <div>
+                <div class="font-semibold text-slate-900">Chronic Care (30 Days)</div>
+                <div class="text-slate-500 mt-0.5">14-day adherence onboarding + Day-25 automated refill reminder</div>
+              </div>
+              <div>
+                <div class="font-semibold text-slate-900">Doctor-Scoped Superseding</div>
+                <div class="text-slate-500 mt-0.5">Updating an acute Rx never cancels another specialist’s chronic refill</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-1 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
+            <div class="space-y-3">
+              <div class="text-xs font-medium text-[#1E40AF]">Personalized ML Ranking</div>
+              <h3 class="text-xl font-bold text-slate-900">02. Additive Medicine Search That Learns Your Favorite Brands</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Every time you prescribe a drug, RxNXT increments your personal DoctorDrugPreference (+50 boost) and ClinicDrugPreference (+20 boost). Your most-used brands and custom clinic formulary items (+60 boost) always appear at the very top of search results within 2 keystrokes.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 text-xs font-mono-num text-slate-500">Sub-15ms Cached Catalog Lookup · Custom CSV Upload</div>
+          </div>
+
+          <div class="lg:col-span-1 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
+            <div class="space-y-3">
+              <div class="text-xs font-medium text-[#1E40AF]">100% Regulatory Peace of Mind</div>
+              <h3 class="text-xl font-bold text-slate-900">03. NMC Generic-First PDF & Schedule-X Telemedicine Guardrails</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Automatically formats every medicine in bold uppercase Generic Name alongside your chosen Brand Name, dosage form, strength, route, and verified State Medical Council registration number. Built-in narcotic/Schedule-X checks block restricted psychotropics during telemedicine.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 text-xs font-mono-num text-slate-500">NMC RMP Guidelines Compliant · QR Verifiable</div>
+          </div>
+
+          <div class="lg:col-span-2 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
+            <div class="space-y-3">
+              <div class="text-xs font-medium text-[#1E40AF]">Zero-Friction OPD Queue & In-House Diagnostics Handoff</div>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900">04. Smart "In-Procedure" & "Returned-Ready" Queue Priority</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                When you send a patient for an in-clinic ECG, X-ray, nebulization, or IV drip, 1 click moves them to IN_PROCEDURE so your cabin queue keeps moving. As soon as the nurse or lab marks their report ready, RxNXT elevates the patient to RETURNED_READY—automatically placing them at the top of your active queue so returning report patients never wait behind new walk-ins.
+              </p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-100 text-xs">
+              <div>
+                <div class="font-semibold text-slate-900">Step 1: Order Test / Drip</div>
+                <div class="text-slate-500 mt-0.5">Doctor selects investigation or day-care IV procedure in 1 click</div>
+              </div>
+              <div>
+                <div class="font-semibold text-slate-900">Step 2: Nurse / Lab Action</div>
+                <div class="text-slate-500 mt-0.5">Front desk or nurse clicks "Mark Reports Ready" upon completion</div>
+              </div>
+              <div>
+                <div class="font-semibold text-slate-900">Step 3: Priority Cabin Return</div>
+                <div class="text-slate-500 mt-0.5">Patient sorts above standard WAITING tokens automatically</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SYNCHRONIZED 4-ROLE CLINIC WORKFLOW TOUR -->
+    <section id="workflow" class="py-20 bg-white border-b border-slate-200">
+      <div class="max-w-[1280px] mx-auto px-6">
+        <div class="max-w-3xl mb-10">
+          <div class="text-xs font-medium text-[#1E40AF] mb-2">Synchronized 4-Role Clinic Operating System</div>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">One Unified Flow From Walk-In Token to Pharmacy Dispensing</h2>
+          <p class="mt-3 text-base text-slate-600">RxNXT connects your Front Desk Receptionist, Triage Nurse, Consulting Doctor, and In-House Pharmacist in real time with strict multi-tenant data isolation.</p>
+        </div>
+        <div id="role-tabs-bar" class="flex flex-wrap items-center gap-2 p-1.5 bg-slate-100 rounded-xl w-fit mb-8"></div>
+        <div id="role-tour-content" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8"></div>
+      </div>
+    </section>
+
+    <!-- 5. INTERACTIVE CLINIC ROI & RETENTION CALCULATOR -->
+    <section id="roi-calculator" class="py-20 bg-[#F8FAFC] border-b border-slate-200">
+      <div class="max-w-[1280px] mx-auto px-6">
+        <div class="max-w-2xl mb-12">
+          <div class="text-xs font-medium text-[#1E40AF] mb-2">Practice Revenue & Time Telemetry</div>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">Calculate How Many Lost Follow-Up Visits Your Clinic Can Recover</h2>
+          <p class="mt-3 text-base text-slate-600">In Indian outpatient clinics, nearly 1 in 3 follow-up or chronic refill patients forget their review date. RxNXT’s automated WhatsApp Day-25 Refill and Follow-Up alerts bring them back to your consultation desk.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          <div class="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
+            <div class="space-y-6">
+              <div>
+                <div class="flex justify-between items-baseline mb-2">
+                  <label class="text-sm font-semibold text-slate-900">Average Daily OPD Patients (Per Doctor)</label>
+                  <span id="roi-opd-val" class="text-lg font-bold font-mono-num text-[#1E40AF]">35 Patients / Day</span>
+                </div>
+                <input id="roi-opd-slider" type="range" min="10" max="120" step="5" value="35" oninput="updateRoiCalc()" class="w-full accent-[#1E40AF] cursor-pointer" />
+              </div>
+
+              <div>
+                <div class="flex justify-between items-baseline mb-2">
+                  <label class="text-sm font-semibold text-slate-900">Average Consultation / Follow-Up Fee (₹)</label>
+                  <span id="roi-fee-val" class="text-lg font-bold font-mono-num text-[#1E40AF]">₹500</span>
+                </div>
+                <input id="roi-fee-slider" type="range" min="200" max="1500" step="50" value="500" oninput="updateRoiCalc()" class="w-full accent-[#1E40AF] cursor-pointer" />
+              </div>
+
+              <div>
+                <div class="flex justify-between items-baseline mb-2">
+                  <label class="text-sm font-semibold text-slate-900">Patients Requiring Follow-Up or 30-Day Refill</label>
+                  <span id="roi-chronic-val" class="text-lg font-bold font-mono-num text-[#1E40AF]">30% of OPD</span>
+                </div>
+                <input id="roi-chronic-slider" type="range" min="10" max="70" step="5" value="30" oninput="updateRoiCalc()" class="w-full accent-[#1E40AF] cursor-pointer" />
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-slate-200 text-xs text-slate-500">
+              Telemetry formula matches RxNXT’s built-in <span class="font-mono-num text-slate-700">roiTelemetry</span> engine inside the Doctor Dashboard.
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-slate-900 text-white rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+            <div class="space-y-6">
+              <div>
+                <div class="text-xs text-slate-400">Estimated Retained OPD Revenue / Month</div>
+                <div id="roi-monthly-rev" class="text-4xl sm:text-5xl font-bold font-mono-num tracking-tight text-white mt-2">₹33,000</div>
+                <div id="roi-annual-rev" class="text-xs text-emerald-400 mt-1.5 font-medium">₹3,96,000 additional annual clinic revenue</div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4 pt-6 border-t border-slate-800">
+                <div>
+                  <div class="text-xs text-slate-400">Returning Patients / Month</div>
+                  <div id="roi-visits-recovered" class="text-2xl font-bold font-mono-num text-white mt-1">+66 Visits</div>
+                  <div class="text-xs text-slate-400 mt-0.5">Via Day-25 & Follow-up WhatsApp</div>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-400">Doctor Time Saved / Month</div>
+                  <div id="roi-hours-saved" class="text-2xl font-bold font-mono-num text-white mt-1">42 Hours</div>
+                  <div class="text-xs text-slate-400 mt-0.5">At 2.75 mins saved per Rx</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-6 mt-6 border-t border-slate-800">
+              <a href="#lead-capture-form" class="w-full py-3.5 px-5 bg-[#1E40AF] hover:bg-blue-700 text-white text-sm font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 whitespace-nowrap shrink-0">
+                <span>Start Free 14-Day / 150-Rx Clinic Pilot</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PRICING & INSTANT WHATSAPP DOCTOR ONBOARDING -->
+    <section id="pricing" class="py-20 bg-[#F8FAFC]">
+      <div class="max-w-[1280px] mx-auto px-6">
+        <div class="max-w-3xl mb-12">
+          <div class="text-xs font-medium text-[#1E40AF] mb-2">Master Price-Lock Blueprint · 14-Day / 150-Prescription Free Trial</div>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">Simple Annual Clinic Licensing. Recover Your Full Year’s Cost in 2 Visits/Month.</h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
+          <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-slate-900">Solo Practitioner (BYOD SaaS)</h3>
+              <div class="mt-4 flex items-baseline gap-2">
+                <span class="text-3xl sm:text-4xl font-bold font-mono-num text-slate-900">₹9,999</span>
+                <span class="text-xs text-slate-500">per year · ₹833/mo</span>
+              </div>
+              <p class="mt-3 text-xs text-slate-600">Use your own laptop, iPad, or Android tablet. Includes 14-Day / 150-Rx Free Trial.</p>
+              <ul class="mt-6 pt-6 border-t border-slate-100 space-y-2.5 text-xs text-slate-700">
+                <li>✓ Unlimited NMC-Compliant E-Prescriptions</li>
+                <li>✓ Full 1,00,000+ Generic & Brand Drug Search</li>
+                <li>✓ 1-Tap Specialty Protocol Packs & Templates</li>
+                <li>✓ Automated 8:00 AM Dose & Day-25 Refill WhatsApp Bot</li>
+              </ul>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100">
+              <button type="button" onclick="selectPlanAndScroll('Solo Practitioner — BYOD SaaS (₹9,999/yr)')" class="w-full py-2.5 px-4 rounded-lg text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-colors">Select Solo Practitioner</button>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 sm:p-7 border-2 border-[#1E40AF] flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold text-slate-900">Dedicated Tablet Bundle</h3>
+                <span class="text-xs font-semibold text-[#1E40AF]">Plug & Play</span>
+              </div>
+              <div class="mt-4 flex items-baseline gap-2">
+                <span class="text-3xl sm:text-4xl font-bold font-mono-num text-slate-900">₹24,999</span>
+                <span class="text-xs text-slate-500">one-time · Includes 1-Yr SaaS</span>
+              </div>
+              <p class="mt-3 text-xs text-slate-600">Pre-configured 11" Android Kiosk Tablet + heavy-duty clinic desk stand + 1 full year of RxNXT Cloud.</p>
+              <ul class="mt-6 pt-6 border-t border-slate-100 space-y-2.5 text-xs text-slate-700">
+                <li>✓ Pre-Configured 11" Android Tablet (Kiosk Mode)</li>
+                <li>✓ Heavy-Duty Ergonomic Doctor Desk Stand</li>
+                <li>✓ 1-Year Full RxNXT Cloud Subscription Included</li>
+                <li>✓ Dedicated Onsite/Remote Staff Setup & Warranty</li>
+              </ul>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100">
+              <button type="button" onclick="selectPlanAndScroll('Dedicated Tablet Bundle — Plug & Play (₹24,999)')" class="w-full py-2.5 px-4 rounded-lg text-xs font-semibold bg-[#1E40AF] text-white hover:bg-blue-800 transition-colors">Order Tablet Bundle Demo</button>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-slate-900">Smart Polyclinic (2–4 Doctors)</h3>
+              <div class="mt-4 flex items-baseline gap-2">
+                <span class="text-3xl sm:text-4xl font-bold font-mono-num text-slate-900">₹18,000</span>
+                <span class="text-xs text-slate-500">per year · ₹4,500/doc/yr</span>
+              </div>
+              <p class="mt-3 text-xs text-slate-600">Complete multi-specialty clinic OS for 2–4 doctors, front desk reception, nurse triage, and pharmacy.</p>
+              <ul class="mt-6 pt-6 border-t border-slate-100 space-y-2.5 text-xs text-slate-700">
+                <li>✓ Up to 4 Consulting Doctor Workspaces + Staff</li>
+                <li>✓ Live Receptionist Token Queue & UPI Billing</li>
+                <li>✓ In-House Pharmacy Dispensing & Batch Stock</li>
+                <li>✓ Clinic-Wide Custom Formulary CSV Import</li>
+              </ul>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100">
+              <button type="button" onclick="selectPlanAndScroll('Smart Polyclinic — Multi-Doctor (₹18,000/yr)')" class="w-full py-2.5 px-4 rounded-lg text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-colors">Start Polyclinic Pilot</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lead Capture Form -->
+        <div id="lead-capture-form" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-5 space-y-5">
+            <div class="text-xs font-medium text-[#1E40AF]">Direct Doctor Onboarding · www.rxnxt.in · app.rxnxt.in</div>
+            <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight">Activate Your 14-Day / 150-Prescription Free Clinic Pilot</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Submit your clinic details to provision your isolated Supabase Mumbai (ap-south-1) workspace, pre-load your specialty protocol templates, and connect directly with our Doctor Onboarding Team on WhatsApp (+91 83417 13613).
+            </p>
+            <div class="pt-4 border-t border-slate-200 text-xs text-slate-600 space-y-2">
+              <div><strong class="text-slate-900">WhatsApp Support:</strong> <a href="https://wa.me/918341713613" class="text-[#1E40AF] hover:underline font-mono-num">+91 83417 13613</a></div>
+              <div><strong class="text-slate-900">Email:</strong> <a href="mailto:contact@rxnxt.in" class="text-[#1E40AF] hover:underline">contact@rxnxt.in</a></div>
+              <div><strong class="text-slate-900">Cloud Web App:</strong> <a href="https://app.rxnxt.in" target="_blank" class="text-[#1E40AF] hover:underline">https://app.rxnxt.in</a></div>
+            </div>
+          </div>
+
+          <form onsubmit="submitLeadForm(event)" class="lg:col-span-7 space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1.5">Doctor’s Full Name *</label>
+                <input id="lead-doc-name" type="text" required placeholder="Dr. Rajesh Kumar" class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:bg-white focus:outline-none focus:border-[#1E40AF]" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1.5">WhatsApp Mobile Number *</label>
+                <input id="lead-phone" type="tel" required placeholder="+91 98450 11209" class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:bg-white focus:outline-none focus:border-[#1E40AF] font-mono-num" />
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1.5">Clinic / Hospital Name *</label>
+                <input id="lead-clinic" type="text" required placeholder="City Care Speciality Clinic" class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:bg-white focus:outline-none focus:border-[#1E40AF]" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1.5">Primary Medical Specialty *</label>
+                <select id="lead-specialty" class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:bg-white focus:outline-none focus:border-[#1E40AF]">
+                  <option>General Medicine / Internal Medicine</option>
+                  <option>Diabetology / Endocrinology</option>
+                  <option>Pediatrics & Neonatology</option>
+                  <option>Orthopedics & Spine</option>
+                  <option>Cardiology</option>
+                  <option>Gynecology & Obstetrics</option>
+                  <option>Multi-Specialty Polyclinic</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1.5">City *</label>
+                <input id="lead-city" type="text" required placeholder="Hyderabad / Bengaluru / Pune" class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:bg-white focus:outline-none focus:border-[#1E40AF]" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1.5">Interested Plan</label>
+                <select id="lead-plan" class="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:bg-white focus:outline-none focus:border-[#1E40AF]">
+                  <option value="Solo Practitioner — BYOD SaaS (₹9,999/yr)">Solo Practitioner — BYOD SaaS (₹9,999/yr)</option>
+                  <option value="Dedicated Tablet Bundle — Plug & Play (₹24,999)">Dedicated Tablet Bundle — Plug & Play (₹24,999)</option>
+                  <option value="Smart Polyclinic — Multi-Doctor (₹18,000/yr)">Smart Polyclinic — Multi-Doctor (₹18,000/yr)</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="w-full py-3.5 px-6 bg-[#1E40AF] hover:bg-blue-800 text-white text-sm font-semibold rounded-xl transition-colors shadow-sm">
+              Activate My 14-Day Free Pilot on WhatsApp →
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 py-12 text-xs text-slate-500">
+    <div class="max-w-[1280px] mx-auto px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      <div>
+        <div class="text-sm font-bold text-slate-900 font-display">RxNXT Cloud (www.rxnxt.in)</div>
+        <div class="mt-0.5">Smart E-Prescription, WhatsApp Adherence & Multi-Role Clinic OS by Orug Technologies.</div>
+      </div>
+      <div class="flex flex-wrap items-center gap-6 text-slate-600 font-medium">
+        <a href="https://app.rxnxt.in" target="_blank" class="hover:text-slate-900">Portal (app.rxnxt.in)</a>
+        <a href="https://wa.me/918341713613" target="_blank" class="hover:text-slate-900">WhatsApp (+91 83417 13613)</a>
+        <a href="mailto:contact@rxnxt.in" class="hover:text-slate-900">contact@rxnxt.in</a>
+      </div>
+      <div class="text-slate-400 font-mono-num">© 2026 Orug Technologies. All rights reserved.</div>
     </div>
-    <script>
-      const AUTH_FLOW_TEST_COOKIE_NAME = '__SECURE-aistudio_auth_flow_may_set_cookies';
-      const COOKIE_VALUE = 'true';
+  </footer>
 
-      function getCookie(name) {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-          let cookie = cookies[i].trim();
-          if (cookie.startsWith(name + '=')) {
-            return cookie.substring(name.length + 1);
-          }
-        }
-        return null;
+  <!-- Interactive Engine Script -->
+  <script>
+    const DRUG_CATALOG = [
+      { id: 'dolo', brand: 'Dolo 650', generic: 'Paracetamol (Acetaminophen)', form: 'Tablet', strength: '650 mg', freq: '1-0-1', dur: '5 Days', inst: 'After Food (SOS for fever > 100°F)', score: 95, stock: 840, rack: 'Rack A-02', aliases: ['pcm', 'fever', 'crocin', 'paracetamol'] },
+      { id: 'aug', brand: 'Augmentin 625 Duo', generic: 'Amoxicillin + Clavulanic Acid', form: 'Tablet', strength: '500mg + 125mg', freq: '1-0-1', dur: '5 Days', inst: 'After Food (Complete full course)', score: 91, stock: 320, rack: 'Rack B-14', aliases: ['amoxyclav', 'antibiotic'] },
+      { id: 'pand', brand: 'Pan-D', generic: 'Pantoprazole + Domperidone', form: 'Capsule SR', strength: '40mg + 30mg', freq: '1-0-0', dur: '10 Days', inst: 'Empty Stomach (30 mins before breakfast)', score: 94, stock: 510, rack: 'Rack A-08', aliases: ['gas', 'acidity', 'pantop'] },
+      { id: 'azith', brand: 'Azithral 500', generic: 'Azithromycin', form: 'Tablet', strength: '500 mg', freq: '0-1-0', dur: '3 Days', inst: '1 Hour Before Lunch', score: 88, stock: 190, rack: 'Rack B-09', aliases: ['azee', 'throat', 'urti'] },
+      { id: 'telma', brand: 'Telma 40', generic: 'Telmisartan', form: 'Tablet', strength: '40 mg', freq: '1-0-0', dur: '30 Days', inst: 'Every Morning After Breakfast', score: 98, stock: 960, rack: 'Rack D-01', aliases: ['bp', 'hypertension'] },
+      { id: 'glyco', brand: 'Glycomet-GP 2', generic: 'Glimepiride + Metformin SR', form: 'Tablet SR', strength: '2mg + 500mg', freq: '1-0-1', dur: '30 Days', inst: '15 Mins Before Breakfast & Dinner', score: 96, stock: 720, rack: 'Rack D-05', aliases: ['sugar', 'diabetes', 'metformin'] },
+      { id: 'alprax', brand: 'Alprax 0.5', generic: 'Alprazolam (Schedule X / Restricted)', form: 'Tablet', strength: '0.5 mg', freq: '0-0-1', dur: '5 Days', inst: 'At Bedtime', score: 40, stock: 90, rack: 'Vault V-01', restricted: true, aliases: ['anxiety', 'sleep', 'alprazolam'] }
+    ];
+
+    const PACKS = [
+      { id: 'urti', name: 'Acute Viral Pharyngitis (URTI)', spec: 'General Medicine', cc: 'High-grade fever (101.4°F) for 2 days, sore throat, dry cough', diag: 'Acute Viral Pharyngitis (URTI)', days: 5, drugs: ['dolo', 'azith', 'pand'] },
+      { id: 'htn', name: 'Chronic Hypertension + Type-2 DM', spec: 'Diabetology', cc: 'Routine 30-day metabolic review, FBS 146 mg/dL, BP 138/86 mmHg', diag: 'Essential Hypertension with Type-2 Diabetes', days: 30, drugs: ['telma', 'glyco'] }
+    ];
+
+    let currentPackId = 'urti';
+    let prescribed = [];
+    let followUpDays = 5;
+    let previewTab = 'nmc-pdf';
+
+    function initSandbox() {
+      applyPack('urti');
+      const favContainer = document.getElementById('favorite-drugs-chips');
+      favContainer.innerHTML = '<span class="text-xs text-slate-500 mr-1">Doctor Favorites:</span>' +
+        DRUG_CATALOG.map(d => `<button type="button" onclick="addDrugById('${d.id}')" class="px-2.5 py-1 text-xs font-medium ${d.restricted ? 'bg-amber-50 border-amber-200 text-amber-900' : 'bg-white border-slate-200 text-slate-700'} border rounded-md hover:border-[#1E40AF] transition-colors">+ ${d.brand}</button>`).join('');
+      renderRoleTour('doctor');
+      updateRoiCalc();
+    }
+
+    function applyPack(packId) {
+      const pack = PACKS.find(p => p.id === packId) || PACKS[0];
+      currentPackId = pack.id;
+      followUpDays = pack.days;
+      document.getElementById('input-complaint').value = pack.cc;
+      document.getElementById('input-diagnosis').value = pack.diag;
+      prescribed = pack.drugs.map(id => {
+        const d = DRUG_CATALOG.find(x => x.id === id);
+        return { ...d, rowId: Math.random().toString(36).slice(2, 7) };
+      });
+      renderProtocolPacks();
+      renderFollowUpButtons();
+      renderSandboxOutputs();
+    }
+
+    function renderProtocolPacks() {
+      document.getElementById('protocol-packs-bar').innerHTML = PACKS.map(p =>
+        `<button type="button" onclick="applyPack('${p.id}')" class="px-4 py-2.5 rounded-lg text-xs font-semibold border transition-all ${currentPackId === p.id ? 'bg-[#1E40AF] text-white border-[#1E40AF]' : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'}">${p.name} · ${p.spec}</button>`
+      ).join('');
+    }
+
+    function renderFollowUpButtons() {
+      document.getElementById('followup-days-buttons').innerHTML = [3, 5, 7, 14, 30].map(d =>
+        `<button type="button" onclick="followUpDays=${d};renderFollowUpButtons();renderSandboxOutputs();" class="px-2.5 py-1 text-xs font-mono-num font-medium rounded-md border ${followUpDays === d ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-700 border-slate-200'}">${d}d</button>`
+      ).join('');
+    }
+
+    function addDrugById(id) {
+      const d = DRUG_CATALOG.find(x => x.id === id);
+      if (!d) return;
+      const alertBox = document.getElementById('restricted-alert-box');
+      if (d.restricted) {
+        alertBox.classList.remove('hidden');
+        alertBox.innerHTML = `<span>NMC & Telemedicine Guardrail: "${d.brand}" (${d.generic}) is flagged as Schedule X / Restricted and blocked from telemedicine dispatch.</span><button onclick="this.parentElement.classList.add('hidden')" class="font-semibold underline">Dismiss</button>`;
+        return;
       }
+      alertBox.classList.add('hidden');
+      prescribed.push({ ...d, rowId: Math.random().toString(36).slice(2, 7) });
+      document.getElementById('drug-search-input').value = '';
+      document.getElementById('drug-search-dropdown').classList.add('hidden');
+      renderSandboxOutputs();
+    }
 
-      function setAuthFlowTestCookie() {
-        // Set the cookie's TTL to 1 minute. This is a short lived cookie because it is only used
-        // when the user does not have an auth token or their auth token needs to be reset.
-        // Making this cookie too long-lived allows the user to get into a state where they can't
-        // mint a new auth token.
-        document.cookie = `${AUTH_FLOW_TEST_COOKIE_NAME}=${COOKIE_VALUE}; Path=/; Secure; SameSite=None; Domain=${window.location.hostname}; Partitioned; Max-Age=60;`;
+    function onSearchInput(q) {
+      const drop = document.getElementById('drug-search-dropdown');
+      const clean = q.trim().toLowerCase();
+      if (!clean) { drop.classList.add('hidden'); return; }
+      const matches = DRUG_CATALOG.filter(d => d.brand.toLowerCase().includes(clean) || d.generic.toLowerCase().includes(clean) || d.aliases.some(a => a.includes(clean)));
+      if (!matches.length) { drop.classList.add('hidden'); return; }
+      drop.classList.remove('hidden');
+      drop.innerHTML = matches.map(d => `
+        <button type="button" onclick="addDrugById('${d.id}')" class="w-full text-left px-4 py-3 border-b border-slate-100 hover:bg-slate-50 flex items-center justify-between text-xs">
+          <div><div class="font-bold text-slate-900">${d.brand} · ${d.strength}</div><div class="text-slate-500">Generic: ${d.generic}</div></div>
+          <span class="font-mono-num text-[#1E40AF] font-semibold">${d.restricted ? 'Restricted (Schedule X)' : 'Rank ' + d.score + ' · Stock ' + d.stock}</span>
+        </button>
+      `).join('');
+    }
+
+    function removeMedRow(rowId) {
+      prescribed = prescribed.filter(m => m.rowId !== rowId);
+      renderSandboxOutputs();
+    }
+
+    function resetSandbox() {
+      prescribed = [];
+      document.getElementById('input-complaint').value = '';
+      document.getElementById('input-diagnosis').value = '';
+      renderSandboxOutputs();
+    }
+
+    function onClinicalTextChange() { renderSandboxOutputs(); }
+
+    function switchPreviewTab(tab) {
+      previewTab = tab;
+      document.getElementById('tab-btn-nmc').className = tab === 'nmc-pdf' ? 'flex-1 py-2 px-3 rounded-md text-xs font-semibold bg-white text-slate-900 shadow-sm' : 'flex-1 py-2 px-3 rounded-md text-xs font-semibold text-slate-600';
+      document.getElementById('tab-btn-wa').className = tab === 'whatsapp-bot' ? 'flex-1 py-2 px-3 rounded-md text-xs font-semibold bg-white text-slate-900 shadow-sm' : 'flex-1 py-2 px-3 rounded-md text-xs font-semibold text-slate-600';
+      renderSandboxOutputs();
+    }
+
+    function simulateSignAndSend() {
+      document.getElementById('dispatch-status-note').innerHTML = '<span class="text-emerald-700 font-semibold">✓ Dispatched to Patient WhatsApp & Clinic Pharmacy Queue in 18s</span>';
+      switchPreviewTab('whatsapp-bot');
+    }
+
+    function renderSandboxOutputs() {
+      document.getElementById('med-count-label').innerText = `Prescribed Medicines (${prescribed.length})`;
+      const listEl = document.getElementById('prescribed-meds-list');
+      listEl.innerHTML = prescribed.length === 0
+        ? '<div class="bg-white border border-slate-200 rounded-xl p-6 text-center text-xs text-slate-500">No medicines added. Click a Protocol Pack or Doctor Favorite above.</div>'
+        : prescribed.map((m, i) => `
+          <div class="bg-white border border-slate-200 rounded-xl p-3.5 flex items-center justify-between gap-3 text-xs">
+            <div>
+              <div class="font-bold text-slate-900">${i + 1}. ${m.generic.toUpperCase()} <span class="font-normal text-slate-600">(${m.brand} · ${m.strength})</span></div>
+              <div class="text-slate-500 mt-0.5">${m.freq} · ${m.dur} · ${m.inst} · <span class="text-emerald-700 font-mono-num">Stock: ${m.stock} (${m.rack})</span></div>
+            </div>
+            <button type="button" onclick="removeMedRow('${m.rowId}')" class="text-slate-400 hover:text-red-600 font-bold px-2">✕</button>
+          </div>
+        `).join('');
+
+      const pane = document.getElementById('sandbox-preview-pane');
+      const diag = document.getElementById('input-diagnosis').value || '—';
+      const cc = document.getElementById('input-complaint').value || '—';
+
+      if (previewTab === 'nmc-pdf') {
+        pane.innerHTML = `
+          <div class="p-6 space-y-4 text-xs text-slate-800">
+            <div class="flex justify-between border-b border-slate-200 pb-3">
+              <div><div class="font-bold text-slate-900">PRANA SPECIALITY POLYCLINIC</div><div class="text-slate-500">Dr. Arvind Deshmukh · Reg: MMC-2009-84921</div></div>
+              <div class="font-mono-num text-right text-slate-500"><div class="font-semibold text-slate-900">Rx #RX-8492</div><div>NMC Verified</div></div>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1">
+              <div class="font-semibold text-slate-900">Patient: Mrs. Rajeshwari Kulkarni (54Y / F)</div>
+              <div>Complaints: ${cc}</div>
+              <div>Diagnosis: <strong>${diag}</strong></div>
+            </div>
+            <div class="border border-slate-200 rounded-lg overflow-hidden">
+              <table class="w-full text-left border-collapse">
+                <thead class="bg-slate-100 border-b border-slate-200 text-[11px] text-slate-600">
+                  <tr><th class="p-2">Medicine (Generic + Brand)</th><th class="p-2">Dosage</th><th class="p-2">Duration</th></tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                  ${prescribed.map((m, idx) => `<tr><td class="p-2"><div class="font-bold">${idx + 1}. ${m.generic.toUpperCase()}</div><div class="text-[11px] text-slate-500">Brand: ${m.brand} · ${m.inst}</div></td><td class="p-2 font-mono-num font-semibold">${m.freq}</td><td class="p-2 font-mono-num">${m.dur}</td></tr>`).join('')}
+                </tbody>
+              </table>
+            </div>
+            <div class="pt-2 border-t border-slate-200 flex justify-between items-center">
+              <span class="font-semibold">Follow-Up: In ${followUpDays} Days</span>
+              <span class="italic font-display font-bold text-slate-700">Digitally Signed · Dr. Arvind Deshmukh</span>
+            </div>
+          </div>
+        `;
+      } else {
+        pane.innerHTML = `
+          <div class="p-6 bg-slate-100 space-y-4 text-xs">
+            <div class="bg-white border border-slate-200 rounded-xl p-4 space-y-3">
+              <div class="font-semibold text-slate-900">Namaste Rajeshwari Kulkarni ji,</div>
+              <div class="text-slate-600">Here is your digital prescription and daily schedule from <strong>Dr. Arvind Deshmukh</strong>:</div>
+              <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1.5">
+                ${prescribed.map(m => `<div>• <strong>${m.brand} (${m.strength})</strong> — ${m.freq} (${m.inst})</div>`).join('')}
+              </div>
+              <div class="pt-2 border-t border-slate-100 flex justify-between text-slate-500">
+                <span>Attached: Rx_8492_NMC_Signed.pdf</span>
+                <span class="font-mono-num">Delivered ✓✓</span>
+              </div>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl p-3.5 space-y-1">
+              <div class="font-semibold text-slate-900">Automated Follow-Up & Refill Engine:</div>
+              <div class="text-emerald-700 font-medium">✓ 8:00 AM IST Morning Dose Briefings + Day-25 Chronic Refill Alert Active</div>
+            </div>
+          </div>
+        `;
       }
+    }
 
-      /**
-       * Returns true if the test cookie is set, false otherwise.
-       */
-      function authFlowTestCookieIsSet() {
-        return getCookie(AUTH_FLOW_TEST_COOKIE_NAME) === COOKIE_VALUE;
-      }
+    const ROLES = {
+      receptionist: { title: '01. Reception & Billing Desk', head: 'Instant Walk-In Token Assignment & UPI Consultation Billing', desc: 'Search returning family members by mobile number, issue #RX-001 tokens, and collect consultation fees.', rows: [['#RX-014 · Rajeshwari Kulkarni', 'RETURNED_READY (Priority Top)', 'Paid ₹500 · UPI'], ['#RX-015 · Suresh Babu Nair', 'IN_PROCEDURE (ECG & RBS)', 'Paid ₹850 · Cash']] },
+      nurse: { title: '02. Nursing & Triage Vitals', head: 'Pre-Consultation Vitals & Automated "Returned-Ready" Queue Priority', desc: 'Record BP, Pulse, SpO2, Temp, and Weight directly onto the active queue item.', rows: [['#RX-014 · Rajeshwari Kulkarni', 'BP 134/84 · SpO2 98% · Wt 64kg', 'Post-Lab Report Ready'], ['#RX-015 · Suresh Babu Nair', 'BP 148/92 · RBS 184 mg/dL', 'IV Drip Completed']] },
+      doctor: { title: '03. Doctor Consultation Cabin', head: '3-Bullet Returning Patient Summary & 1-Tap Protocol Prescribing', desc: 'View automated 3-bullet synthesis of past visits, prescribe via 1-tap templates, and trigger doctor-scoped reminder superseding.', rows: [['Visit #4 · AI Clinical Synthesis', 'Essential HTN, Type-2 DM', 'Last Seen 28 Days Ago'], ['WhatsApp Super-Prescription', 'Signed PDF + Emoji Schedule', 'Day-25 Refill Scheduled']] },
+      pharmacist: { title: '04. In-House Pharmacy', head: 'Auto-Calculated Tablet Quantities & Real-Time Rack Stock Deduction', desc: 'Automatically multiplies dosage frequency by duration (e.g. 1-0-1 × 5 days = 10 tablets) and matches batch stock in O(1) time.', rows: [['Dolo 650 (1-0-1 × 5 Days)', 'Auto-Calculated: 10 Tablets', 'Rack A-02 · 840 in Stock'], ['Augmentin 625 (1-0-1 × 5 Days)', 'Auto-Calculated: 10 Tablets', 'Rack B-14 · 320 in Stock']] }
+    };
 
-      /**
-       * Redirects to the return url. If autoClose is true, then the return url will be opened in a
-       * new window, and it will be closed automatically when the page loads.
-       * Options:
-       *   storageAccessGranted: if true, appends __storage_access_granted=1 to
-       *   the return url so the Lua auth script can set the test cookie
-       *   server-side (needed for Safari/iOS where document.cookie is blocked).
-       */
-      async function redirectToReturnUrl(autoClose, storageAccessGranted = false) {
-        const initialReturnUrlStr = new URLSearchParams(window.location.search).get('return_url');
-        const returnUrl = initialReturnUrlStr ? new URL(initialReturnUrlStr) : null;
+    function renderRoleTour(roleKey) {
+      document.getElementById('role-tabs-bar').innerHTML = Object.keys(ROLES).map(k =>
+        `<button type="button" onclick="renderRoleTour('${k}')" class="px-4 py-2.5 rounded-lg text-xs font-semibold ${k === roleKey ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'}">${ROLES[k].title}</button>`
+      ).join('');
+      const r = ROLES[roleKey];
+      document.getElementById('role-tour-content').innerHTML = `
+        <div class="lg:col-span-5 space-y-3">
+          <div class="text-xs font-medium text-[#1E40AF]">${r.title}</div>
+          <h3 class="text-2xl font-bold text-slate-900">${r.head}</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">${r.desc}</p>
+        </div>
+        <div class="lg:col-span-7 bg-white border border-slate-200 rounded-xl p-5 divide-y divide-slate-100">
+          ${r.rows.map(row => `<div class="py-3 flex justify-between items-center text-xs"><div><div class="font-bold text-slate-900">${row[0]}</div><div class="text-slate-500 mt-0.5">${row[1]}</div></div><span class="font-mono-num text-emerald-700 font-semibold">${row[2]}</span></div>`).join('')}
+        </div>
+      `;
+    }
 
-        // Prevent potentially malicious URLs from being used
-        if (returnUrl.protocol.toLowerCase() === 'javascript:') {
-          console.error('Potentially malicious return URL blocked');
-          return;
-        }
+    function updateRoiCalc() {
+      const opd = parseInt(document.getElementById('roi-opd-slider').value, 10);
+      const fee = parseInt(document.getElementById('roi-fee-slider').value, 10);
+      const chronic = parseInt(document.getElementById('roi-chronic-slider').value, 10);
+      document.getElementById('roi-opd-val').innerText = `${opd} Patients / Day`;
+      document.getElementById('roi-fee-val').innerText = `₹${fee}`;
+      document.getElementById('roi-chronic-val').innerText = `${chronic}% of OPD`;
 
-        if (storageAccessGranted) {
-          returnUrl.searchParams.set('__storage_access_granted', '1');
-        }
+      const monthlyPatients = opd * 26;
+      const hoursSaved = Math.round((monthlyPatients * 2.75) / 60);
+      const dueFollowUps = Math.round(monthlyPatients * (chronic / 100));
+      const recovered = Math.max(2, Math.round(dueFollowUps * 0.24));
+      const monthlyRev = recovered * fee;
+      const annualRev = monthlyRev * 12;
 
-        if (autoClose) {
-          returnUrl.searchParams.set('__auto_close', '1');
-          const url = new URL(window.location.href);
-          url.searchParams.set('return_url', returnUrl.toString());
-          // Land on the cookie check page first, so the user can interact with it before proceeding
-          // to the return url where cookies can be set.
-          window.open(url.toString(), '_blank');
-          const hasAccess = await document.hasStorageAccess();
-          document.querySelector('#stepOne').classList.add('hidden');
-          if (!hasAccess) {
-            document.querySelector('#stepThree').classList.remove('hidden');
-          } else {
-            window.location.reload();
-          }
-        } else {
-          window.location.href = returnUrl.toString();
-        }
-      }
+      document.getElementById('roi-monthly-rev').innerText = `₹${monthlyRev.toLocaleString('en-IN')}`;
+      document.getElementById('roi-annual-rev').innerText = `₹${annualRev.toLocaleString('en-IN')} additional annual clinic revenue`;
+      document.getElementById('roi-visits-recovered').innerText = `+${recovered} Visits`;
+      document.getElementById('roi-hours-saved').innerText = `${hoursSaved} Hours`;
+    }
 
-      /**
-       * Grants the browser permission to set cookies. If successful, then it redirects to the
-       * return url.
-       */
-      async function grantStorageAccess() {
-        try {
-          await document.requestStorageAccess();
-          // Recent Safari/iOS versions block document.cookie entirely in
-          // cross-site iframes, even after requestStorageAccess(). Only
-          // server-side Set-Cookie headers work. Signal to the Lua auth script
-          // via query param so it can set the test cookie server-side.
-          redirectToReturnUrl(false, /* storageAccessGranted= */ true);
-        } catch (err) {
-          console.log('error after button click: ', err);
-        }
-      }
+    function selectPlanAndScroll(plan) {
+      document.getElementById('lead-plan').value = plan;
+      document.getElementById('lead-capture-form').scrollIntoView({ behavior: 'smooth' });
+    }
 
-      /**
-       * Verifies that the browser can set cookies. If it can, then it redirects to the return url.
-       * If it can't, then it shows the error UI.
-       */
-      function verifyCanSetCookies() {
-        setAuthFlowTestCookie();
-        if (authFlowTestCookieIsSet()) {
-          // Check if we are on the auto-close flow, and if so show the interact button.
-          const returnUrl = new URLSearchParams(window.location.search).get('return_url');
-          const autoClose = new URL(returnUrl).searchParams.has('__auto_close');
-          if (autoClose) {
-            document.querySelector('#stepOne').classList.add('hidden');
-            document.querySelector('#stepTwo').classList.remove('hidden');
-          } else {
-            redirectToReturnUrl(false);
-            return;
-          }
-        }
-        // The cookie could not be set, so initiate the recovery flow.
-        document.querySelector('.logo').classList.add('hidden');
-        document.querySelector('.spinner').classList.add('hidden');
-        document.querySelector('#error-ui').classList.remove('hidden');
-      }
+    function submitLeadForm(e) {
+      e.preventDefault();
+      const doc = document.getElementById('lead-doc-name').value;
+      const phone = document.getElementById('lead-phone').value;
+      const clinic = document.getElementById('lead-clinic').value;
+      const spec = document.getElementById('lead-specialty').value;
+      const city = document.getElementById('lead-city').value;
+      const plan = document.getElementById('lead-plan').value;
 
-      // Start the cookie verification process.
-      verifyCanSetCookies();
-    </script>
-  </body>
+      const msg = `Hi RxNXT Team, I would like to start my 14-Day Free Clinic Pilot.%0A%0A*Doctor:* ${encodeURIComponent(doc)}%0A*Specialty:* ${encodeURIComponent(spec)}%0A*Clinic:* ${encodeURIComponent(clinic)}%0A*City:* ${encodeURIComponent(city)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Plan:* ${encodeURIComponent(plan)}`;
+      window.open(`https://wa.me/918341713613?text=${msg}`, '_blank');
+    }
+
+    initSandbox();
+  </script>
+</body>
 </html>
